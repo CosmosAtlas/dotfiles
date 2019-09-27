@@ -38,6 +38,10 @@ Plug 'Valloric/MatchTagAlways'
 " Pandoc Integration for converting markdown files
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+" Change enclosings
+Plug 'tpope/vim-surround'
+" Nvim R
+Plug 'jalvesaq/Nvim-R'
 
 call plug#end()
 
@@ -56,8 +60,8 @@ set nocompatible
 set encoding=utf8
 
 if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
+    let base16colorspace=256
+    source ~/.vimrc_background
 endif
 
 " Set highlight method for spellchecks
@@ -67,10 +71,13 @@ hi SpellBad cterm=underline
 set list
 set listchars=tab:▸\ ,eol:¬
 
+set history=200
+
 " EasyMotion
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
-set nohlsearch
+
+
 
 set laststatus=2
 " Airline 
@@ -78,7 +85,7 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:airline_theme='base16_default'
 
 " Set highlight indent
-"let g:indentLine_setColor = 0
+" let g:indentLine_setColor = 0
 let g:indent_guides_auto_color = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
@@ -105,3 +112,8 @@ let g:vim_markdown_folding_disabled = 1
 
 " Pandoc
 let g:pandoc#modules#disabled = ["folding"]
+
+" NERDcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDTrimTrailingWhitespace = 1

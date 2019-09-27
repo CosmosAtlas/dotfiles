@@ -34,7 +34,7 @@ font dina 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec sakura
+bindsym $mod+Return exec st -e tmux
 
 # kill focused window
 bindsym $mod+Shift+colon kill
@@ -142,14 +142,15 @@ bindsym $mod+Shift+6 move container to workspace $ws10
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Shift+J reload
+bindsym $mod+Shift+J reload ; exec notify-send 'i3 config reloaded'
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+P restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+greater exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
-bindsym $mod+Shift+r mode "$mode_system"
+bindsym $mod+Shift+r mode "$mode_system" ; notify-send "things"
+
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 	bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -214,7 +215,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id udiskie --tray &
 exec --no-startup-id dunst &
-exec_always --no-startup-id $HOME/.scripts/polybar.sh
+exec_always --no-startup-id /home/cosmos/.config/polybar/launch.sh
 exec --no-startup-id $HOME/.scripts/xcape.sh
 exec --no-startup-id mpd
 exec --no-startup-id pasystray &
@@ -233,3 +234,5 @@ for_window [workspace="10"] floating enable
 for_window [class="electron"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
+
+
