@@ -35,6 +35,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'ajh17/VimCompletesMe'
 " Highlight HTML tags
 Plug 'Valloric/MatchTagAlways'
+" Pandoc Integration for converting markdown files
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 call plug#end()
 
@@ -100,3 +103,5 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_folding_disabled = 1
 
+" Pandoc
+let g:pandoc#modules#disabled = ["folding"]
