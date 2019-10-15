@@ -35,9 +35,11 @@ export KEYTIMEOUT=1
 # Load autojump
 source /etc/profile.d/autojump.zsh
 
+# pfetch variables
+
 # Randomly display 1 of 2 random welcome messages
 if (( RANDOM % 2 )); then
-    neofetch
+    PF_INFO="ascii title os host kernel uptime memory palette" pfetch
 else
     pokemonsay Have a nice day!
 fi
@@ -53,6 +55,13 @@ nvm() {
     nvm "$@"
 }
 
+# Update prompt time every 30 secs
+TRAPALRM() {
+    zle reset-prompt
+}
+TMOUT=30
+
 #zprof
 
 alias neomutt='TERM=screen-256color neomutt'
+alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'
