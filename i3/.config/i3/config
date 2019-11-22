@@ -217,9 +217,10 @@ exec --no-startup-id udiskie --tray &
 exec --no-startup-id dunst &
 exec_always --no-startup-id /home/cosmos/.config/polybar/launch.sh
 exec --no-startup-id $HOME/.scripts/xcape.sh
-exec --no-startup-id mpd
+exec --no-startup-id mpd 
 exec --no-startup-id pasystray &
 exec_always --no-startup-id /home/cosmos/.scripts/pomolaunch.sh
+exec --no-startup-id syncthing-gtk &
 
 # Custom keybindings
 bindsym $mod+y exec --no-startup-id pkill compton
@@ -227,7 +228,6 @@ bindsym $mod+Ctrl+y exec --no-startup-id compton -b
 bindsym $mod+Shift+e --release exec "killall dunst; exec notify-send 'restart dunst'"
 
 bindsym $mod+space exec rofi -show drun
-bindsym $mod+x exec qutebrowser
 
 # Floating workspace 9 and 10
 for_window [workspace="9"] floating enable

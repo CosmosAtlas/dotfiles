@@ -63,5 +63,4 @@ TMOUT=30
 
 #zprof
 
-alias neomutt='TERM=screen-256color neomutt'
 alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'

@@ -8,12 +8,13 @@ Plug 'vimwiki/vimwiki'
 Plug 'gyim/vim-boxdraw'
 " A faster searc and navigation
 Plug 'easymotion/vim-easymotion'
-" Faster commenting
-Plug 'scrooloose/nerdcommenter'
+" Commenting
+Plug 'tpope/vim-commentary'
+" Git integration
+Plug 'tpope/vim-fugitive'
 " Close brackets
 Plug 'Raimondi/delimitMate'
 " Add indentation guides
-"Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
 " Themes for airline
 Plug 'vim-airline/vim-airline-themes'
@@ -27,22 +28,29 @@ Plug 'lervag/vimtex'
 Plug 'sheerun/vim-polyglot'
 " Align text
 Plug 'godlygeek/tabular'
-" Better support for markdown
-Plug 'plasticboy/vim-markdown'
 " Base16 color themes group
 Plug 'chriskempson/base16-vim'
 " Auto completion
 Plug 'ajh17/VimCompletesMe'
 " Highlight HTML tags
 Plug 'Valloric/MatchTagAlways'
-" Pandoc Integration for converting markdown files
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 " Change enclosings
 Plug 'tpope/vim-surround'
 " Nvim R
 Plug 'jalvesaq/Nvim-R'
-
+" Syntax checking
+Plug 'scrooloose/syntastic'
+" Rainbow!
+Plug 'kien/rainbow_parentheses.vim'
+" Markdown and tabular
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+" Show diff
+if has('nvim') || has('patch-8.0.902')
+    Plug 'mhinz/vim-signify'
+else
+    Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
 call plug#end()
 
 " Overall settings
@@ -74,8 +82,8 @@ set listchars=tab:▸\ ,eol:¬
 set history=200
 
 " EasyMotion
-map / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map <Leader><Leader>s <Plug>(easymotion-sn)
+omap <Leader><Leader>s <Plug>(easymotion-sn)
 
 
 
@@ -113,7 +121,23 @@ let g:vim_markdown_folding_disabled = 1
 " Pandoc
 let g:pandoc#modules#disabled = ["folding"]
 
-" NERDcommenter
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDTrimTrailingWhitespace = 1
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501'
+
+" Rainbow!
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" nvim-R
+let g:R_assign = 0
