@@ -61,6 +61,8 @@ TRAPALRM() {
 }
 TMOUT=30
 
+set -o vi
+
 #zprof
 
 alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'

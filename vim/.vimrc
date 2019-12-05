@@ -24,8 +24,6 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ctrlpvim/ctrlp.vim'
 " Vim latex support
 Plug 'lervag/vimtex'
-" More language syntax
-Plug 'sheerun/vim-polyglot'
 " Align text
 Plug 'godlygeek/tabular'
 " Base16 color themes group
@@ -45,6 +43,8 @@ Plug 'kien/rainbow_parentheses.vim'
 " Markdown and tabular
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+" Easy alignment
+Plug 'junegunn/vim-easy-align'
 " Show diff
 if has('nvim') || has('patch-8.0.902')
     Plug 'mhinz/vim-signify'
@@ -141,3 +141,10 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " nvim-R
 let g:R_assign = 0
+
+" easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
