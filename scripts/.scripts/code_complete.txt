@@ -1,4 +1,0 @@
-To: zhuwenhan950913@gmail.com
-From: w65zhu@uwaterloo.ca
-Subject: Rsync complete
-Automatic e-mail indicating rsync complete on narf. 

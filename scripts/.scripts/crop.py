@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import sys

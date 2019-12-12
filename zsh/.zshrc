@@ -32,8 +32,8 @@ SPACESHIP_PROMPT_ORDER=(
 
 export KEYTIMEOUT=1
 
-# Load autojump
-source /etc/profile.d/autojump.zsh
+# load fasd for fast navigation
+eval "$(fasd --init auto)"
 
 # pfetch variables
 

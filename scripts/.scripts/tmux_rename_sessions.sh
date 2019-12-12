@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+
+sleep 1
+
 sessions=$(tmux ls | grep '^[0-9]\+:' | cut -f1 -d':' | sort)
 
 new=0
