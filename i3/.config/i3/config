@@ -201,6 +201,7 @@ gaps outer -4
 
 smart_gaps on
 
+new_window pixel 3
 smart_borders on
 
 # Lock screen

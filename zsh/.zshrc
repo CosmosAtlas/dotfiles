@@ -30,6 +30,8 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
 )
 
+bindkey -v "^?" backward-delete-char
+
 export KEYTIMEOUT=1
 
 # load fasd for fast navigation
