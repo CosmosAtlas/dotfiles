@@ -1,10 +1,10 @@
-!URxvt.font: xft:Gomme:style=Regular:pixelsize=13,xft:Iosevka:pixelsize=13,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=13
-URxvt.font: xft:Iosevka Nerd Font:size=12,xft:Noto Sans CJK SC:size=12
+!URxvt.font: xft:Dina:style=Regular:pixelsize=10,xft:Iosevka:pixelsize=10,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=10
+!URxvt.font: xft:Iosevka:size=12,xft:Noto Sans CJK SC:size=12
+URxvt.font: xft:Mononoki Nerd Font:pixelsize=18,xft:WenQuanYi Micro Hei Mono:pixelsize=18
 
+URxvt.boldFont: xft:Mononoki Nerd Font:pixelsize=18:style=Bold,xft:WenQuanYi Micro Hei Mono:pixel=18:style=Bold
+URxvt.letterSpace: -1
 URxvt.scrollBar: false
-URxvt.transparent: true
-URxvt.shading: 15
-URxvt*depth: 32
-URxvt.internalBorder: 4
 
 Xft.dpi: 109
+*dpi: 109

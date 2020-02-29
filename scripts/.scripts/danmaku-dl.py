@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 
 video_url = 'https://www.bilibili.com/video/av76218824'
-xml_file = '/tmp/temp_xml.xml'
+xml_dir = '/tmp/'
 
 if len(sys.argv) >= 3:
     video_url = sys.argv[1]
@@ -37,21 +37,28 @@ def get_cid_from_video_url(video_url):
                 raise Exception(results["error"])
     raise Exception("Html parse JSON failed.")
 
+def get_video_part_id(video_url):
+    m = re.search('\?p=(\d+)', video_url)
+    if m:
+        return int(m.group(1)) - 1
+    return 0
+    
+
 try:
     comment_id = get_cid_from_video_url(video_url)
-    comment_id = comment_id[0]
+    part_id = get_video_part_id(video_url)
+    comment_id = comment_id[part_id]
 except Exception as e:
     print("Error getting cid: %s", e)
     sys.exit(1)
 
-print("Parsed comment_id: %s" % comment_id)
+print(comment_id)
 
 danmaku_url = "http://comment.bilibili.com/%s.xml" % comment_id
 
 response = requests.get(danmaku_url)
 response.encoding = 'utf-8'
 
-with open(xml_file, 'w', encoding='utf-8') as f:
+with open(xml_dir + comment_id + '.xml', 'w', encoding='utf-8') as f:
     f.write(response.text)
-
 

@@ -17,6 +17,8 @@
 # - Add ``needsterminal`` for commands that use the terminal
 # - Add ``copiousoutput`` for commands that dump text to stdout
 
+text/calendar; vcal %s;
+
 ###############################################################################
 # Commands below this point will open media in a separate window without
 # pausing execution of RTV.

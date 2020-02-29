@@ -13,8 +13,8 @@ antibody bundle < ~/.zsh_plugins.txt
 
 #zmodload zsh/zprof
 
-export PATH=~/go/bin:~/.local/bin/:$PATH:~/.gem/ruby/2.6.0/bin/:~/bin/:~/.scripts/
-export BROWSER=chromium
+export PATH=~/go/bin:~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin:~/bin:~/.scripts
+export BROWSER=qutebrowser
 export SPACESHIP_TIME_SHOW=true
 export EDITOR=vim
 SPACESHIP_PROMPT_ORDER=(
@@ -28,26 +28,42 @@ SPACESHIP_PROMPT_ORDER=(
   vi_mode       # Vi-mode indicator
   exit_code     # Exit code section
   char          # Prompt character
+  venv          # virtualenv section
 )
 
 bindkey -v "^?" backward-delete-char
 
 export KEYTIMEOUT=1
 
+
 # load fasd for fast navigation
 eval "$(fasd --init auto)"
 
-# pfetch variables
-
 # Randomly display 1 of 2 random welcome messages
+alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'
 if (( RANDOM % 2 )); then
-    PF_INFO="ascii title os host kernel uptime memory palette" pfetch
+    pfetch
 else
     pokemonsay Have a nice day!
 fi
 
 source ~/.commacd.sh
 source ~/.scripts/wu
+
+# Substring search settings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY_TIME
 
 # only load nvm when used
 nvm() {
@@ -65,6 +81,6 @@ TMOUT=30
 
 set -o vi
 
-#zprof
+alias mpv=umpv
+alias yv='googler -w youtube.com --url-handler mpv $argv'
 
-alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'

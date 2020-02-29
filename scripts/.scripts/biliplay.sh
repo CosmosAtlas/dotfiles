@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-ASS_FILE=/tmp/temp_ass.ass
-XML_FILE=/tmp/temp_xml.xml
+XML_DIR=/tmp/
 
-danmaku-dl.py $1 $XML_FILE
+echo "Downloading danmaku file to temp"
+DANMAKU_COMMENT_ID=`danmaku-dl.py $1 $XML_DIR`
 
-danmaku2ass-c.sh $XML_FILE $ASS_FILE
+echo "Converting danmaku to ass file"
+danmaku2ass-c.sh $XML_DIR$DANMAKU_COMMENT_ID.xml $XML_DIR$DANMAKU_COMMENT_ID.ass
 
-mpv $1 --sub-files $ASS_FILE
+echo "Playing video with danmaku"
+ykdl -p "mpv --sub-files=$XML_DIR$DANMAKU_COMMENT_ID.ass" $1

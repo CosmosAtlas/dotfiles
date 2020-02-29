@@ -51,6 +51,10 @@ if has('nvim') || has('patch-8.0.902')
 else
     Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
 endif
+" Nord colorscheme
+Plug 'arcticicestudio/nord-vim'
+" Calendar experiment
+Plug 'itchyny/calendar.vim'
 call plug#end()
 
 " Overall settings
@@ -95,7 +99,7 @@ let g:airline#extensions#tabline#enabled = 1
 " Set highlight indent
 " let g:indentLine_setColor = 0
 let g:indent_guides_auto_color = 1
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 hi IndentGuidesOdd  ctermbg=white
@@ -108,8 +112,17 @@ let NERDTreeShowHidden = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-let g:vimtex_latexmk_options = "-pdf -verbose -file-line-error -synctex=1"
 let g:vimtex_latexmk_callback = 0
+let g:vimtex_compiler_latexmk = {
+            \ 'options' : [
+            \   '-pdf',
+            \   '-shell-escape',
+            \   '-verbose',
+            \   '-file-line-error',
+            \   '-synctex=1',
+            \   '-interaction=nonstopmode',
+            \],
+            \}
 
 let g:polyglot_disabled = ['latex']
 
