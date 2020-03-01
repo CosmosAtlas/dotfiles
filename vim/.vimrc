@@ -14,8 +14,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " Close brackets
 Plug 'Raimondi/delimitMate'
-" Add indentation guides
-Plug 'nathanaelkane/vim-indent-guides'
 " Themes for airline
 Plug 'vim-airline/vim-airline-themes'
 " File browsers
@@ -42,7 +40,6 @@ Plug 'scrooloose/syntastic'
 Plug 'kien/rainbow_parentheses.vim'
 " Markdown and tabular
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 " Easy alignment
 Plug 'junegunn/vim-easy-align'
 " Show diff
@@ -51,10 +48,8 @@ if has('nvim') || has('patch-8.0.902')
 else
     Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
 endif
-" Nord colorscheme
-Plug 'arcticicestudio/nord-vim'
-" Calendar experiment
-Plug 'itchyny/calendar.vim'
+" Indent line guides
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 " Overall settings
@@ -89,21 +84,13 @@ set history=200
 map <Leader><Leader>s <Plug>(easymotion-sn)
 omap <Leader><Leader>s <Plug>(easymotion-sn)
 
+" identLine
 
-
-set laststatus=2
 " Airline 
+set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline_theme='base16_default'
 
-" Set highlight indent
-" let g:indentLine_setColor = 0
-let g:indent_guides_auto_color = 1
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-hi IndentGuidesOdd  ctermbg=white
-hi IndentGuidesEven ctermbg=lightgrey
 
 map <C-t> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -112,17 +99,8 @@ let NERDTreeShowHidden = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+let g:vimtex_latexmk_options = "-pdf -verbose -file-line-error -synctex=1"
 let g:vimtex_latexmk_callback = 0
-let g:vimtex_compiler_latexmk = {
-            \ 'options' : [
-            \   '-pdf',
-            \   '-shell-escape',
-            \   '-verbose',
-            \   '-file-line-error',
-            \   '-synctex=1',
-            \   '-interaction=nonstopmode',
-            \],
-            \}
 
 let g:polyglot_disabled = ['latex']
 
@@ -130,9 +108,6 @@ let g:polyglot_disabled = ['latex']
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_folding_disabled = 1
-
-" Pandoc
-let g:pandoc#modules#disabled = ["folding"]
 
 " Syntastic
 set statusline+=%#warningmsg#
