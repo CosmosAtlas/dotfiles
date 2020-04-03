@@ -50,6 +50,8 @@ else
 endif
 " Indent line guides
 Plug 'Yggdroot/indentLine'
+" Nord color scheme
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " Overall settings
@@ -70,6 +72,7 @@ if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 endif
+color nord
 
 " Set highlight method for spellchecks
 hi clear SpellBad
@@ -89,7 +92,7 @@ omap <Leader><Leader>s <Plug>(easymotion-sn)
 " Airline 
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline_theme='base16_default'
+" let g:airline_theme='base16_nord'
 
 
 map <C-t> :NERDTreeToggle<CR>
