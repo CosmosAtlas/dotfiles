@@ -1,0 +1,5 @@
+#!/bin/sh
+
+imgs=$(ls -vd $1/* | egrep '\.jpg$|\.JPG$|\.png$|\.PNG$|\.jpeg$|\.JPEG$')
+
+img2pdf $imgs -o $(basename $1).pdf
