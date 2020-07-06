@@ -1,8 +1,0 @@
-#!/usr/bin/env zsh
-
-
-wu () {
-    , /home/cosmos/extSSD/Sync/WeeklyUpdates/
-    ./gen.py
-    , /home/cosmos/extSSD/Sync/WeeklyUpdates/`date | cut -d ' ' -f 4`/W`date +%V`
-}

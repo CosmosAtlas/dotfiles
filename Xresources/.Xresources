@@ -1,13 +1,23 @@
-!URxvt.font: xft:Dina:style=Regular:pixelsize=10,xft:Iosevka:pixelsize=10,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=10
-!URxvt.font: xft:Iosevka:size=12,xft:Noto Sans CJK SC:size=12
-URxvt.font: xft:Mononoki Nerd Font:pixelsize=18,xft:WenQuanYi Micro Hei Mono:pixelsize=18
+URxvt.font: xft:cozette:style=Medium:pixelsize=13,xft:Iosevka Nerd Font:pixelsize=10,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=10
+/* URxvt.font: xft:GohuFont Nerd Font Mono:style=uni-14:pixelsize=14,xft:JoyPixels:pixelsize=14;xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=14 */
+/* URxvt*font: xft:Mononoki Nerd Font Mono:pixelsize=18:minspace=False,xft:WenQuanYi Micro Hei Mono:pixelsize=18,xft:Font Awesome 5 Brands:pixelsize=18,xft:Font Awesome 5 Free:pixelsize=18,xft:Noto Sans:pixelsize=18, */
 
-URxvt.boldFont: xft:Mononoki Nerd Font:pixelsize=18:style=Bold,xft:WenQuanYi Micro Hei Mono:pixel=18:style=Bold
-URxvt.letterSpace: -1
-URxvt.scrollBar: false
+/* URxvt*boldFont: xft:Mononoki Nerd Font Mono:pixelsize=18:style=Bold,xft:WenQuanYi Micro Hei Mono:pixelsize=18:style=Bold */
+URxvt*boldFont: 
+URxvt*italicFont: 
+! URxvt.letterSpace: -1
+URxvt*letterSpace: 0
+URxvt*.scrollBar: false
 
-Xft.dpi: 109
-*dpi: 109
+! Config to be used by st with Xresources patch
+st.font: Iosevka Nerd Font:size=12
+/* st.font: FiraCode Nerd Font:size=14 */
+st.fontalt0: JoyPixels:size=12:antialias=true:autohint=true
+st.alpha: 1.0
+
+
+! Overrule for rofi
+rofi.font: Mononoki Nerd Font 13
 
 ! Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
 ! Copyright (c) 2016-present Sven Greb <code@svengreb.de>
@@ -56,3 +66,58 @@ Xft.dpi: 109
 *.color13: nord15
 *.color14: nord7
 *.color15: nord6
+
+! Base16 One Light
+! Scheme: Daniel Pfeifer (http://github.com/purpleKarrot)
+
+#define base00 #fafafa
+#define base01 #f0f0f1
+#define base02 #e5e5e6
+#define base03 #a0a1a7
+#define base04 #696c77
+#define base05 #383a42
+#define base06 #202227
+#define base07 #090a0b
+#define base08 #ca1243
+#define base09 #d75f00
+#define base0A #c18401
+#define base0B #50a14f
+#define base0C #0184bc
+#define base0D #4078f2
+#define base0E #a626a4
+#define base0F #986801
+
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+
+*color8:       base03
+*color9:       base08
+*color10:      base0B
+*color11:      base0A
+*color12:      base0D
+*color13:      base0E
+*color14:      base0C
+*color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*color16:      base09
+*color17:      base0F
+*color18:      base01
+*color19:      base02
+*color20:      base04
+*color21:      base06
