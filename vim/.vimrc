@@ -171,8 +171,9 @@ augroup reload_vimrc
         autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-" EasyMotion
-map <Leader><Leader>s <Plug>(easymotion-sn)
+" vim-which-key
+nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
+set timeoutlen=500
 
 " Airline 
 " set laststatus=2
@@ -183,9 +184,9 @@ map <Leader><Leader>s <Plug>(easymotion-sn)
 " let mapleader="\<Space>"
 map <space> <leader>
 
-" vim-which-key
-nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
-set timeoutlen=500
+
+" EasyMotion
+map <Leader><Leader>s <Plug>(easymotion-sn)
 
 " NerdTree
 map <C-t> :NERDTreeToggle<CR>
