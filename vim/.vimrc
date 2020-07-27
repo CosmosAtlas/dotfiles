@@ -202,7 +202,7 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 " Control-P fuzzy finder
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " vimtex
 let g:vimtex_latexmk_options = "-pdf -verbose -file-line-error -synctex=1"
