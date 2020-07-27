@@ -38,8 +38,8 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) &
 pkill dwmblocks
 dwmblocks &
 
-pkill fcitx
-fcitx &
+pkill fcitx5
+fcitx5 &
 
 # mpd &
 # /home/cosmos/.scripts/pomolaunch.sh &
