@@ -8,6 +8,7 @@ antibody bundle < ~/.zsh_plugins.txt
 export PATH=~/Scripts:~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin:~/bin:~/.scripts
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export PATH=$PATH:~/.node_modules/bin
+export PATH=$PATH:~/.cargo/bin
 export BROWSER=qutebrowser
 export TERMINAL=st
 export SPACESHIP_TIME_SHOW=true
