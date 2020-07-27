@@ -41,6 +41,9 @@ dwmblocks &
 pkill fcitx5
 fcitx5 &
 
+pkill aria2c
+aria2c -D &
+
 # mpd &
 # /home/cosmos/.scripts/pomolaunch.sh &
 # syncthing-gtk &
