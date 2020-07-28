@@ -78,6 +78,8 @@ Plug 'jpalardy/vim-slime'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " CSV editing
 Plug 'chrisbra/csv.vim'
+" better handle of open in browser
+Plug 'tyru/open-browser.vim'
 " Color Schemes ==============================================================
 " Base16 color themes group
 Plug 'chriskempson/base16-vim'
@@ -247,6 +249,11 @@ let g:R_assign = 0
 let R_in_buffer = 0
 let R_source = '/home/cosmos/Scripts/tmux_split.vim'
 let r_indent_align_args = 0
+
+" open-browser.vim
+let g:netrw_nogx = 1 " Disable netrw's gx mapping
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
