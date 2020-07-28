@@ -76,6 +76,8 @@ Plug 'chrisbra/Colorizer'
 Plug 'jpalardy/vim-slime'
 " Provide hints to shortcuts
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+" CSV editing
+Plug 'chrisbra/csv.vim'
 " Color Schemes ==============================================================
 " Base16 color themes group
 Plug 'chriskempson/base16-vim'
