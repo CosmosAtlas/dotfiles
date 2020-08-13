@@ -10,9 +10,9 @@ URxvt*letterSpace: 0
 URxvt*.scrollBar: false
 
 ! Config to be used by st with Xresources patch
-st.font: Iosevka Nerd Font:size=12
+st.font: Iosevka Nerd Font:size=14
 /* st.font: FiraCode Nerd Font:size=14 */
-st.fontalt0: JoyPixels:size=12:antialias=true:autohint=true
+st.fontalt0: JoyPixels:size=14:antialias=true:autohint=true
 st.alpha: 1.0
 
 
