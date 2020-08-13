@@ -36,9 +36,7 @@ export KEYTIMEOUT=1
 # load fasd for fast navigation
 eval "$(fasd --init auto)"
 
-# Randomly display 1 of 2 random welcome messages
 alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'
-pfetch
 
 source ~/Scripts/wu.sh
 
@@ -104,3 +102,6 @@ export npm_config_prefix=~/.node_modules
 
 # initiate prompt
 eval "$(starship init zsh)"
+
+pfetch
+fortune tang300 | ~/.node_modules/bin/cowsay -f sachiko
