@@ -175,6 +175,9 @@ augroup reload_vimrc
         autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
+" Always assume .tex files are latex file
+let g:tex_flavor = "latex"
+
 " vim-which-key
 nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
 set timeoutlen=500
@@ -209,8 +212,6 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " vimtex
-let g:vimtex_latexmk_options = "-pdf -verbose -file-line-error -synctex=1"
-let g:vimtex_latexmk_callback = 0
 let g:vim_quickfix_open_on_warning = 0
 
 " vimwiki
