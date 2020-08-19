@@ -83,6 +83,7 @@ Plug 'tyru/open-browser.vim'
 " Color Schemes ==============================================================
 " Base16 color themes group
 Plug 'chriskempson/base16-vim'
+Plug 'mike-hearn/base16-vim-lightline'  " Lightline theme addon for base16
 " Nord color scheme
 Plug 'arcticicestudio/nord-vim', {'branch': 'develop'}
 " Ayu color scheme
@@ -126,7 +127,7 @@ endif
 " lightline.vim
 set laststatus=2
 let g:lightline = {
-    \ 'colorscheme': 'one',
+    \ 'colorscheme': 'base16_gruvbox_dark_hard',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -142,10 +143,12 @@ augroup coc_lightline
 augroup END
 
 set t_Co=256
-set background=light
-" one color options
-let g:one_allow_italics = 1
-colorscheme one
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 
 filetype indent plugin on
 syntax enable
@@ -434,3 +437,9 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+
+
+" ================= END of CoC suggested commands
+
+" Makes vim transparent
+hi Normal guibg=NONE ctermbg=NONE
