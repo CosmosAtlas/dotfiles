@@ -84,7 +84,6 @@ alias lg='lazygit'
 alias dm='devour mpv'
 alias dp='devour qlphelper -u'
 alias db='devour biliplay.sh'
-# alias rtv='http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1/7890 rtv'
 
 # environment control variables
 export VIMWIKI_MARKDOWN_EXTENSIONS="markdown_checklist.extension"
