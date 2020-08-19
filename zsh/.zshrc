@@ -1,4 +1,10 @@
 # ~/.zshrc
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
 # Start of antibody
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
