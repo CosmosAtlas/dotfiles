@@ -442,5 +442,10 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " ================= END of CoC suggested commands ============================
 
-" Makes vim transparent
+" === Color settngs ==========================================================
+" Transparency
 hi Normal guibg=NONE ctermbg=NONE
+" No underline for current line number
+hi CursorLineNr cterm=bold gui=bold
+" Italic comments
+hi Comment cterm=italic gui=italic
