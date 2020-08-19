@@ -263,7 +263,7 @@ xmap ga <Plug>(EasyAlign)
 let g:ale_linters = {
             \ 'python': ['flake8'],
             \ 'r': [],
-            \ 'markdown': ['mdl', 'writegood'],
+            \ 'markdown': ['mdl'],
             \}
 " let g:ale_r_lintr_options = 'lintr::with_defaults(line_length_linter = NULL, object_name_linter = NULL, object_usage_linter = NULL, object_length_linter = NULL, commented_code_linter = NULL)'
 
