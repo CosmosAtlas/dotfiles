@@ -19,73 +19,25 @@ st.alpha: 1.0
 ! Overrule for rofi
 rofi.font: Mononoki Nerd Font 13
 
-! Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
-! Copyright (c) 2016-present Sven Greb <code@svengreb.de>
+! Base16 Gruvbox dark, hard
+! Scheme: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
-! Project:    Nord XResources
-! Version:    0.1.0
-! Repository: https://github.com/arcticicestudio/nord-xresources
-! License:    MIT
-
-#define nord0 #2E3440
-#define nord1 #3B4252
-#define nord2 #434C5E
-#define nord3 #4C566A
-#define nord4 #D8DEE9
-#define nord5 #E5E9F0
-#define nord6 #ECEFF4
-#define nord7 #8FBCBB
-#define nord8 #88C0D0
-#define nord9 #81A1C1
-#define nord10 #5E81AC
-#define nord11 #BF616A
-#define nord12 #D08770
-#define nord13 #EBCB8B
-#define nord14 #A3BE8C
-#define nord15 #B48EAD
-
-*.foreground:   nord4
-*.background:   nord0
-*.cursorColor:  nord4
-*fading: 35
-*fadeColor: nord3
-
-*.color0: nord1
-*.color1: nord11
-*.color2: nord14
-*.color3: nord13
-*.color4: nord9
-*.color5: nord15
-*.color6: nord8
-*.color7: nord5
-*.color8: nord3
-*.color9: nord11
-*.color10: nord14
-*.color11: nord13
-*.color12: nord9
-*.color13: nord15
-*.color14: nord7
-*.color15: nord6
-
-! Base16 One Light
-! Scheme: Daniel Pfeifer (http://github.com/purpleKarrot)
-
-#define base00 #fafafa
-#define base01 #f0f0f1
-#define base02 #e5e5e6
-#define base03 #a0a1a7
-#define base04 #696c77
-#define base05 #383a42
-#define base06 #202227
-#define base07 #090a0b
-#define base08 #ca1243
-#define base09 #d75f00
-#define base0A #c18401
-#define base0B #50a14f
-#define base0C #0184bc
-#define base0D #4078f2
-#define base0E #a626a4
-#define base0F #986801
+#define base00 #1d2021
+#define base01 #3c3836
+#define base02 #504945
+#define base03 #665c54
+#define base04 #bdae93
+#define base05 #d5c4a1
+#define base06 #ebdbb2
+#define base07 #fbf1c7
+#define base08 #fb4934
+#define base09 #fe8019
+#define base0A #fabd2f
+#define base0B #b8bb26
+#define base0C #8ec07c
+#define base0D #83a598
+#define base0E #d3869b
+#define base0F #d65d0e
 
 *foreground:   base05
 #ifdef background_opacity
@@ -121,3 +73,4 @@ rofi.font: Mononoki Nerd Font 13
 *color19:      base02
 *color20:      base04
 *color21:      base06
+© 2
