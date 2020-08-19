@@ -73,7 +73,7 @@ set -o vi
 alias yv='googler -w youtube.com --url-handler mpv $argv'
 alias pc='proxychains -q'
 alias mosh-narf='mosh --server=/home/local/SAIL/cosmos/.linuxbrew/bin/mosh-server narf'
-alias mount-win='sudo mount -t cifs -o username=cosmos //192.168.31.22/Downloads /home/cosmos/Mounts/ExtWin'
+alias mount-win='sudo mount -t cifs -o username=cosmos,rw,uid=$USER,gid=$USER,dir_mode=0755,file_mode=0664 //192.168.31.157/d /home/cosmos/Mounts/ExtWin'
 alias neomutt='pc neomutt'
 alias hangups='pc hangups'
 alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs'
