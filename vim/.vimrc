@@ -100,11 +100,7 @@ set hidden
 set updatetime=300
 set virtualedit=block
 
-if has("patch-8.1.1564")
-    set signcolumn=number
-else
-    set signcolumn=yes
-endif
+set signcolumn=yes
 
 
 set ts=4 sw=4
