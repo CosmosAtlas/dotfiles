@@ -314,7 +314,7 @@ let g:tagbar_type_r = {
     \ ]
 \ }
 
-" coc.nvim
+" coc.nvim ===================================================================
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -440,7 +440,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
 
-" ================= END of CoC suggested commands
+" ================= END of CoC suggested commands ============================
 
 " Makes vim transparent
 hi Normal guibg=NONE ctermbg=NONE
