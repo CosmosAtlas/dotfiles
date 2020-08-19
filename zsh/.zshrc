@@ -92,9 +92,9 @@ export VIMWIKI_MARKDOWN_EXTENSIONS="markdown_checklist.extension"
 # By setting the global variables might be convenient but, using pc with each program that requires
 # the proxy should be the better solution for fine grained control.
 proxyon() {
-    export http_proxy=http://127.0.0.1:7890
-    export https_proxy=http://127.0.0.1:7890
-    export ALL_PROXY=http://127.0.0.1:7890
+    export http_proxy=http://127.0.0.1:8888
+    export https_proxy=http://127.0.0.1:8888
+    export ALL_PROXY=http://127.0.0.1:8888
 }
 
 proxyoff() {
