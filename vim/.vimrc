@@ -15,6 +15,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " Dispatch for asynchronous
 Plug 'tpope/vim-dispatch'
+" Better repeating with '.'
+Plug 'tpope/vim-repeat'
 " Close brackets
 Plug 'jiangmiao/auto-pairs'
 " Themes for airline
@@ -200,11 +202,14 @@ let g:vim_quickfix_open_on_warning = 0
 
 " vimwiki
 let g:vimwiki_list = [{
-	\ 'path': '~/vimwiki',
-	\ 'path_html': '~/vimwiki/site_html/'}]
+    \ 'path': '~/vimwiki',
+    \ 'path_html': '~/vimwiki/site_html/'}]
+" Disable overwriting filetype markdown
+let g:vimwiki_global_ext = 0
 
 " vim-markdown
 let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_folding_disabled = 1
 
@@ -250,6 +255,7 @@ let g:ale_linters = {
             \ 'r': [],
             \ 'markdown': ['mdl'],
             \}
+let g:ale_markdown_mdl_options = '-i -r MD002'
 " let g:ale_r_lintr_options = 'lintr::with_defaults(line_length_linter = NULL, object_name_linter = NULL, object_usage_linter = NULL, object_length_linter = NULL, commented_code_linter = NULL)'
 
 let g:ale_fixers = {
