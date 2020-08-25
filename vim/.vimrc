@@ -2,7 +2,6 @@
 call plug#begin('~/.vim/plugged')
 
 " More useful status line at bottom
-" Plug 'bling/vim-airline'
 Plug 'itchyny/lightline.vim'
 " A quick wiki tool 
 Plug 'vimwiki/vimwiki'
@@ -84,12 +83,6 @@ Plug 'tyru/open-browser.vim'
 " Base16 color themes group
 Plug 'chriskempson/base16-vim'
 Plug 'mike-hearn/base16-vim-lightline'  " Lightline theme addon for base16
-" Nord color scheme
-Plug 'arcticicestudio/nord-vim', {'branch': 'develop'}
-" Ayu color scheme
-Plug 'ayu-theme/ayu-vim'
-" Atom One color scheme
-Plug 'rakr/vim-one'
 call plug#end()
 
 " Overall settings
@@ -181,13 +174,6 @@ let g:tex_flavor = "latex"
 nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
 set timeoutlen=500
 
-" Airline 
-" set laststatus=2
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_theme='nord'
-
-" Space as leader key
-" let mapleader="\<Space>"
 map <space> <leader>
 
 
