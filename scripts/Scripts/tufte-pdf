@@ -1,0 +1,19 @@
+#!/bin/sh
+
+[ $# -ne 1 ] && { echo "Usage: $0 [tufte markdown file]"; exit 1; }
+
+outpdf="${1%.*}.pdf"
+
+echo "$1 -> $outpdf"
+
+pp -pdf \
+    -import=$HOME/.local/share/pandoc/tufte-markdown.pp \
+    "$1" |
+pandoc --from=markdown+raw_tex \
+    --pdf-engine=xelatex \
+    --template=tufte-handout.latex \
+    --shift-heading-level-by=-1 \
+    --metadata=documentclass:tufte-handout \
+    --metadata=CJKmainfont:"Noto Serif CJK SC" \
+    --output="$outpdf"
+
