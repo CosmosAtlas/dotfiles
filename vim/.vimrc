@@ -20,9 +20,11 @@ Plug 'jiangmiao/auto-pairs'
 " Themes for airline
 Plug 'vim-airline/vim-airline-themes'
 " File browsers
-Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} | 
+    \ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Fast file search
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 " Vim latex support
 Plug 'lervag/vimtex'
 " Auto completion
@@ -74,7 +76,7 @@ Plug 'chrisbra/Colorizer'
 " send code blocks to live REPL
 Plug 'jpalardy/vim-slime'
 " Provide hints to shortcuts
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'liuchengxu/vim-which-key'
 " CSV editing
 Plug 'chrisbra/csv.vim'
 " better handle of open in browser
@@ -83,6 +85,7 @@ Plug 'tyru/open-browser.vim'
 " Base16 color themes group
 Plug 'chriskempson/base16-vim'
 Plug 'mike-hearn/base16-vim-lightline'  " Lightline theme addon for base16
+Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
 " Overall settings
@@ -170,12 +173,13 @@ augroup END
 " Always assume .tex files are latex file
 let g:tex_flavor = "latex"
 
+
 " vim-which-key
-nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
+let g:mapleader = "\<Space>"
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 set timeoutlen=500
-
-map <space> <leader>
-
+let g:which_key_map = {}
+call which_key#register('<Space>', "g:which_key_map")
 
 " EasyMotion
 map <Leader><Leader>s <Plug>(easymotion-sn)
@@ -190,11 +194,6 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
-
-" Control-P fuzzy finder
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " vimtex
 let g:vim_quickfix_open_on_warning = 0
@@ -258,7 +257,6 @@ let g:ale_fixers = {
             \ 'python': ['yapf'], 
             \ 'r': ['styler']
             \}
-nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
 " vim-slime
 let g:slime_target = "tmux"
