@@ -291,6 +291,34 @@ endfunction
 
 map <leader>hf :call FillLine('=')<CR>
 
+" Personal Keymaps
+
+" == File
+let g:which_key_map['f'] = {
+    \ 'name' : '+files' ,
+    \ 's' : ':w',
+    \ 'f' : ['Files' , 'fzf-files'], 
+    \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC']
+\ }
+
+" == Buffer manipulation
+let g:which_key_map['b'] = { 
+    \ 'name' : '+buffers' ,
+    \ 'n' : [':bn' , 'buffer-next'] ,
+    \ 'p' : [':bp' , 'buffer-previous'] ,
+    \ 'd' : [':bd' , 'buffer-delete'] ,
+    \ 'f' : ['Buffers', 'fzf-buffer']
+\ }
+
+" == Window manipulation
+let g:which_key_map['w'] = {
+    \ 'name' : '+windows' ,
+    \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+    \ 'J' : [':resize +5'  , 'expand-window-below']   ,
+    \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+    \ 'K' : [':resize -5'  , 'expand-window-up']      ,
+    \ 'f' : ['Windows'    , 'fzf-window']            ,
+\ }
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
