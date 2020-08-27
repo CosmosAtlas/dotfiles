@@ -1,4 +1,7 @@
-" vim configuration file
+
+let g:mapleader = "\<Space>"
+
+" vim plugged plugins
 call plug#begin('~/.vim/plugged')
 
 " More useful status line at bottom
@@ -178,7 +181,6 @@ let g:tex_flavor = "latex"
 
 
 " vim-which-key
-let g:mapleader = "\<Space>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 set timeoutlen=500
 let g:which_key_map = {}
@@ -238,8 +240,9 @@ augroup END
 let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsCenterLine = 0
 
-" nvim-R
+" Nvim-R
 let g:R_assign = 0
+let R_external_term = 1
 let R_in_buffer = 0
 let R_source = '/home/cosmos/Scripts/tmux_split.vim'
 let r_indent_align_args = 0
