@@ -1,1 +1,0 @@
-/home/cosmos/Repos/pomodoro-rpc/pomodorod.py
