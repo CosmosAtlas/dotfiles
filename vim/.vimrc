@@ -20,6 +20,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 " Better repeating with '.'
 Plug 'tpope/vim-repeat'
+" better highlighting for searches
+Plug 'romainl/vim-cool'
 " Close brackets
 Plug 'jiangmiao/auto-pairs'
 " File browsers
@@ -161,6 +163,7 @@ augroup END
 augroup reload_vimrc
         autocmd!
         autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+        autocmd BufWritePost $HOME/.vimrc nested source $HOME/.vimrc
 augroup END
 
 " Always assume .tex files are latex file
