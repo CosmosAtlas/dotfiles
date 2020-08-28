@@ -151,10 +151,8 @@ set history=200
 " Spell check for latex and markdown
 augroup spellCheck
     autocmd!
-    autocmd FileType markdown setlocal spell
-    autocmd BufRead,BufNewFile *.md setlocal spell
-    autocmd FileType tex setlocal spell
-    autocmd BufRead,BufNewFile *.tex setlocal spell
+    autocmd FileType markdown,tex,vimwiki,asciidoc setlocal spell
+    autocmd BufRead,BufNewFile *.md,*.tex setlocal spell
 augroup END
 
 " Auto reload $MYVIMRC after modifying and saving
