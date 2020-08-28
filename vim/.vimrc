@@ -5,7 +5,7 @@ let g:mapleader = "\<Space>"
 call plug#begin('~/.vim/plugged')
 
 " More useful status line at bottom
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 " A quick wiki tool 
 Plug 'vimwiki/vimwiki'
 " A tool to draw boxes
@@ -22,8 +22,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 " Close brackets
 Plug 'jiangmiao/auto-pairs'
-" Themes for airline
-Plug 'vim-airline/vim-airline-themes'
 " File browsers
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} | 
     \ Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -87,9 +85,10 @@ Plug 'chrisbra/csv.vim'
 " better handle of open in browser
 Plug 'tyru/open-browser.vim'
 " Color Schemes ==============================================================
+" Themes for airline
+Plug 'vim-airline/vim-airline-themes'
 " Base16 color themes group
 Plug 'chriskempson/base16-vim'
-Plug 'mike-hearn/base16-vim-lightline'  " Lightline theme addon for base16
 Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
@@ -120,24 +119,9 @@ if (has("termguicolors"))
 endif
 
 
-" lightline.vim
+" vim-airline
 set laststatus=2
-let g:lightline = {
-    \ 'colorscheme': 'base16_gruvbox_dark_hard',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'cocstatus': 'coc#status',
-    \   'gitbranch': 'FugitiveHead',
-    \ },
-    \ }
-
-augroup coc_lightline
-    autocmd!
-    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-augroup END
+let g:airline_theme='base16_danqing'
 
 set t_Co=256
 
