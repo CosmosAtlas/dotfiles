@@ -44,8 +44,6 @@ eval "$(fasd --init auto)"
 
 alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'
 
-source ~/Scripts/wu.sh
-
 # Substring search settings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
