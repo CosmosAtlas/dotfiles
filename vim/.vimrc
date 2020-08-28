@@ -74,8 +74,10 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 " pep8 python indenter
 Plug 'Vimjas/vim-python-pep8-indent'
-" colering color codes
+" coloring color codes
 Plug 'chrisbra/Colorizer'
+" Color selector
+Plug 'KabbAmine/vCoolor.vim'
 " send code blocks to live REPL
 Plug 'jpalardy/vim-slime'
 " Provide hints to shortcuts
@@ -125,12 +127,13 @@ let g:airline_theme='base16_danqing'
 
 set t_Co=256
 
+set bg=dark
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
 
-color afterglow
+" color afterglow
 
 filetype indent plugin on
 syntax enable
