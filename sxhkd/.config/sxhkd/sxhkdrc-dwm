@@ -1,0 +1,62 @@
+super + Escape
+    pkill -USR1 -x sxhkd; \
+    notify-send "sxhkd restarted"
+
+{_, ctrl +} Print
+    name="$(date +%s).png"; \
+    file="~/Pictures/screenshots/$name"; \
+    maim {_,-s} $file; \
+    xclip -selection clipboard -t image/png; < $file; \
+    notify-send "Screenshot Taken" "Screenshot $name saved to clipboard"
+
+super + space
+    rofi -show drun
+
+super + Return
+    st -e tmux
+
+super + shift + l
+    lockscreen.sh
+
+super + d ; c
+    dmenu_run
+
+# dwm
+super + shift + Return
+    dwmc zoom
+
+super + {k,j}
+    dwmc focusstack {-,+}1
+
+super + shift + {k,j}
+    dwmc movestack {-,+}1
+
+super + {h,l}
+    dwmc setmfact {-,+}0.05
+
+super + b
+    dwmc togglebar
+
+super + shift + space
+    dwmc togglefloating
+
+super + w
+    dwmc killclient
+
+super + shift + {q,r}
+    dwmc quit {0,1}
+
+super + Tab
+    dwmc view
+
+super + {t,f,shift + t,u,m,g}
+    dwmc setlayoutex {0,1,2,3,4}
+
+super + {_,ctrl +}{_,shift +} {1-9}
+    dwmc {_,toggle}{viewex,tagex} {0-8}
+
+super + 0
+    dwmc viewall
+
+super + {_,shift +} {comma,period}
+    dwmc {focusmon,tagmon} {-,+}1
