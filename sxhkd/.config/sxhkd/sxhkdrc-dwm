@@ -40,7 +40,7 @@ super + b
 super + shift + space
     dwmc togglefloating
 
-super + w
+super + shift + c
     dwmc killclient
 
 super + shift + {q,r}
