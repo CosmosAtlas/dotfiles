@@ -13,7 +13,7 @@ URxvt*.scrollBar: false
 st.font: Iosevka Nerd Font:size=14
 /* st.font: FiraCode Nerd Font:size=14 */
 st.fontalt0: JoyPixels:size=14:antialias=true:autohint=true
-st.alpha: 0.85
+st.alpha: 1.0
 
 ! Overrule for rofi
 rofi.font: Mononoki Nerd Font 13
