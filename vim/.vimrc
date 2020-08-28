@@ -29,7 +29,7 @@ Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} |
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " Auto complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Vim latex support
 Plug 'lervag/vimtex'
 " Highlight HTML tags
