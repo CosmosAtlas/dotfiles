@@ -1,7 +1,15 @@
 #!/bin/sh 
 
 echo "Auto start applications"
+
+# Set screenlayout
 source /home/cosmos/.screenlayout/standard.sh
+
+# Launch shortcut manager
+setxkbmap -layout us -option 'caps:ctrl_modifier'
+pkill sxhkd
+setsid sxhkd -c $HOME/.config/sxhkd/sxhkdrc-dwm &
+setxkbmap -layout us -variant dvp -option 'caps:ctrl_modifier'
 
 # Set correct cursor
 xsetroot -cursor_name left_ptr &
@@ -9,8 +17,8 @@ xsetroot -cursor_name left_ptr &
 # Start up applications
 /home/cosmos/Scripts/xcape.sh &
 
-
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# Launch polkit
+setsid /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 pkill picom
 nitrogen --restore; sleep 1; picom -b &
