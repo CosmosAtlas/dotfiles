@@ -124,6 +124,8 @@ endif
 " vim-airline
 set laststatus=2
 let g:airline_theme='base16_danqing'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
 
 set t_Co=256
 
@@ -183,7 +185,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_guide_size = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'vimwiki']
 
 " vimtex
 let g:vim_quickfix_open_on_warning = 0
@@ -291,7 +293,8 @@ let g:which_key_map['f'] = {
     \ 'name' : '+files' ,
     \ 's' : ':w',
     \ 'f' : ['Files' , 'fzf-files'], 
-    \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC']
+    \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC'],
+    \ 'v' : [':e ~/.vimrc', 'edit ~/.vimrc']
 \ }
 
 " == Buffer manipulation
