@@ -78,6 +78,7 @@ alias hangups='pc hangups'
 alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs'
 alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
+alias vim=nvim
 
 ## Window swallowing aliases
 alias dm='devour mpv'
