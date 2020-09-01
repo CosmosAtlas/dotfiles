@@ -12,6 +12,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'gyim/vim-boxdraw'
 " A faster searc and navigation
 Plug 'easymotion/vim-easymotion'
+" Seeking faster
+Plug 'justinmk/vim-sneak'
 " Commenting
 Plug 'tpope/vim-commentary'
 " Git integration
