@@ -40,6 +40,9 @@ super + b
 super + shift + space
     dwmc togglefloating
 
+super + shift + f
+    dwmc togglefullscr
+
 super + shift + c
     dwmc killclient
 
