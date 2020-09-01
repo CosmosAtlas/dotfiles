@@ -11,6 +11,10 @@ antibody bundle < ~/.zsh_plugins.txt
 
 # End of antibody
 
+# Auto completion
+autoload -Uz compinit
+compinit
+
 export PATH=~/Scripts:~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin:~/bin:~/.scripts
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export PATH=$PATH:~/.node_modules/bin
@@ -42,7 +46,7 @@ export KEYTIMEOUT=1
 # load fasd for fast navigation
 eval "$(fasd --init auto)"
 
-alias pfetch='PF_INFO="ascii title os host kernel uptime memory palette" pfetch'
+alias pfetch='PF_INFO="ascii title os host kernel uptime memory" pfetch'
 
 # Substring search settings
 bindkey '^[[A' history-substring-search-up
@@ -69,6 +73,7 @@ set -o vi
 
 # My aliases
 alias yv='googler -w youtube.com --url-handler mpv $argv'
+alias tx='tmuxinator'
 alias pc='proxychains -q'
 alias mosh-narf='mosh --server=/home/local/SAIL/cosmos/.linuxbrew/bin/mosh-server narf'
 alias mount-win='sudo mount -t cifs -o username=cosmos,rw,uid=$USER,gid=$USER,dir_mode=0755,file_mode=0664 //192.168.31.157/d /home/cosmos/Mounts/ExtWin'
@@ -110,4 +115,5 @@ export npm_config_prefix=~/.node_modules
 eval "$(starship init zsh)"
 
 pfetch
+$HOME/Repos/Color-Scripts/color-scripts/panes
 fortune tang300 | ~/.node_modules/bin/cowsay -f sachiko
