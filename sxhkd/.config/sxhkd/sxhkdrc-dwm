@@ -21,6 +21,9 @@ super + shift + l
 super + d ; c
     dmenu_run
 
+super + d ; s
+    $HOME/Scripts/switch_keyboard_layout.sh
+
 # dwm
 super + shift + Return
     dwmc zoom
