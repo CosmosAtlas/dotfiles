@@ -103,7 +103,7 @@ set nu
 set smartindent
 set mouse=a
 set hidden
-set updatetime=300
+set updatetime=100
 set virtualedit=block
 
 set signcolumn=yes
@@ -115,6 +115,9 @@ set cursorline
 set nocompatible
 
 set encoding=utf-8
+
+set textwidth=80
+set colorcolumn=-0
 
 
 if (has("termguicolors"))
