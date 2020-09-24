@@ -19,7 +19,7 @@ export PATH=~/Scripts:~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin:~/bin:~/.scripts
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export PATH=$PATH:~/.node_modules/bin
 export PATH=$PATH:~/.cargo/bin
-export BROWSER=chromium
+export BROWSER=qutebrowser
 export TERMINAL=st
 export SPACESHIP_TIME_SHOW=true
 export EDITOR=vim
@@ -72,7 +72,7 @@ TMOUT=30
 set -o vi
 
 # My aliases
-alias yv='googler -w youtube.com --url-handler mpv $argv'
+alias yv='googler -w youtube.com --url-handler umpv $argv'
 alias tx='tmuxinator'
 alias pc='proxychains -q'
 alias mosh-narf='mosh --server=/home/local/SAIL/cosmos/.linuxbrew/bin/mosh-server narf'
@@ -110,6 +110,9 @@ proxyoff() {
 proxyon
 
 export npm_config_prefix=~/.node_modules
+
+# Set up rust env
+source $HOME/.cargo/env
 
 # initiate prompt
 eval "$(starship init zsh)"
