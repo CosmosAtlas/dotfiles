@@ -1,8 +1,9 @@
-URxvt.font: xft:cozette:style=Medium:pixelsize=13,xft:Iosevka Nerd Font:pixelsize=10,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=10
+URxvt.font: xft:envypn:pixelsize=15,xft:Iosevka Nerd Font:pixelsize=14,xft:Zpix:style=Regular:pixelsize=12
+/* URxvt.font: xft:Misc Tamsyn:style=Regular:pixelsize=20,xft:Iosevka Nerd Font:pixelsize=20,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=13 */
+/* URxvt.font: xft:cozette:style=Medium:pixelsize=13,xft:Iosevka Nerd Font:pixelsize=10,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=10 */
 /* URxvt.font: xft:GohuFont Nerd Font Mono:style=uni-14:pixelsize=14,xft:JoyPixels:pixelsize=14;xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=14 */
-/* URxvt*font: xft:Mononoki Nerd Font Mono:pixelsize=18:minspace=False,xft:WenQuanYi Micro Hei Mono:pixelsize=18,xft:Font Awesome 5 Brands:pixelsize=18,xft:Font Awesome 5 Free:pixelsize=18,xft:Noto Sans:pixelsize=18, */
 
-/* URxvt*boldFont: xft:Mononoki Nerd Font Mono:pixelsize=18:style=Bold,xft:WenQuanYi Micro Hei Mono:pixelsize=18:style=Bold */
+/* URxvt*boldFont: xft:Misc Tamsyn:style=Bold:pixelsize=20,xft:Iosevka Nerd Font:style=Bold:pixelsize=20,xft:Zpix:style=Regular:pixelsize=12 */
 URxvt*boldFont: 
 URxvt*italicFont: 
 ! URxvt.letterSpace: -1
@@ -10,9 +11,15 @@ URxvt*letterSpace: 0
 URxvt*.scrollBar: false
 
 ! Config to be used by st with Xresources patch
-st.font: Iosevka Nerd Font:size=14
+/* st.font: Iosevka Nerd Font:size=14 */
+/* st.font: envypn:pixelsize=15 */
+st.font: Dina:pixelsize=16
 /* st.font: FiraCode Nerd Font:size=14 */
-st.fontalt0: JoyPixels:size=14:antialias=true:autohint=true
+/* st.fontalt0: WenQuanYi WenQuanYi Bitmap Song:pixelsize=13 */
+st.fontalt0: Unifont:pixelsize=16:style=Regular:autohint=false:antialias=false
+st.fontalt1: Iosevka Nerd Font:pixelsize=16
+st.fontalt2: JoyPixels:pixelsize=16
+/* st.fontalt1: Sarasa Term SC:size=14:antialias=true:autohint=true */
 st.alpha: 1.0
 
 ! Overrule for rofi

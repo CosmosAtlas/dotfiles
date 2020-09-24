@@ -10,6 +10,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 " A tool to draw boxes
 Plug 'gyim/vim-boxdraw'
+" Figlets! Fancy multi-line ascii font!
+Plug 'fadein/vim-FIGlet'
+" Focused writing mode
+Plug 'junegunn/goyo.vim'
+" Highlight current writing block (Best with goyo)
+Plug 'junegunn/limelight.vim'
 " A faster searc and navigation
 Plug 'easymotion/vim-easymotion'
 " Seeking faster
@@ -174,6 +180,22 @@ augroup END
 " Always assume .tex files are latex file
 let g:tex_flavor = "latex"
 
+" goyo.vim & limelight.vim
+augroup goyo_lime
+    autocmd!
+    autocmd User GoyoEnter Limelight
+    autocmd User GoyoEnter set nonu
+    autocmd User GoyoEnter set nolist
+    autocmd User GoyoLeave Limelight!
+    autocmd User GoyoLeave set nu
+    autocmd User GoyoLeave set list
+augroup END
+
+" let g:limelight_conceal_ctermfg = 'gray'
+" let g:limelight_conceal_guifg = 'gray'
+let g:limelight_paragraph_span = 0
+let g:limelight_priority = -1
+
 
 " vim-which-key
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
@@ -217,7 +239,6 @@ let g:vim_markdown_folding_disabled = 1
 " markdown-preview.nvim
 let g:mkdp_browser = 'qutebrowser'
 let g:mkdp_auto_close = 0
-nmap <LocalLeader>mp <Plug>MarkdownPreviewToggle
 
 " vim-table-mode Enbale markdown-compatible tables
 let g:table_mode_corner='|'
@@ -304,6 +325,14 @@ let g:which_key_map['f'] = {
     \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC'],
     \ 'v' : [':e ~/.vimrc', 'edit ~/.vimrc']
 \ }
+
+" == Modes
+let g:which_key_map['m'] = {
+    \ 'name' : '+modes' ,
+    \ 'g' : ['Goyo', 'Toggle goyo'],
+    \ 'c' : ['ColorToggle', 'Toggle hex coloring'],
+    \ 'm' : ['MarkdownPreviewToggle', 'Toggle markdown preview']
+    \}
 
 " == Buffer manipulation
 let g:which_key_map['b'] = { 
@@ -425,7 +454,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " === Color settngs ============================================================
 " Transparency
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 " No underline for current line number
 hi CursorLineNr cterm=bold gui=bold
 " Italic comments
