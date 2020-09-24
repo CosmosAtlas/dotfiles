@@ -1,4 +1,3 @@
-
 let g:mapleader = "\<Space>"
 
 " vim plugged plugins
@@ -123,7 +122,7 @@ set nocompatible
 set encoding=utf-8
 
 set textwidth=80
-set colorcolumn=-0
+set colorcolumn=+1
 
 
 if (has("termguicolors"))
@@ -184,9 +183,11 @@ let g:tex_flavor = "latex"
 augroup goyo_lime
     autocmd!
     autocmd User GoyoEnter Limelight
+    autocmd User GoyoEnter IndentGuidesDisable
     autocmd User GoyoEnter set nonu
     autocmd User GoyoEnter set nolist
     autocmd User GoyoLeave Limelight!
+    autocmd User GoyoEnter IndentGuidesEnable
     autocmd User GoyoLeave set nu
     autocmd User GoyoLeave set list
 augroup END
@@ -195,7 +196,6 @@ augroup END
 " let g:limelight_conceal_guifg = 'gray'
 let g:limelight_paragraph_span = 0
 let g:limelight_priority = -1
-
 
 " vim-which-key
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
@@ -214,8 +214,20 @@ let NERDTreeShowHidden = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
-let g:indent_guides_guide_size = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'vimwiki']
+
+" vim-startify
+let g:startify_bookmarks = [
+            \ {'v': '~/.vimrc'},
+            \ '~/.zshrc'
+            \ ]
+
+let g:startify_ascii = [
+            \ '┐ ┬o┌┌┐  ┬─┐┌┐┐┐ ┬',
+            \ '│┌┘││││  ├─  │ │││',
+            \ '└┘ ┆┘ ┆  ┆   ┆ └┴┆',
+            \ ]
+let g:startify_custom_header = g:startify_ascii + startify#fortune#boxed()
 
 " vimtex
 let g:vim_quickfix_open_on_warning = 0
