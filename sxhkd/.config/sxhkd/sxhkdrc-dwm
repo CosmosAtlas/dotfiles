@@ -18,11 +18,19 @@ super + Return
 super + shift + l
     lockscreen.sh
 
+# Command mode
 super + d ; c
     dmenu_run
 
 super + d ; s
     $HOME/Scripts/switch_keyboard_layout.sh
+
+super + d ; i
+    $HOME/Scripts/switch_clash.sh
+
+# TEMP
+# super + {a,s}
+#     sleep 0.2 && xdotool type "{TRUE,FALSE}"
 
 # dwm
 super + shift + Return
