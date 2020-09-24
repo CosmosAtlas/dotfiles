@@ -9,6 +9,7 @@ source /home/cosmos/.screenlayout/standard.sh
 setxkbmap -layout us -option 'caps:ctrl_modifier'
 pkill sxhkd
 setsid sxhkd -c $HOME/.config/sxhkd/sxhkdrc-dwm &
+sleep 0.5
 setxkbmap -layout us -variant dvp -option 'caps:ctrl_modifier'
 
 # Set correct cursor
