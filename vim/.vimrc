@@ -51,6 +51,7 @@ let g:deoplete#enable_at_startup = 1
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 Plug 'deoplete-plugins/deoplete-jedi'
 
 " Vim latex support
@@ -405,6 +406,8 @@ call deoplete#custom#option('smart_case', v:true)
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+let g:neosnippet#enable_snipmate_compatibility = 1
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
