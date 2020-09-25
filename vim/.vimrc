@@ -1,4 +1,5 @@
 let g:mapleader = "\<Space>"
+let g:maplocalleader = ","
 
 " vim plugged plugins
 call plug#begin('~/.vim/plugged')
