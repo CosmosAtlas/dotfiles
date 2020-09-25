@@ -80,7 +80,6 @@ alias mount-win='sudo mount -t cifs -o username=cosmos,rw,uid=$USER,gid=$USER,di
 alias aria-win='setsid aria2c --conf-path ~/.config/aria2/win-aria2.conf -D'
 alias neomutt='pc neomutt'
 alias hangups='pc hangups'
-alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs'
 alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
 alias vim=nvim

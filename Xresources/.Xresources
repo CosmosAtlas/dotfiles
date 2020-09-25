@@ -16,11 +16,12 @@ URxvt*.scrollBar: false
 st.font: Dina:pixelsize=16
 /* st.font: FiraCode Nerd Font:size=14 */
 /* st.fontalt0: WenQuanYi WenQuanYi Bitmap Song:pixelsize=13 */
-st.fontalt0: Unifont:pixelsize=16:style=Regular:autohint=false:antialias=false
+/* st.fontalt0: Unifont:pixelsize=16:style=Regular:autohint=false:antialias=false */
+st.fontalt0: Sarasa Term Slab SC:pixel=14:antialias=true:autohint=true
 st.fontalt1: Iosevka Nerd Font:pixelsize=16
 st.fontalt2: JoyPixels:pixelsize=16
-/* st.fontalt1: Sarasa Term SC:size=14:antialias=true:autohint=true */
 st.alpha: 1.0
+st.disablebold: 0
 
 ! Overrule for rofi
 rofi.font: Mononoki Nerd Font 13
