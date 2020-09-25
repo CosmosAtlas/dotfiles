@@ -23,6 +23,7 @@ export BROWSER=qutebrowser
 export TERMINAL=st
 export SPACESHIP_TIME_SHOW=true
 export EDITOR=vim
+export FZF_DEFAULT_COMMAND='find .'
 
 # Prompt Configuration
 SPACESHIP_PROMPT_ORDER=(

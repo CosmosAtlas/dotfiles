@@ -35,7 +35,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} | 
     \ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Fast file search
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Auto complete
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
