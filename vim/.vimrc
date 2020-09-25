@@ -69,7 +69,7 @@ Plug 'wellle/targets.vim'
 " Fancy start page
 Plug 'mhinz/vim-startify'
 " Indent line guides
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 " icons in file viewers
 Plug 'ryanoasis/vim-devicons'
 " asynchronous lint engine
@@ -324,6 +324,13 @@ function! FillLine(str)
         .s/$/\=(' '.repeat(a:str, reps))/
     endif
 endfunction
+
+" indentLine
+let g:indentLine_enable = 1
+let g:indentLine_concealcursor = ''
+let g:indentLine_setConceal = 0
+let g:indentLine_fileTypeExclude = ['help']
+let g:indentLine_leadingSpaceChar = '·'
 
 
 map <leader>hf :call FillLine('=')<CR>
