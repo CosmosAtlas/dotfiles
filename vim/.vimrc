@@ -220,6 +220,9 @@ call which_key#register('<Space>', "g:which_key_map")
 " EasyMotion
 map <Leader><Leader>s <Plug>(easymotion-sn)
 
+" vcoolor
+let g:vcoolor_disable_mappings = 1
+
 " NerdTree
 map <C-t> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
