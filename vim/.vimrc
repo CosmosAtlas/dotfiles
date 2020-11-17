@@ -299,11 +299,11 @@ xmap ga <Plug>(EasyAlign)
 " ale
 let g:ale_linters = {
             \ 'python': ['flake8'],
-            \ 'r': [],
+            \ 'r': ['lintr'],
             \ 'markdown': ['mdl'],
             \}
 let g:ale_markdown_mdl_options = '-i -r \~MD002'
-" let g:ale_r_lintr_options = 'lintr::with_defaults(line_length_linter = NULL, object_name_linter = NULL, object_usage_linter = NULL, object_length_linter = NULL, commented_code_linter = NULL)'
+let g:ale_r_lintr_options = 'lintr::with_defaults(line_length_linter = NULL, object_name_linter = NULL, object_usage_linter = NULL, object_length_linter = NULL, commented_code_linter = NULL)'
 
 let g:ale_fixers = {
             \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -362,7 +362,7 @@ let g:which_key_map['m'] = {
     \ 'name' : '+modes' ,
     \ 'g' : ['Goyo', 'Toggle goyo'],
     \ 'c' : ['ColorToggle', 'Toggle hex coloring'],
-    \ 'm' : ['MarkdownPreviewToggle', 'Toggle markdown preview']
+    \ 'm' : ['MarkdownPreview', 'Toggle markdown preview']
     \}
 
 " == Buffer manipulation
@@ -430,3 +430,7 @@ endif
 hi CursorLineNr cterm=bold gui=bold
 " Italic comments
 hi Comment cterm=italic gui=italic
+hi clear SpellBad
+hi SpellBad cterm=underline
+" Set style for gVim
+hi SpellBad gui=undercurl
