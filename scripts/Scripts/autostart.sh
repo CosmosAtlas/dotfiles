@@ -6,11 +6,7 @@ echo "Auto start applications"
 source /home/cosmos/.screenlayout/current.sh
 
 # Launch shortcut manager
-setxkbmap -layout us -option 'caps:ctrl_modifier'
-pkill sxhkd
-setsid sxhkd -c $HOME/.config/sxhkd/sxhkdrc-dwm &
-sleep 0.5
-setxkbmap -layout us -variant dvp -option 'caps:ctrl_modifier'
+source /home/cosmos/Scripts/run_sxhkd.sh
 
 # Set correct cursor
 xsetroot -cursor_name left_ptr &
