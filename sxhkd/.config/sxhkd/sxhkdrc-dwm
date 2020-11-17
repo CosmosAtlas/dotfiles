@@ -4,16 +4,16 @@ super + Escape
 
 {_, ctrl +} Print
     name="$(date +%s).png"; \
-    file="~/Pictures/screenshots/$name"; \
-    maim {_,-s} $file; \
-    xclip -selection clipboard -t image/png; < $file; \
+    file="$HOME/Pictures/screenshots/$name"; \
+    maim {_,-s} "$file"; \
+    xclip -selection clipboard -t image/png < $file; \
     notify-send "Screenshot Taken" "Screenshot $name saved to clipboard"
 
 super + space
     rofi -show drun
 
 super + Return
-    st -e tmux
+    alacritty -e tmux
 
 super + shift + l
     lockscreen.sh
