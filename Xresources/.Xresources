@@ -23,6 +23,9 @@ st.fontalt2: JoyPixels:pixelsize=16
 st.alpha: 1.0
 st.disablebold: 0
 
+! X cursor size
+Xcursor.size: 32
+
 ! Overrule for rofi
 rofi.font: Mononoki Nerd Font 13
 
