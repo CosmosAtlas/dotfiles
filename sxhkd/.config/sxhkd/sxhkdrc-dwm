@@ -28,6 +28,9 @@ super + d ; s
 super + d ; i
     $HOME/Scripts/switch_clash.sh
 
+super + d ; l
+    $HOME/Scripts/switch_screenlayout.sh
+
 # TEMP
 # super + {a,s}
 #     sleep 0.2 && xdotool type "{TRUE,FALSE}"

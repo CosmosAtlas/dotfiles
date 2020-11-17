@@ -3,7 +3,7 @@
 echo "Auto start applications"
 
 # Set screenlayout
-source /home/cosmos/.screenlayout/standard.sh
+source /home/cosmos/.screenlayout/current.sh
 
 # Launch shortcut manager
 setxkbmap -layout us -option 'caps:ctrl_modifier'
