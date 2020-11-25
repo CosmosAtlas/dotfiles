@@ -114,6 +114,10 @@ export npm_config_prefix=~/.node_modules
 # Set up rust env
 source $HOME/.cargo/env
 
+# unlimited ulimit
+ulimit -u unlimited
+ulimit -s 65536
+
 # initiate prompt
 eval "$(starship init zsh)"
 
