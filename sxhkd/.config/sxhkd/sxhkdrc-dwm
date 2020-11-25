@@ -32,8 +32,8 @@ super + d ; l
     $HOME/Scripts/switch_screenlayout.sh
 
 # TEMP
-# super + {a,s}
-#     sleep 0.2 && xdotool type "{TRUE,FALSE}"
+super + {a,s}
+    sleep 0.2 && xdotool type "{TRUE,FALSE}"
 
 # dwm
 super + shift + Return
@@ -67,7 +67,7 @@ super + Tab
     dwmc view
 
 super + {t,f,shift + t,u,m,g}
-    dwmc setlayoutex {0,1,2,3,4}
+    dwmc setlayoutex {0,1,2,3,4,5}
 
 super + {_,ctrl +}{_,shift +} {1-9}
     dwmc {_,toggle}{viewex,tagex} {0-8}
