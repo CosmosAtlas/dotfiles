@@ -1,9 +1,13 @@
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ","
 
+set nocompatible " Enable all features
+
 " vim plugged plugins
 call plug#begin('~/.vim/plugged')
 
+" Extended language packs
+Plug 'sheerun/vim-polyglot'
 " More useful status line at bottom
 Plug 'vim-airline/vim-airline'
 " A quick wiki tool 
@@ -88,6 +92,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 " asynchronous lint engine
 Plug 'dense-analysis/ale'
+" python sort imports
+Plug 'fisadev/vim-isort'
 " faster ctrlp
 Plug 'FelikZ/ctrlp-py-matcher'
 " modern generic interactive finder and dispatcher
@@ -119,7 +125,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
 " Overall settings
-set nu
+set number " Show the number line
 set smartindent
 set mouse=a
 set hidden
@@ -128,16 +134,15 @@ set virtualedit=block
 
 set signcolumn=yes
 
-set ts=4 sw=4
-set expandtab
-set cursorline
+set ts=4 sw=4 " Default to 4 space tabs
+set expandtab " Replace tabs with spaces
+set cursorline " Highlight current line
 
-set nocompatible
+set encoding=utf-8 " Use unicode as default encoding
 
-set encoding=utf-8
-
-set textwidth=80
-set colorcolumn=+1
+set textwidth=80 " Auto change to next line at column 80
+set colorcolumn=+1 " Highlight column 81 to warn about line width
+set fo+=mM " Make textwidth work with Chinese
 
 
 if (has("termguicolors"))
@@ -157,12 +162,8 @@ let g:airline_powerline_fonts=1
 set t_Co=256
 
 set bg=dark
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
 
-" color afterglow
+color gruvbox
 
 filetype indent plugin on
 syntax enable
@@ -320,6 +321,8 @@ let g:slime_python_ipython = 1
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Personal functions ===========================================================
+
 " Function to fill a line with char
 function! FillLine(str)
     " set tw to the desired total length
@@ -336,6 +339,16 @@ function! FillLine(str)
     endif
 endfunction
 
+" Open Stack Overflow question/answer link based on selected id
+function! OpenSOById()
+    let s:urlTemplate = "https://stackoverflow.com/q/%"
+    let s:browser = "xdg-open"
+    let s:idUnderCursor = expand("<cword>")
+    let s:url = substitute(s:urlTemplate, "%", s:idUnderCursor, "g")
+    let s:cmd = "silent! !" . s:browser . " " . s:url
+    execute s:cmd
+endfunction
+
 " indentLine
 let g:indentLine_enable = 1
 let g:indentLine_concealcursor = ''
@@ -344,9 +357,10 @@ let g:indentLine_fileTypeExclude = ['help']
 let g:indentLine_leadingSpaceChar = '·'
 
 
-map <leader>hf :call FillLine('=')<CR>
 
 " Personal Keymaps
+map <leader>hf :call FillLine('=')<CR>
+map <leader>gs :call OpenSOById()<CR>
 
 " == File
 let g:which_key_map['f'] = {
