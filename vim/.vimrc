@@ -3,6 +3,7 @@ let g:maplocalleader = ","
 
 set nocompatible " Enable all features
 
+" [todo] Group plugins by use case
 " vim plugged plugins
 call plug#begin('~/.vim/plugged')
 
@@ -184,6 +185,8 @@ augroup spellCheck
     autocmd FileType markdown,tex,vimwiki,asciidoc setlocal spell
     autocmd BufRead,BufNewFile *.md,*.tex setlocal spell
 augroup END
+" Exclude CJK characters from spell checks
+set spelllang+=cjk
 
 " Auto reload $MYVIMRC after modifying and saving
 augroup reload_vimrc
@@ -199,17 +202,17 @@ let g:tex_flavor = "latex"
 augroup goyo_lime
     autocmd!
     autocmd User GoyoEnter Limelight
-    autocmd User GoyoEnter IndentGuidesDisable
+    " autocmd User GoyoEnter IndentGuidesDisable
     autocmd User GoyoEnter set nonu
     autocmd User GoyoEnter set nolist
     autocmd User GoyoLeave Limelight!
-    autocmd User GoyoEnter IndentGuidesEnable
+    " autocmd User GoyoEnter IndentGuidesEnable
     autocmd User GoyoLeave set nu
     autocmd User GoyoLeave set list
 augroup END
 
-" let g:limelight_conceal_ctermfg = 'gray'
-" let g:limelight_conceal_guifg = 'gray'
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_guifg = 'gray'
 let g:limelight_paragraph_span = 0
 let g:limelight_priority = -1
 
@@ -437,9 +440,9 @@ if has('conceal')
   set conceallevel=2
 endif
 
-" === Color settngs ============================================================
+" Customized highlight settings ================================================
 " Transparency
-" hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 " No underline for current line number
 hi CursorLineNr cterm=bold gui=bold
 " Italic comments
@@ -448,3 +451,6 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 " Set style for gVim
 hi SpellBad gui=undercurl
+" Disable special syntax for TODO todo in comments
+hi clear Todo
+hi link Todo Comment
