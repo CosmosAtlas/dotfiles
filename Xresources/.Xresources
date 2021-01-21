@@ -11,17 +11,26 @@ URxvt*letterSpace: 0
 URxvt*.scrollBar: false
 
 ! Config to be used by st with Xresources patch
+st.font: PragmataPro Liga:size=13
 /* st.font: Iosevka Nerd Font:size=14 */
 /* st.font: envypn:pixelsize=15 */
-st.font: Dina:pixelsize=16
+/* st.font: Dina:pixelsize=16 */
 /* st.font: FiraCode Nerd Font:size=14 */
 /* st.fontalt0: WenQuanYi WenQuanYi Bitmap Song:pixelsize=13 */
 /* st.fontalt0: Unifont:pixelsize=16:style=Regular:autohint=false:antialias=false */
-st.fontalt0: Sarasa Term Slab SC:pixel=14:antialias=true:autohint=true
-st.fontalt1: Iosevka Nerd Font:pixelsize=16
-st.fontalt2: JoyPixels:pixelsize=16
-st.alpha: 1.0
+st.fontalt0: Sarasa Term Slab SC:size=13:antialias=true:autohint=true
+st.fontalt1: JoyPixels:size=12
+st.alpha: 0.95
 st.disablebold: 0
+
+! XTerm configs
+XTerm*renderFont: true
+XTerm*faceName: xft:Mononoki Nerd Font, \
+                xft:JoyPixels:size=12, \
+                xft:Monospace:style=Medium:size=12   
+XTerm*faceSize: 11
+XTerm*utf8: 2
+XTerm*locale: true
 
 ! X cursor size
 Xcursor.size: 32

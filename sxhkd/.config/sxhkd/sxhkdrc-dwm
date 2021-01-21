@@ -13,7 +13,7 @@ super + space
     rofi -show drun
 
 super + Return
-    alacritty -e tmux
+    st -e tmux
 
 super + shift + l
     lockscreen.sh

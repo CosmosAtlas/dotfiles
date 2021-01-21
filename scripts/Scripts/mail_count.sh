@@ -4,7 +4,7 @@
 # When clicked, brings up `neomutt`
 
 case $BLOCK_BUTTON in
-    1) setsid -f "$TERMINAL" -e zsh -c -i "neomutt" ;;
+    1) setsid -f "$TERMINAL" -e "neomutt" ;;
     2) setsid -f pc mailsync > /dev/null ;;
     3) notify-send "Mail module" "\- Shows unread mail
 - Shows 🔃 if syncing mail
