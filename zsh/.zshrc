@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # ~/.zshrc
 
 # Start of antibody
@@ -16,24 +23,24 @@ export PATH=$PATH:~/.node_modules/bin
 export PATH=$PATH:~/.cargo/bin
 export BROWSER=qutebrowser
 export TERMINAL=st
-export SPACESHIP_TIME_SHOW=true
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='find .'
 
-# Prompt Configuration
-SPACESHIP_PROMPT_ORDER=(
-  time          # Time stamps section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  exec_time     # Execution time
-  line_sep      # Line break
-  vi_mode       # Vi-mode indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-  venv          # virtualenv section
-)
+# # Prompt Configuration
+# export SPACESHIP_TIME_SHOW=true
+# SPACESHIP_PROMPT_ORDER=(
+#   time          # Time stamps section
+#   user          # Username section
+#   dir           # Current directory section
+#   host          # Hostname section
+#   git           # Git section (git_branch + git_status)
+#   exec_time     # Execution time
+#   line_sep      # Line break
+#   vi_mode       # Vi-mode indicator
+#   exit_code     # Exit code section
+#   char          # Prompt character
+#   venv          # virtualenv section
+# )
 
 bindkey -v "^?" backward-delete-char
 
@@ -60,10 +67,10 @@ setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 
 # Update prompt time every 30 secs
-TRAPALRM() {
-    zle reset-prompt
-}
-TMOUT=30
+# TRAPALRM() {
+#     zle reset-prompt
+# }
+# TMOUT=30
 
 set -o vi
 
@@ -78,7 +85,7 @@ alias neomutt='pc neomutt'
 alias hangups='pc hangups'
 alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
-alias vim=nvim
+# alias vim=nvim
 
 ## Window swallowing aliases
 alias dm='devour mpv'
@@ -93,13 +100,18 @@ export VIMWIKI_MARKDOWN_EXTENSIONS="markdown_checklist.extension"
 proxyon() {
     export http_proxy=http://127.0.0.1:8888
     export https_proxy=http://127.0.0.1:8888
-    export ALL_PROXY=http://127.0.0.1:8888
+    export ALL_PROXY=socks5://127.0.0.1:8889
 }
 
 proxyoff() {
     unset http_proxy 
     unset https_proxy 
     unset ALL_PROXY
+}
+
+
+colorlist() {
+    for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
 proxyon
@@ -114,8 +126,12 @@ ulimit -u unlimited
 ulimit -s 65536
 
 # initiate prompt
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
-pfetch
-$HOME/Repos/Color-Scripts/color-scripts/panes
+# Display welcome text
+type pfetch > /dev/null && pfetch
+type $HOME/Repos/Color-Scripts/color-scripts/panes > /dev/null && $HOME/Repos/Color-Scripts/color-scripts/panes
 fortune tang300 | ~/.node_modules/bin/cowsay -f sachiko
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
