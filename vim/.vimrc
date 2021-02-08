@@ -7,6 +7,8 @@ set nocompatible " Enable all features
 " vim plugged plugins
 call plug#begin('~/.vim/plugged')
 
+" Auto fcitx state switching
+Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx5' }
 " Extended language packs
 Plug 'sheerun/vim-polyglot'
 " More useful status line at bottom
@@ -19,6 +21,8 @@ Plug 'gyim/vim-boxdraw'
 Plug 'fadein/vim-FIGlet'
 " Focused writing mode
 Plug 'junegunn/goyo.vim'
+" Wrapping help
+Plug 'reedes/vim-pencil'
 " Highlight current writing block (Best with goyo)
 Plug 'junegunn/limelight.vim'
 " A faster searc and navigation
@@ -156,7 +160,7 @@ endif
 
 " vim-airline
 set laststatus=2
-let g:airline_theme='base16_danqing'
+let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
@@ -187,6 +191,14 @@ augroup spellCheck
 augroup END
 " Exclude CJK characters from spell checks
 set spelllang+=cjk
+
+" Auto pencil
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+  autocmd FileType tex         call pencil#init()
+augroup END
 
 " Auto reload $MYVIMRC after modifying and saving
 augroup reload_vimrc
