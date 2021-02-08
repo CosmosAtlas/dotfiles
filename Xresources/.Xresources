@@ -1,4 +1,4 @@
-URxvt.font: xft:envypn:pixelsize=15,xft:Iosevka Nerd Font:pixelsize=14,xft:Zpix:style=Regular:pixelsize=12
+URxvt.font: xft:envypn:pixelsize=15,xft:PragmataPro Liga:pixelsize=14,xft:Zpix:style=Regular:pixelsize=12
 /* URxvt.font: xft:Misc Tamsyn:style=Regular:pixelsize=20,xft:Iosevka Nerd Font:pixelsize=20,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=13 */
 /* URxvt.font: xft:cozette:style=Medium:pixelsize=13,xft:Iosevka Nerd Font:pixelsize=10,xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=10 */
 /* URxvt.font: xft:GohuFont Nerd Font Mono:style=uni-14:pixelsize=14,xft:JoyPixels:pixelsize=14;xft:WenQuanYi WenQuanYi Bitmap Song:style=Regular:pixelsize=14 */
@@ -25,10 +25,9 @@ st.disablebold: 0
 
 ! XTerm configs
 XTerm*renderFont: true
-XTerm*faceName: xft:Mononoki Nerd Font, \
-                xft:JoyPixels:size=12, \
-                xft:Monospace:style=Medium:size=12   
-XTerm*faceSize: 11
+XTerm*faceName: xft:PragmataPro Liga:size=13, \
+                xft:JoyPixels:size=13
+XTerm*faceSize: 13
 XTerm*utf8: 2
 XTerm*locale: true
 
@@ -36,47 +35,42 @@ XTerm*locale: true
 Xcursor.size: 32
 
 ! Overrule for rofi
-rofi.font: Mononoki Nerd Font 13
+rofi.font: PragmataPro Liga 13
 
-! Base16 DanQing
-! Scheme: Wenhan Zhu (Cosmos) (zhuwenhan950913@gmail.com)
 
-#define base00 #2d302f
-#define base01 #434846
-#define base02 #5a605d
-#define base03 #9da8a3
-#define base04 #cad8d2
-#define base05 #e0f0eF
-#define base06 #ecf6f2
-#define base07 #fcfefd
-#define base08 #F9906F
-#define base09 #B38A61
-#define base0A #F0C239
-#define base0B #8AB361
-#define base0C #30DFF3
-#define base0D #B0A4E3
-#define base0E #CCA4E3
-#define base0F #CA6924
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
 
-*foreground:   base05
-*background:   base00
-*cursorColor:  base05
-
-*color0:       base00
-*color1:       base08
-*color2:       base0B
-*color3:       base0A
-*color4:       base0D
-*color5:       base0E
-*color6:       base0C
-*color7:       base05
-
-*color8:       base03
-*color9:       base09
-*color10:      base01
-*color11:      base02
-*color12:      base04
-*color13:      base06
-*color14:      base0F
-*color15:      base07
-
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2

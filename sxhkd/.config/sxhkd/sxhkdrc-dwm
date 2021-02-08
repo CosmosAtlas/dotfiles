@@ -31,6 +31,9 @@ super + d ; i
 super + d ; l
     $HOME/Scripts/switch_screenlayout.sh
 
+super + F1
+    $HOME/Scripts/toggle_auto_click.sh
+
 # TEMP
 super + {a,s}
     sleep 0.2 && xdotool type "{TRUE,FALSE}"
