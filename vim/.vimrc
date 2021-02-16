@@ -68,6 +68,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'junegunn/vim-easy-align'
 " more text objects
 Plug 'wellle/targets.vim'
+" text objects
+Plug 'kana/vim-textobj-user'
 " asynchronous lint engine
 Plug 'dense-analysis/ale'
 " modern generic interactive finder and dispatcher
@@ -116,6 +118,7 @@ Plug 'honza/vim-snippets'
 " ==== Latex ===================================================================
 " Vim latex support
 Plug 'lervag/vimtex'
+Plug 'rbonvall/vim-textobj-latex'
 " ==== Python ==================================================================
 " deoplete python extension via jedi
 Plug 'deoplete-plugins/deoplete-jedi'
