@@ -41,7 +41,9 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 " === Funtionality =============================================================
 " ==== Extending vim ===========================================================
-" A faster searc and navigation
+" undo visualization and selection
+Plug 'mbbill/undotree'
+" A faster search and navigation
 Plug 'easymotion/vim-easymotion'
 " Seeking faster
 Plug 'justinmk/vim-sneak'
@@ -311,6 +313,8 @@ let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
 let g:slime_python_ipython = 1
 
+" undotree
+nnoremap <leader>ut :UndotreeToggle<CR>
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
