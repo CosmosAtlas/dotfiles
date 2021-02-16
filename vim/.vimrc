@@ -41,7 +41,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 " === Funtionality =============================================================
 " ==== Extending vim ===========================================================
-" undo visualization and selection
+
 Plug 'mbbill/undotree'
 " A faster search and navigation
 Plug 'easymotion/vim-easymotion'
@@ -51,6 +51,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 " Better repeating with '.'
 Plug 'tpope/vim-repeat'
+" faster jummping
+Plug 'tpope/vim-unimpaired'
 " better handle of open in browser
 Plug 'tyru/open-browser.vim'
 " Dispatch for asynchronous
