@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# todo use _getopts_ and bundle with _entr_
+
+# My preferred settings for automatically converting a pandoc markdown document
+# to pdf
+
+# things to highlight here:
+# - Font: Accanthis
+# - Paper size: lettersize
+# - Margin: 1in
+
+
+pandoc $1 --pdf-engine=xelatex \
+    --highlight-style tango\
+    -V 'geometry:margin=1in' \
+    -V 'papersize:letterpaper' \
+    -V 'fontfamily:accanthis' \
+    -V 'CJKmainfont:Noto Sans CJK SC' \
+    -V 'urlcolor=NavyBlue' \
+    -V 'fontsize=12pt' \
+    -o "${1%%.*}.pdf"

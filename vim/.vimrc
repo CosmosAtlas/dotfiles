@@ -49,8 +49,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Auto complete
+" Plug 'msgpack/msgpack-python'
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
@@ -192,10 +193,10 @@ augroup END
 " Exclude CJK characters from spell checks
 set spelllang+=cjk
 
+" vim-pencil
 " Auto pencil
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
   autocmd FileType tex         call pencil#init()
 augroup END
