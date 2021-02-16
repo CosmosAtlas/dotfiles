@@ -41,7 +41,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 " === Funtionality =============================================================
 " ==== Extending vim ===========================================================
-
+" browsing/performing in the vim undo tree
 Plug 'mbbill/undotree'
 " A faster search and navigation
 Plug 'easymotion/vim-easymotion'
@@ -51,6 +51,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 " Better repeating with '.'
 Plug 'tpope/vim-repeat'
+" better word replace
+Plug 'tpope/vim-abolish'
 " faster jummping
 Plug 'tpope/vim-unimpaired'
 " better handle of open in browser
@@ -60,7 +62,8 @@ Plug 'tpope/vim-dispatch'
 " [fixme] Look for alternative or don't use at all, Close brackets
 Plug 'jiangmiao/auto-pairs'
 " Change enclosings
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 " Easy alignment
 Plug 'junegunn/vim-easy-align'
 " more text objects
@@ -294,6 +297,10 @@ vmap gx <Plug>(openbrowser-smart-search)
 " easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
+
+" vim-sandwich
+" allow same surround keybinding as tpope/vim-surround
+runtime macros/sandwich/keymap/surround.vim
 
 " ale
 let g:ale_linters = {
