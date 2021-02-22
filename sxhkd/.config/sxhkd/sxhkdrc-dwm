@@ -19,23 +19,23 @@ super + shift + l
     lockscreen.sh
 
 # Command mode
-super + d ; c
+super + c ; d
     dmenu_run
 
-super + d ; s
+super + c ; s
     $HOME/Scripts/switch_keyboard_layout.sh
 
-super + d ; i
+super + c ; i
     $HOME/Scripts/switch_clash.sh
 
-super + d ; l
+super + c ; l
     $HOME/Scripts/switch_screenlayout.sh
 
 super + F1
     $HOME/Scripts/toggle_auto_click.sh
 
 # TEMP
-super + {a,s}
+super + {a,z}
     sleep 0.2 && xdotool type "{TRUE,FALSE}"
 
 # dwm
@@ -44,9 +44,6 @@ super + shift + Return
 
 super + {k,j}
     dwmc focusstack {-,+}1
-
-super + shift + {k,j}
-    dwmc movestack {-,+}1
 
 super + {h,l}
     dwmc setmfact {-,+}0.05
@@ -66,9 +63,6 @@ super + shift + c
 super + shift + {q,r}
     dwmc quit {0,1}
 
-super + Tab
-    dwmc view
-
 super + {t,f,shift + t,u,m,g}
     dwmc setlayoutex {0,1,2,3,4,5}
 
@@ -78,5 +72,10 @@ super + {_,ctrl +}{_,shift +} {1-9}
 super + 0
     dwmc viewall
 
+# Focus/move to monitor
 super + {_,shift +} {comma,period}
     dwmc {focusmon,tagmon} {-,+}1
+
+# Increase the number of windows in master area
+super + {d,i}
+    dwmc incnmaster {-,+}1
