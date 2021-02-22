@@ -85,7 +85,7 @@ alias neomutt='pc neomutt'
 alias hangups='pc hangups'
 alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
-# alias vim=nvim
+alias vim=nvim
 
 ## Window swallowing aliases
 alias dm='devour mpv'
