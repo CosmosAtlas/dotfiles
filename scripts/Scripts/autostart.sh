@@ -17,8 +17,7 @@ xsetroot -cursor_name left_ptr &
 # Launch polkit
 setsid /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-pkill -x picom
-nitrogen --restore; sleep 1; picom -b &
+/home/cosmos/Scripts/restart-picom.sh
 
 pkill -x xfce4-power-manager
 xfce4-power-manager &

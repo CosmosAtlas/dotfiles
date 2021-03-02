@@ -16,7 +16,7 @@ pandoc $1 --pdf-engine=xelatex \
     -V 'geometry:margin=1in' \
     -V 'papersize:letterpaper' \
     -V 'fontfamily:accanthis' \
-    -V 'CJKmainfont:Noto Sans CJK SC' \
+    -V 'CJKmainfont:LXGW WenKai' \
     -V 'urlcolor=NavyBlue' \
     -V 'fontsize=12pt' \
     -o "${1%%.*}.pdf"

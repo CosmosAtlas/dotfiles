@@ -31,6 +31,9 @@ super + c ; i
 super + c ; l
     $HOME/Scripts/switch_screenlayout.sh
 
+super + r ; p
+    $HOME/Scripts/restart-picom.sh
+
 super + F1
     $HOME/Scripts/toggle_auto_click.sh
 
