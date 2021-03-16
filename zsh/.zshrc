@@ -85,6 +85,7 @@ alias neomutt='pc neomutt'
 alias hangups='pc hangups'
 alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
+alias vw="setsid $BROWSER ~/vimwiki/_site/index.html"
 alias vim=nvim
 
 ## Window swallowing aliases

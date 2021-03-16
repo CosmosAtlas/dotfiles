@@ -70,6 +70,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'wellle/targets.vim'
 " text objects
 Plug 'kana/vim-textobj-user'
+" line object
+Plug 'kana/vim-textobj-line'
 " asynchronous lint engine
 Plug 'dense-analysis/ale'
 " modern generic interactive finder and dispatcher
@@ -251,8 +253,14 @@ let g:vim_quickfix_open_on_warning = 0
 
 " vimwiki
 let g:vimwiki_list = [{
-    \ 'path': '~/vimwiki',
-    \ 'path_html': '~/vimwiki/site_html/'}]
+    \ 'auto_export': 1,
+    \ 'automatic_nested_syntaxes': 1,
+    \ 'path': '~/vimwiki/content/',
+    \ 'path_html': '~/vimwiki/_site/',
+    \ 'syntax': 'markdown',
+    \ 'custom_wiki2html': '$HOME/Scripts/wiki2html.sh',
+    \ 'ext': '.md'
+    \}]
 " Disable overwriting filetype markdown
 let g:vimwiki_global_ext = 0
 
@@ -344,6 +352,7 @@ let g:indentLine_leadingSpaceChar = '·'
 " Personal Keymaps
 map <leader>hf :call FillLine('=')<CR>
 map <leader>gs :call OpenSOById()<CR>
+map <leader>vw :silent exec "!$BROWSER ~/vimwiki/_site/index.html"<CR>
 
 " == File
 let g:which_key_map['f'] = {
