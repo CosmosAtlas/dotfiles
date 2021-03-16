@@ -15,4 +15,4 @@ esac
 
 pidof mbsync >/dev/null 2>&1 && icon="🔃"
 
-echo "$icon U" $(find $HOME/.local/share/mail/uwaterloo/INBOX/new -type f | wc -l) " G" $(find /home/cosmos/.local/share/mail/zhuwenhan950913@gmail.com/INBOX/new -type f | wc -l)
+echo "$icon U" $(find $HOME/.local/share/mail/w65zhu@uwaterloo.ca/INBOX/new -type f | wc -l) " G" $(find /home/cosmos/.local/share/mail/zhuwenhan950913@gmail.com/INBOX/new -type f | wc -l)
