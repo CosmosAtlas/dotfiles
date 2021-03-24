@@ -1,6 +1,10 @@
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ","
 
+" use uname to test which os is currently running on
+" mainly used to get away with the linux/mac sharing has('unix') problem
+let g:uname = system("uname")
+
 set nocompatible " Enable all features
 
 " vim plugged plugins
@@ -37,7 +41,10 @@ endif
 " airline themes
 Plug 'vim-airline/vim-airline-themes'
 " collection of modern cool vim colorschemes
-Plug 'rafi/awesome-vim-colorschemes'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'rakr/vim-one'
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'ayu-theme/ayu-vim'
 
 " === Funtionality =============================================================
 " ==== Extending vim ===========================================================
@@ -80,7 +87,10 @@ Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vim-which-key'
 " ==== System integration ======================================================
 " Auto fcitx state switching
-Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx5' }
+" Only enable on linux systems
+if g:uname == "Linux"
+    Plug 'lilydjwg/fcitx.vim', { 'branch': 'fcitx5' }
+endif
 " send code blocks to live REPL
 Plug 'jpalardy/vim-slime'
 " ==== Embedded Applications ===================================================
@@ -119,21 +129,21 @@ Plug 'honza/vim-snippets'
 " === Language specific ========================================================
 " ==== Latex ===================================================================
 " Vim latex support
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', {'for': ['latex', 'tex']}
 Plug 'rbonvall/vim-textobj-latex'
 " ==== Python ==================================================================
 " deoplete python extension via jedi
 Plug 'deoplete-plugins/deoplete-jedi'
 " python sort imports
-Plug 'fisadev/vim-isort'
+Plug 'fisadev/vim-isort', {'on': 'Isort'}
 " pep8 python indenter
-Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
 " ==== R =======================================================================
 " Nvim R
-Plug 'jalvesaq/Nvim-R'
+Plug 'jalvesaq/Nvim-R', {'for': ['R']}
 " ==== Markdown ================================================================
 " Markdown 
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Table mode edits
 Plug 'dhruvasagar/vim-table-mode'
@@ -142,7 +152,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'mattn/emmet-vim'
 " ==== CSV =====================================================================
 " CSV editing
-Plug 'chrisbra/csv.vim'
+Plug 'chrisbra/csv.vim', {'for': ['csv']}
 
 call plug#end()
 
@@ -168,15 +178,34 @@ set fo+=mM " Make textwidth work with Chinese
 
 " vim-airline
 set laststatus=2
-let g:airline_theme='gruvbox'
+let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
 set t_Co=256
 
-set bg=dark
-
-color gruvbox
+set termguicolors
+" set bg=dark
+let ayucolor="dark"
+color ayu
+" color gruvbox8
+"
+" Customized highlight settings ================================================
+" Used to overwrite existing colorscheme settings
+" Transparency
+hi Normal guibg=NONE ctermbg=NONE
+" No underline for current line number
+hi CursorLineNr cterm=bold gui=bold
+" Italic comments
+hi Comment cterm=italic gui=italic
+" Custom spell error
+hi clear SpellBad
+hi SpellBad cterm=underline
+" Set style for gVim
+hi SpellBad gui=undercurl
+" Disable special syntax for TODO todo in comments
+hi clear Todo
+hi link Todo Comment
 
 filetype indent plugin on
 syntax enable
@@ -357,7 +386,6 @@ map <leader>vw :silent exec "!$BROWSER ~/vimwiki/_site/index.html"<CR>
 " == File
 let g:which_key_map['f'] = {
     \ 'name' : '+files' ,
-    \ 's' : ':w',
     \ 'f' : ['Files' , 'fzf-files'], 
     \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC'],
     \ 'v' : [':e ~/.vimrc', 'edit ~/.vimrc']
@@ -429,20 +457,6 @@ if has('conceal')
   set conceallevel=2
 endif
 
-" Customized highlight settings ================================================
-" Transparency
-hi Normal guibg=NONE ctermbg=NONE
-" No underline for current line number
-hi CursorLineNr cterm=bold gui=bold
-" Italic comments
-hi Comment cterm=italic gui=italic
-hi clear SpellBad
-hi SpellBad cterm=underline
-" Set style for gVim
-hi SpellBad gui=undercurl
-" Disable special syntax for TODO todo in comments
-hi clear Todo
-hi link Todo Comment
 
 " Personal functions ===========================================================
 
