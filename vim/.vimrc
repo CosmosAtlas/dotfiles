@@ -114,12 +114,14 @@ Plug 'gyim/vim-boxdraw'
 " Figlets! Fancy multi-line ascii font!
 Plug 'fadein/vim-FIGlet'
 " ==== Auto completion =========================================================
+" Load these two anyway to avoid being removed during neovim plugin maintenance
+" via :PlugClean
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
 " Snippets support
