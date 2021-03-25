@@ -3,7 +3,8 @@ let g:maplocalleader = ","
 
 " use uname to test which os is currently running on
 " mainly used to get away with the linux/mac sharing has('unix') problem
-let g:uname = system("uname")
+" trim to remove the '\n' from command output
+let g:uname = trim(system("uname")) 
 
 set nocompatible " Enable all features
 
@@ -223,7 +224,7 @@ set history=200
 " Spell check for latex and markdown
 augroup spellCheck
     autocmd!
-    autocmd FileType markdown,tex,vimwiki,asciidoc setlocal spell
+    autocmd FileType markdown,tex,vimwiki,asciidoc,mail setlocal spell
     autocmd BufRead,BufNewFile *.md,*.tex setlocal spell
 augroup END
 " Exclude CJK characters from spell checks
@@ -381,7 +382,7 @@ let g:indentLine_leadingSpaceChar = '·'
 " Personal Keymaps
 map <leader>hf :call FillLine('=')<CR>
 map <leader>gs :call OpenSOById()<CR>
-map <leader>vw :silent exec "!$BROWSER ~/vimwiki/_site/index.html"<CR>
+map <leader>vw :silent exec "!setsid $BROWSER ~/vimwiki/_site/index.html"<CR>
 
 " == File
 let g:which_key_map['f'] = {
