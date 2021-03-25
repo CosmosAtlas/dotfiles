@@ -4,14 +4,14 @@ let g:maplocalleader = ","
 " use uname to test which os is currently running on
 " mainly used to get away with the linux/mac sharing has('unix') problem
 " trim to remove the '\n' from command output
-let g:uname = trim(system("uname")) 
+let g:uname = trim(system("uname"))
 
 set nocompatible " Enable all features
 
-" vim plugged plugins
+" vim-plug plugins {{{
 call plug#begin('~/.vim/plugged')
 
-" === Aesthetics ===============================================================
+" === Aesthetics
 " Extended language packs
 Plug 'sheerun/vim-polyglot'
 " More useful status line at bottom
@@ -47,7 +47,7 @@ Plug 'rakr/vim-one'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'ayu-theme/ayu-vim'
 
-" === Funtionality =============================================================
+" === Funtionality
 " ==== Extending vim ===========================================================
 " browsing/performing in the vim undo tree
 Plug 'mbbill/undotree'
@@ -95,7 +95,7 @@ endif
 " send code blocks to live REPL
 Plug 'jpalardy/vim-slime'
 " ==== Embedded Applications ===================================================
-" A quick wiki tool 
+" A quick wiki tool
 Plug 'vimwiki/vimwiki'
 " Git integration
 Plug 'tpope/vim-fugitive'
@@ -104,7 +104,7 @@ Plug 'majutsushi/tagbar'
 " Color selector
 Plug 'KabbAmine/vCoolor.vim'
 " File browsers
-Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} | 
+Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} |
     \ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Fast file search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -127,7 +127,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 
-" === Language specific ========================================================
+" === Language specific
 " ==== Latex ===================================================================
 " Vim latex support
 Plug 'lervag/vimtex', {'for': ['latex', 'tex']}
@@ -143,7 +143,7 @@ Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
 " Nvim R
 Plug 'jalvesaq/Nvim-R', {'for': ['R']}
 " ==== Markdown ================================================================
-" Markdown 
+" Markdown
 Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Table mode edits
@@ -156,6 +156,7 @@ Plug 'mattn/emmet-vim'
 Plug 'chrisbra/csv.vim', {'for': ['csv']}
 
 call plug#end()
+"}}}
 
 " Overall settings
 set number " Show the number line
@@ -176,6 +177,8 @@ set encoding=utf-8 " Use unicode as default encoding
 set textwidth=80 " Auto change to next line at column 80
 set colorcolumn=+1 " Highlight column 81 to warn about line width
 set fo+=mM " Make textwidth work with Chinese
+
+set foldmethod=marker
 
 " vim-airline
 set laststatus=2
@@ -354,7 +357,7 @@ let g:ale_r_lintr_options = 'lintr::with_defaults(line_length_linter = NULL, obj
 
 let g:ale_fixers = {
             \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \ 'python': ['yapf'], 
+            \ 'python': ['yapf'],
             \ 'r': ['styler']
             \}
 
@@ -387,7 +390,7 @@ map <leader>vw :silent exec "!setsid $BROWSER ~/vimwiki/_site/index.html"<CR>
 " == File
 let g:which_key_map['f'] = {
     \ 'name' : '+files' ,
-    \ 'f' : ['Files' , 'fzf-files'], 
+    \ 'f' : ['Files' , 'fzf-files'],
     \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC'],
     \ 'v' : [':e ~/.vimrc', 'edit ~/.vimrc']
 \ }
@@ -401,7 +404,7 @@ let g:which_key_map['m'] = {
     \}
 
 " == Buffer manipulation
-let g:which_key_map['b'] = { 
+let g:which_key_map['b'] = {
     \ 'name' : '+buffers' ,
     \ 'n' : [':bn' , 'buffer-next'] ,
     \ 'p' : [':bp' , 'buffer-previous'] ,
