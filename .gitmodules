@@ -1,6 +1,3 @@
 [submodule "vifm/.config/vifm/plugins/vifm_devicons"]
 	path = vifm/.config/vifm/plugins/vifm_devicons
 	url = https://github.com/cirala/vifm_devicons
-[submodule "vifm/.config/vifm/scripts/vifmimg"]
-	path = vifm/.config/vifm/scripts/vifmimg
-	url = https://github.com/cirala/vifmimg
