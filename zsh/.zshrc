@@ -87,7 +87,7 @@ alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
 alias vw="setsid $BROWSER ~/vimwiki/_site/index.html"
 alias vim=nvim
-alias vifm=~/.config/vifm/scripts/vifmimg/vifmrun
+alias vifm=vifmrun
 
 ## Window swallowing aliases
 alias dm='devour mpv'
