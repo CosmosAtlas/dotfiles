@@ -1,0 +1,92 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/home/cosmos/
+	..
+1601013940
+'b
+	/home/cosmos/bin/
+	..
+1601013940
+'h
+	/home/cosmos/
+	..
+1601013940
+'z
+	/home/cosmos/.config/vifm
+	..
+1601013940
+
+# Bookmarks:
+
+# TUI:
+al
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/cosmos
+	Downloads
+3
+d/home/cosmos/Downloads
+	Wicked Cool Shell Scripts, 2nd Edition.pdf
+3
+d/home/cosmos
+	Projects
+6
+d/home/cosmos/Projects
+	..
+0
+d/home/cosmos
+	Downloads
+3
+d/home/cosmos/Downloads
+	醉步者.epub
+6
+d
+
+# Right window history (oldest to newest):
+D/home/cosmos
+	Downloads
+3
+D/home/cosmos/Downloads
+	..
+0
+D/home/cosmos
+	Mounts
+4
+D
+
+# Command line history (oldest to newest):
+:q
+
+# Search history (oldest to newest):
+
+# Prompt history (oldest to newest):
+
+# Local filter history (oldest to newest):
+
+# Registers:
+""/home/cosmos/.local/share/vifm/Trash/000_searchhl=en&q=app+shop.html
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/home/cosmos/.local/share/vifm/Trash/000_searchhl=en&q=app+shop.html
+	/home/cosmos/Downloads/searchhl=en&q=app+shop.html
+
+# State:
+f
+i1
+[.1
+[F
+F
+I1
+].1
+]F
+s0

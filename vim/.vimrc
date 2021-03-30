@@ -86,6 +86,8 @@ Plug 'dense-analysis/ale'
 Plug 'liuchengxu/vim-clap'
 " Provide hints to shortcuts
 Plug 'liuchengxu/vim-which-key'
+" Use vifm as file picker
+Plug 'vifm/vifm.vim'
 " ==== System integration ======================================================
 " Auto fcitx state switching
 " Only enable on linux systems
