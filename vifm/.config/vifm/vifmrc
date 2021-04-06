@@ -283,6 +283,8 @@ filextype *.html,*.htm
         \ {Open with chromium}
         \ chromium %f %i &,
 filetype *.html,*.htm links, lynx
+fileviewer *.html
+    \ lynx -assume_charset=utf-8 -display_charset=utf-8 -dump %c
 
 " Object
 filetype *.o nm %f | less
@@ -294,7 +296,7 @@ fileviewer *.[1-8] man ./%c | col -b
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in feh}
-        \ feh --scale-down --auto-zoom %c %i &,
+        \ feh --scale-down --auto-zoom %f %i &,
         \ {View in sxiv}
         \ sxiv %f,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
@@ -347,3 +349,4 @@ fileviewer <font/*>
 fileviewer */ tree %c
 
 fileviewer *[^/] bat --color always --pager never %c
+
