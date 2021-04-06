@@ -1,3 +1,6 @@
+filetype indent plugin on
+syntax enable
+
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ","
 
@@ -21,7 +24,7 @@ Plug 'romainl/vim-cool'
 " Highlight HTML tags
 Plug 'Valloric/MatchTagAlways'
 " Rainbow!
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 " Fancy start page
 Plug 'mhinz/vim-startify'
 " Indent line guides
@@ -107,7 +110,7 @@ Plug 'majutsushi/tagbar'
 Plug 'KabbAmine/vCoolor.vim'
 " File browsers
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} |
-    \ Plug 'Xuyuanp/nerdtree-git-plugin'
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Fast file search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -123,7 +126,7 @@ Plug 'roxma/vim-hug-neovim-rpc'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim'
 endif
 let g:deoplete#enable_at_startup = 1
 " Snippets support
@@ -158,6 +161,8 @@ Plug 'mattn/emmet-vim'
 " ==== CSV =====================================================================
 " CSV editing
 Plug 'chrisbra/csv.vim', {'for': ['csv']}
+" ==== Other ===================================================================
+Plug 'VebbNix/lf-vim'
 
 call plug#end()
 "}}}
@@ -175,6 +180,8 @@ set signcolumn=yes
 set ts=4 sw=4 " Default to 4 space tabs
 set expandtab " Replace tabs with spaces
 set cursorline " Highlight current line
+
+set clipboard=unnamedplus
 
 set encoding=utf-8 " Use unicode as default encoding
 
@@ -214,12 +221,10 @@ hi SpellBad gui=undercurl
 " Disable special syntax for TODO todo in comments
 hi clear Todo
 hi link Todo Comment
-
-filetype indent plugin on
-syntax enable
 " Set highlight method for spellchecks
 hi clear SpellBad
 hi SpellBad cterm=underline
+
 
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 
@@ -240,16 +245,16 @@ set spelllang+=cjk
 " vim-pencil
 " Auto pencil
 augroup pencil
-  autocmd!
-  autocmd FileType text         call pencil#init()
-  autocmd FileType tex         call pencil#init()
+    autocmd!
+    autocmd FileType text         call pencil#init()
+    autocmd FileType tex         call pencil#init()
 augroup END
 
 " Auto reload $MYVIMRC after modifying and saving
 augroup reload_vimrc
-        autocmd!
-        autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-        autocmd BufWritePost $HOME/.vimrc nested source $HOME/.vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+    autocmd BufWritePost $HOME/.vimrc nested source $HOME/.vimrc
 augroup END
 
 " Always assume .tex files are latex file
@@ -291,13 +296,14 @@ let g:vim_quickfix_open_on_warning = 0
 " vimwiki
 let g:vimwiki_list = [{
     \ 'auto_export': 1,
-    \ 'automatic_nested_syntaxes': 1,
     \ 'path': '~/vimwiki/content/',
-    \ 'path_html': '~/vimwiki/_site/',
+    \ 'template_path': '~/vimwiki/templates/',
+    \ 'template_default': 'default',
     \ 'syntax': 'markdown',
-    \ 'custom_wiki2html': '$HOME/Scripts/wiki2html.sh',
-    \ 'ext': '.md'
-    \}]
+    \ 'ext': '.md',
+    \ 'path_html': '~/vimwiki/site_html/',
+    \ 'custom_wiki2html': 'vimwiki_markdown',
+    \ 'template_ext': '.tpl'}]
 " Disable overwriting filetype markdown
 let g:vimwiki_global_ext = 0
 
@@ -318,13 +324,7 @@ let g:mkdp_auto_close = 0
 let g:table_mode_corner='|'
 
 " Rainbow!
-augroup rainbow_parentheses
-    autocmd!
-    autocmd VimEnter * RainbowParenthesesToggle
-    autocmd Syntax * RainbowParenthesesLoadRound
-    autocmd Syntax * RainbowParenthesesLoadSquare
-    autocmd Syntax * RainbowParenthesesLoadBraces
-augroup END
+let g:rainbow_active = 1
 
 " auto-pairs
 let g:AutoPairsShortcutToggle = ''
@@ -393,50 +393,50 @@ map <leader>vw :silent exec "!setsid $BROWSER ~/vimwiki/_site/index.html"<CR>
 
 " == File
 let g:which_key_map['f'] = {
-    \ 'name' : '+files' ,
-    \ 'f' : ['Files' , 'fzf-files'],
-    \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC'],
-    \ 'v' : [':e ~/.vimrc', 'edit ~/.vimrc']
-\ }
+            \ 'name' : '+files' ,
+            \ 'f' : ['Files' , 'fzf-files'],
+            \ 'd' : [':e $MYVIMRC', 'edit $MYVIMRC'],
+            \ 'v' : [':e ~/.vimrc', 'edit ~/.vimrc']
+            \ }
 
 " == Modes
 let g:which_key_map['m'] = {
-    \ 'name' : '+modes' ,
-    \ 'g' : ['Goyo', 'Toggle goyo'],
-    \ 'c' : ['ColorToggle', 'Toggle hex coloring'],
-    \ 'm' : ['MarkdownPreview', 'Toggle markdown preview']
-    \}
+            \ 'name' : '+modes' ,
+            \ 'g' : ['Goyo', 'Toggle goyo'],
+            \ 'c' : ['ColorToggle', 'Toggle hex coloring'],
+            \ 'm' : ['MarkdownPreview', 'Toggle markdown preview']
+            \}
 
 " == Buffer manipulation
 let g:which_key_map['b'] = {
-    \ 'name' : '+buffers' ,
-    \ 'n' : [':bn' , 'buffer-next'] ,
-    \ 'p' : [':bp' , 'buffer-previous'] ,
-    \ 'd' : [':bd' , 'buffer-delete'] ,
-    \ 'f' : ['Buffers', 'fzf-buffer']
-\ }
+            \ 'name' : '+buffers' ,
+            \ 'n' : [':bn' , 'buffer-next'] ,
+            \ 'p' : [':bp' , 'buffer-previous'] ,
+            \ 'd' : [':bd' , 'buffer-delete'] ,
+            \ 'f' : ['Buffers', 'fzf-buffer']
+            \ }
 
 " == Window manipulation
 let g:which_key_map['w'] = {
-    \ 'name' : '+windows' ,
-    \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
-    \ 'J' : [':resize +5'  , 'expand-window-below']   ,
-    \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
-    \ 'K' : [':resize -5'  , 'expand-window-up']      ,
-    \ 'f' : ['Windows'    , 'fzf-window']            ,
-\ }
+            \ 'name' : '+windows' ,
+            \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+            \ 'J' : [':resize +5'  , 'expand-window-below']   ,
+            \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+            \ 'K' : [':resize -5'  , 'expand-window-up']      ,
+            \ 'f' : ['Windows'    , 'fzf-window']            ,
+            \ }
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 
 let g:tagbar_type_r = {
-    \ 'ctagstype' : 'r',
-    \ 'kinds'     : [
-        \ 'f:Functions',
-        \ 'g:GlobalVariables',
-        \ 'v:FunctionVariables',
-    \ ]
-\ }
+            \ 'ctagstype' : 'r',
+            \ 'kinds'     : [
+            \ 'f:Functions',
+            \ 'g:GlobalVariables',
+            \ 'v:FunctionVariables',
+            \ ]
+            \ }
 
 " deoplete
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -454,15 +454,15 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            \ pumvisible() ? "\<C-n>" :
+            \ neosnippet#expandable_or_jumpable() ?
+            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2
+    set conceallevel=2
 endif
 
 
