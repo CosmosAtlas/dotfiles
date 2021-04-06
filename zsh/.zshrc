@@ -49,7 +49,8 @@ export KEYTIMEOUT=1
 # load fasd for fast navigation
 eval "$(fasd --init auto)"
 
-alias pfetch='PF_INFO="ascii title os host kernel uptime memory" pfetch'
+export PF_INFO="ascii title os host kernel uptime memory"
+export PF_COLOR=1
 
 # Substring search settings
 bindkey '^[[A' history-substring-search-up
