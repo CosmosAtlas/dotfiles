@@ -13,6 +13,7 @@ case $BLOCK_BUTTON in
     6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-pidof mbsync >/dev/null 2>&1 && icon="🔃"
+# Icon is the refresh in Siji Font
+pidof mbsync >/dev/null 2>&1 && icon=""
 
 echo "$icon U" $(find $HOME/.local/share/mail/w65zhu@uwaterloo.ca/INBOX/new -type f | wc -l) " G" $(find /home/cosmos/.local/share/mail/zhuwenhan950913@gmail.com/INBOX/new -type f | wc -l) " M" $(find /home/cosmos/.local/share/mail/wzhu547@outlook.com/INBOX/new -type f | wc -l)
