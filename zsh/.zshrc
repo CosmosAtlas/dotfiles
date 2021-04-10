@@ -17,7 +17,7 @@ antibody bundle < ~/.zsh_plugins.txt
 autoload -Uz compinit
 compinit
 
-export PATH=~/Scripts:~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin:~/bin:~/.scripts
+export PATH=~/Scripts:~/.local/bin:$PATH:~/bin:~/.scripts
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export PATH=$PATH:~/.node_modules/bin
 export PATH=$PATH:~/.cargo/bin

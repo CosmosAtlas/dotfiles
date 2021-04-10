@@ -48,7 +48,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'rakr/vim-one'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'ayu-theme/ayu-vim'
 
 " === Funtionality
 " ==== Extending vim ===========================================================
@@ -199,11 +198,8 @@ let g:airline_powerline_fonts=1
 
 set t_Co=256
 
-set termguicolors
-" set bg=dark
-let ayucolor="dark"
-color ayu
-" color gruvbox8
+set bg=dark
+color gruvbox8
 "
 " Customized highlight settings ================================================
 " Used to overwrite existing colorscheme settings
