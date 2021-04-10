@@ -1,0 +1,23 @@
+#!/bin/bash
+
+setxkbmap -layout us -option "caps:ctrl_modifier"
+pkill -x sxhkd
+setsid sxhkd -c $HOME/.config/sxhkd/sxhkdrc-xmonad &
+sleep 0.5
+setxkbmap -layout us -variant dvp -option "caps:ctrl_modifier"
+
+setsid dunst &
+
+setsid trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x191970 --height 12 &
+
+setsid udiskie --tray &
+setsid pasystray &
+
+xsetroot -cursor_name left_ptr
+
+xrdb -merge ~/.Xresources
+
+$HOME/Scripts/xcape.sh
+
+exec xmonad
+

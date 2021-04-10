@@ -1,2 +1,12 @@
 vifminfo.json
 vifminfo
+
+# XMonad
+.hpc/
+*.hi
+*.o
+*.p_hi
+*.prof
+*.tix
+xmonad.errors
+xmonad-x86_64-linux

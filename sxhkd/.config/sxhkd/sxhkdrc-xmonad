@@ -1,0 +1,54 @@
+super + Escape
+    pkill -USR1 -x sxhkd; \
+    notify-send "sxhkd restarted"
+
+{_, ctrl +} Print
+    name="$(date +%s).png"; \
+    file="$HOME/Pictures/screenshots/$name"; \
+    maim {_,-s} "$file"; \
+    xclip -selection clipboard -t image/png < $file; \
+    notify-send "Screenshot Taken" "Screenshot $name saved to clipboard"
+
+super + space
+    rofi -show drun
+
+# super + Return
+#    st -e tmux
+
+super + shift + l
+    lockscreen.sh
+
+# Command mode
+super + c ; d
+    dmenu_run
+
+super + c ; s
+    $HOME/Scripts/switch_keyboard_layout.sh
+
+# XMonad =======================================================================
+
+super + shift + Return
+    xmonadctl swap-master
+
+super + {j,k}
+    xmonadctl focus-{down,up}
+
+super + {h,l}
+    xmonadctl {shrink,expand}
+
+super + shift + c
+    xmonadctl kill
+
+# Return to tile mode
+super + t
+    xmonadctl sink
+
+super + shift + {q,r}
+    xmonadctl {quit-wm,restart-wm}
+
+super + shift + space
+    xmonadctl next-layout
+
+super + {_,shift +} {1-9}
+    xmonadctl {view,shift}\"{1-9}\"
+
