@@ -51,10 +51,11 @@ endif
 " ==== Color schemes ===========================================================
 " airline themes
 Plug 'vim-airline/vim-airline-themes'
-" collection of modern cool vim colorschemes
+" vim colorschemes
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'rakr/vim-one'
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'ayu-theme/ayu-vim'
 
 " === Funtionality
 " ==== Extending vim ===========================================================
@@ -205,8 +206,14 @@ let g:airline_powerline_fonts=1
 
 set t_Co=256
 
-set bg=dark
-color gruvbox8
+if (has("termguicolors"))
+    set termguicolors
+    set background=dark
+    color ayu
+else
+    set background=dark
+    color one
+endif
 "
 " Customized highlight settings ================================================
 " Used to overwrite existing colorscheme settings
