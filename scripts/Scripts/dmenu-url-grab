@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# A script to work with url_hint.py in weechat to quickly open urls
+
+# Make sure all command are available
+if ! command -v rofi &> /dev/null
+then
+    echo "rofi cannot be found falling back to dmenu"
+        if ! command -v dmenu &> /dev/null
+        then
+            echo "dmenu cannot be found, exiting..."
+            exit 1
+        fi
+    exit 1
+fi
+
+# Get confiles file in ~/.config/clash/
+URLS=("$@")
+
+# Select action from dmenu
+ACTION=$(printf '%s\n' "${URLS[@]}" | rofi -i -dmenu)
+
+xdg-open "$ACTION"
+
+exit 1
