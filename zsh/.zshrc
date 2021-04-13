@@ -5,77 +5,74 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ~/.zshrc
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
 
-# Start of antibody
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# End of antibody
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
 
-# Auto completion
-autoload -Uz compinit
-compinit
+### End of Zinit's installer chunk
 
+# My plugins ===================================================================
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
+
+zinit light ael-code/zsh-colored-man-pages
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+zinit light romkatv/powerlevel10k
+
+# Set ENV variables ============================================================
+# Expanding path
 export PATH=~/Scripts:~/.local/bin:$PATH:~/bin:~/.scripts
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export PATH=$PATH:~/.node_modules/bin
 export PATH=$PATH:~/.cargo/bin
+
+# Default programs
 export BROWSER=qutebrowser
 export TERMINAL=st
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='find .'
 
-# # Prompt Configuration
-# export SPACESHIP_TIME_SHOW=true
-# SPACESHIP_PROMPT_ORDER=(
-#   time          # Time stamps section
-#   user          # Username section
-#   dir           # Current directory section
-#   host          # Hostname section
-#   git           # Git section (git_branch + git_status)
-#   exec_time     # Execution time
-#   line_sep      # Line break
-#   vi_mode       # Vi-mode indicator
-#   exit_code     # Exit code section
-#   char          # Prompt character
-#   venv          # virtualenv section
-# )
+# Application specifics
 
-bindkey -v "^?" backward-delete-char
-
-export KEYTIMEOUT=1
-
-# load fasd for fast navigation
-eval "$(fasd --init auto)"
-
+# pfetch
 export PF_INFO="ascii title os host kernel uptime memory"
 export PF_COLOR=1
 
-# Substring search settings
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
+# npm
+export npm_config_prefix=~/.node_modules
 
-# History
+# History ======================================================================
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=1000
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 
-# Update prompt time every 30 secs
-# TRAPALRM() {
-#     zle reset-prompt
-# }
-# TMOUT=30
 
-set -o vi
-
-# My aliases
+# My aliases ===================================================================
 alias yv='googler -w youtube.com --url-handler umpv $argv'
 alias tx='tmuxinator'
 alias pc='proxychains -q'
@@ -95,9 +92,8 @@ alias dm='devour mpv'
 alias dp='devour qlphelper -u'
 alias db='devour biliplay.sh'
 
-# environment control variables
-export VIMWIKI_MARKDOWN_EXTENSIONS="markdown_checklist.extension"
 
+# My functions =================================================================
 # By setting the global variables might be convenient but, using pc with each program that requires
 # the proxy should be the better solution for fine grained control.
 proxyon() {
@@ -117,24 +113,19 @@ colorlist() {
     for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
-proxyon
-
-export npm_config_prefix=~/.node_modules
+# Intializing functionalities ==================================================
+eval "$(fasd --init auto)"
 
 # Set up rust env
 source $HOME/.cargo/env
 
-# unlimited ulimit
-ulimit -u unlimited
-ulimit -s 65536
-
-# initiate prompt
-# eval "$(starship init zsh)"
-
-# Display welcome text
-type pfetch > /dev/null && pfetch
-type $HOME/Repos/Color-Scripts/color-scripts/panes > /dev/null && $HOME/Repos/Color-Scripts/color-scripts/panes
-fortune tang300 | ~/.node_modules/bin/cowsay -f sachiko
+# set proxy
+proxyon
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Display welcome text =========================================================
+type pfetch > /dev/null && pfetch
+type $HOME/Repos/Color-Scripts/color-scripts/panes > /dev/null && $HOME/Repos/Color-Scripts/color-scripts/panes
+fortune tang300 | ~/.node_modules/bin/cowsay -f sachiko
