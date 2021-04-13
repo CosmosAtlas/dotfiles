@@ -111,6 +111,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'vimwiki/vimwiki'
 " Git integration
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' " GitHub integration
 " Tags
 Plug 'majutsushi/tagbar'
 " Color selector
@@ -140,6 +141,7 @@ let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+Plug 'wellle/tmux-complete.vim'
 
 " === Language specific
 " ==== Latex ===================================================================
