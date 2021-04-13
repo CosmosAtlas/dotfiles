@@ -2,19 +2,22 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall | source $MYVIMRC
+    augroup plugInstall
+        autocmd!
+        autocmd VimEnter * PlugInstall | source $MYVIMRC
+    augroup END
 endif
 
 filetype indent plugin on
 syntax enable
 
 let g:mapleader = "\<Space>"
-let g:maplocalleader = ","
+let g:maplocalleader = ','
 
 " use uname to test which os is currently running on
 " mainly used to get away with the linux/mac sharing has('unix') problem
 " trim to remove the '\n' from command output
-let g:uname = trim(system("uname"))
+let g:uname = trim(system('uname'))
 
 set nocompatible " Enable all features
 
@@ -186,19 +189,27 @@ set virtualedit=block
 
 set signcolumn=yes
 
-set ts=4 sw=4 " Default to 4 space tabs
+set tabstop=4 " Default to 4 space tabs
+set shiftwidth=4
 set expandtab " Replace tabs with spaces
 set cursorline " Highlight current line
 
 set clipboard=unnamedplus
 
 set encoding=utf-8 " Use unicode as default encoding
+scriptencoding utf-8
 
 set textwidth=80 " Auto change to next line at column 80
 set colorcolumn=+1 " Highlight column 81 to warn about line width
-set fo+=mM " Make textwidth work with Chinese
+set formatoptions+=mM " Make textwidth work with Chinese
 
 set foldmethod=marker
+
+" nvim terminal settings =======================================================
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <C-v><Esc> <Esc>
+endif
 
 " vim-airline
 set laststatus=2
@@ -208,7 +219,7 @@ let g:airline_powerline_fonts=1
 
 set t_Co=256
 
-if (has("termguicolors"))
+if (has('termguicolors'))
     set termguicolors
     set background=dark
     color ayu
@@ -270,14 +281,14 @@ augroup reload_vimrc
 augroup END
 
 " Always assume .tex files are latex file
-let g:tex_flavor = "latex"
+let g:tex_flavor = 'latex'
 
 
 " vim-which-key
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 set timeoutlen=500
 let g:which_key_map = {}
-call which_key#register('<Space>', "g:which_key_map")
+call which_key#register('<Space>', 'g:which_key_map')
 
 " EasyMotion
 map <Leader><Leader>s <Plug>(easymotion-sn)
@@ -367,6 +378,7 @@ let g:ale_linters = {
             \ 'python': ['flake8'],
             \ 'r': ['lintr'],
             \ 'markdown': ['mdl'],
+            \ 'vim': ['vint'],
             \}
 let g:ale_markdown_mdl_options = '-i -r \~MD002'
 let g:ale_r_lintr_options = 'lintr::with_defaults(line_length_linter = NULL, object_name_linter = NULL, object_usage_linter = NULL, object_length_linter = NULL, commented_code_linter = NULL)'
@@ -378,8 +390,8 @@ let g:ale_fixers = {
             \}
 
 " vim-slime
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+let g:slime_target = 'tmux'
+let g:slime_default_config = {'socket_name': get(split($TMUX, ','), 0), 'target_pane': ':.1'}
 let g:slime_python_ipython = 1
 
 " undotree
@@ -401,7 +413,7 @@ let g:indentLine_leadingSpaceChar = '·'
 " Personal Keymaps
 map <leader>hf :call FillLine('=')<CR>
 map <leader>gs :call OpenSOById()<CR>
-map <leader>vw :silent exec "!setsid $BROWSER ~/vimwiki/_site/index.html"<CR>
+map <leader>vw :silent exec "!setsid $BROWSER ~/vimwiki/site_html/index.html"<CR>
 
 " == File
 let g:which_key_map['f'] = {
@@ -488,7 +500,7 @@ function! FillLine(str)
     " strip trailing spaces first
     .s/[[:space:]]*$//
     " calculate total number of 'str's to insert
-    let reps = (tw - col("$")) / len(a:str)
+    let reps = (tw - col('$')) / len(a:str)
     " insert them, if there's room, removing trailing spaces (though forcing
     " there to be one)
     if reps > 0
@@ -498,10 +510,10 @@ endfunction
 
 " Open Stack Overflow question/answer link based on selected id
 function! OpenSOById()
-    let s:urlTemplate = "https://stackoverflow.com/q/%"
-    let s:browser = "xdg-open"
-    let s:idUnderCursor = expand("<cword>")
-    let s:url = substitute(s:urlTemplate, "%", s:idUnderCursor, "g")
-    let s:cmd = "silent! !" . s:browser . " " . s:url
+    let s:urlTemplate = 'https://stackoverflow.com/q/%'
+    let s:browser = 'xdg-open'
+    let s:idUnderCursor = expand('<cword>')
+    let s:url = substitute(s:urlTemplate, '%', s:idUnderCursor, 'g')
+    let s:cmd = 'silent! !' . s:browser . ' ' . s:url
     execute s:cmd
 endfunction
