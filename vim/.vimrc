@@ -71,8 +71,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 " Better repeating with '.'
 Plug 'tpope/vim-repeat'
-" better word replace
-Plug 'tpope/vim-abolish'
 " faster jummping
 Plug 'tpope/vim-unimpaired'
 " better handle of open in browser
@@ -95,7 +93,7 @@ Plug 'kana/vim-textobj-line'
 " asynchronous lint engine
 Plug 'dense-analysis/ale'
 " modern generic interactive finder and dispatcher
-Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 " Provide hints to shortcuts
 Plug 'liuchengxu/vim-which-key'
 " Use vifm as file picker
@@ -222,7 +220,7 @@ let g:airline_powerline_fonts=1
 set t_Co=256
 
 set background=dark
-color jellybeans
+color gruvbox8
 "
 " Customized highlight settings ================================================
 " Used to overwrite existing colorscheme settings
