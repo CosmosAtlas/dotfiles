@@ -12,6 +12,7 @@
 
 
 pandoc $1 --pdf-engine=xelatex \
+    -f gfm \
     --highlight-style tango\
     -V 'geometry:margin=1in' \
     -V 'papersize:letterpaper' \
