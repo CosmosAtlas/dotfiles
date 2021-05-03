@@ -73,12 +73,13 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'reedes/vim-pencil'
   let g:pencil#wrapModeDefault = 'hard'
-  augroup pencil
-      autocmd!
-      autocmd FileType markdown, mkd  call pencil#init()
-      autocmd FileType tex            call pencil#init({'wrap'}: 'soft')
-      autocmd FileType text           call pencil#init()
-  augroup END
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd  call pencil#init()
+    autocmd FileType tex            call pencil#init({'wrap'}: 'soft')
+    autocmd FileType text           call pencil#init()
+augroup END
+
 
 " Show git diff marks
 Plug 'mhinz/vim-signify'
