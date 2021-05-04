@@ -76,7 +76,7 @@ Plug 'reedes/vim-pencil'
 augroup pencil
     autocmd!
     autocmd FileType markdown,mkd  call pencil#init()
-    autocmd FileType tex            call pencil#init({'wrap'}: 'soft')
+    autocmd FileType tex            call pencil#init({'wrap': 'soft'})
     autocmd FileType text           call pencil#init()
 augroup END
 
