@@ -157,17 +157,19 @@ Plug 'vimwiki/vimwiki'
   " Disable overwriting filetype markdown
   let g:vimwiki_global_ext = 0
 
-  augroup vimwiki
+  augroup vimwikiUpdate
+    autocmd!
     " Make sure this window's working dir is the wiki repo dir
-    au! BufRead ~/vimwiki/content/index.md Gcd
+    autocmd BufRead ~/vimwiki/content/index.md Gcd
     " Also do a git pull whenever index.md is opened
-    au BufRead ~/vimwiki/content/index.md !git pull
+    autocmd BufRead ~/vimwiki/content/index.md :Dispatch git pull
     " After writing to any file in the wiki dir, add all files in the repo, commit and push
-    au! BufWritePost ~/vimwiki/* !git add .;git commit -m "auto-commit-and-push";git push
+    autocmd BufWritePost ~/vimwiki/* :Dispatch git add .;git commit -m "auto-commit-and-push";git push
   augroup END
 
 " Git integration
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
 
 Plug 'preservim/tagbar'
   nmap <F8> :TagbarToggle<CR>
@@ -367,7 +369,6 @@ set spelllang+=cjk
 " Auto reload $MYVIMRC after modifying and saving
 augroup reload_vimrc
     autocmd!
-    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
     autocmd BufWritePost $HOME/.vimrc nested source $HOME/.vimrc
 augroup END
 
