@@ -78,7 +78,7 @@ Plug 'reedes/vim-pencil'
   let g:pencil#map#suspend_af = 'K'
 augroup pencil
     autocmd!
-    autocmd FileType markdown,vimwiki,asciidoc,mail,text setlocal pencil#init()
+    autocmd FileType markdown,vimwiki,asciidoc,mail,text call pencil#init()
     autocmd FileType markdown setlocal comments=fb:>,fb:*,fb:+,fb:-
     autocmd FileType tex            call pencil#init({'wrap': 'soft'})
 augroup END
