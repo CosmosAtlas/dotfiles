@@ -39,6 +39,7 @@ Plug 'vim-airline/vim-airline-themes'
     let g:airline_theme='minimalist'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_powerline_fonts=1
+    let g:airline_section_x = '%{PencilMode()}'
 
 
 " better highlighting for searches
@@ -73,11 +74,13 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'reedes/vim-pencil'
   let g:pencil#wrapModeDefault = 'hard'
+  " Allow escaping auto formatting option for the plugin
+  let g:pencil#map#suspend_af = 'K'
 augroup pencil
     autocmd!
-    autocmd FileType markdown,mkd  call pencil#init()
+    autocmd FileType markdown,vimwiki,asciidoc,mail,text setlocal pencil#init()
+    autocmd FileType markdown setlocal comments=fb:>,fb:*,fb:+,fb:-
     autocmd FileType tex            call pencil#init({'wrap': 'soft'})
-    autocmd FileType text           call pencil#init()
 augroup END
 
 
@@ -106,8 +109,6 @@ Plug 'tyru/open-browser.vim'
 
 " Change enclosings
 Plug 'machakann/vim-sandwich'
-  " allow same surround keybinding as tpope/vim-surround
-  runtime macros/sandwich/keymap/surround.vim
 
 Plug 'junegunn/vim-easy-align'
   " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -313,7 +314,7 @@ set signcolumn=yes
 set tabstop=2         " Default to 4 space tabs
 set shiftwidth=2
 set expandtab         " Replace tabs with spaces
-" set cursorline        " Highlight current line
+set cursorline        " Highlight current line
 
 
 set encoding=utf-8    " Use unicode as default encoding
@@ -321,7 +322,7 @@ scriptencoding utf-8
 
 set textwidth=79      " Auto change to next line at column 80
 set colorcolumn=+1    " Highlight column 81 to warn about line width
-set formatoptions+=mM " Make textwidth work with Chinese
+set formatoptions=croqn2mMj
 
 set foldmethod=marker
 
@@ -337,8 +338,8 @@ color gruvbox8
 " My highlight preferences (to overwrite the colorscheme)
 " Transparency
 " hi Normal guibg=NONE ctermbg=NONE
-" No underline for current line number
-hi CursorLineNr cterm=bold gui=bold
+" " No underline for current line number
+" hi CursorLineNr cterm=bold gui=bold
 " Italic comments
 hi Comment cterm=italic gui=italic
 " Custom spell error with underline
@@ -346,14 +347,11 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 " Set style for gVim
 hi SpellBad gui=undercurl
-" Disable special syntax for TODO todo in comments
-hi clear Todo
-hi link Todo Comment
 
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 
 set list
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:»\ ,eol:¬,trail:·,nbsp:␣
 
 set history=200
 
@@ -446,5 +444,14 @@ function! OpenSOById()
     let s:cmd = 'silent! !' . s:browser . ' ' . s:url
     execute s:cmd
 endfunction
+
+" Get Syntax highlight groups
+" Source: https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
+function! SynStack()
+  if !exists('*synstack')
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 " }}}
