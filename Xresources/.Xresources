@@ -10,12 +10,12 @@ URxvt.letterSpace: 0
 URxvt*.scrollBar: false
 
 ! Config to be used by st with Xresources patch
-st.font: PragmataPro:size=13
+st.font: PragmataPro:size=12
 /* st.fontalt0: WenQuanYi WenQuanYi Bitmap Song:pixelsize=13 */
 /* st.fontalt0: Sarasa Term Slab SC:size=13:antialias=true:autohint=true */
 /* st.fontalt0: 975Maru SC:size=14 */
-st.fontalt0: LXGW WenKai:size=13
-st.fontalt1: JoyPixels:size=13:style=Medium
+st.fontalt0: LXGW WenKai:size=12
+st.fontalt1: JoyPixels:size=12:style=Medium
 st.alpha: 0.90
 st.disablebold: 0
 
@@ -31,7 +31,7 @@ XTerm*locale: true
 Xcursor.size: 32
 
 ! Overrule for rofi
-rofi.font: PragmataPro Liga 13
+rofi.font: PragmataPro 13
 
 
 ! special
