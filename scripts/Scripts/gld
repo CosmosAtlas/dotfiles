@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# preconfigured git latexdiff
+
+
+git latexdiff --bbl --config="PICTUREENV=(?:picture|DIFnomarkup|align|cite|tabularx)[\w\d*@]*" --exclude-safecmd=cite "$1"
