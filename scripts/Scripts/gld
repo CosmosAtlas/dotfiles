@@ -3,4 +3,9 @@
 # preconfigured git latexdiff
 
 
-git latexdiff --bbl --config="PICTUREENV=(?:picture|DIFnomarkup|align|cite|tabularx)[\w\d*@]*" --exclude-safecmd=cite "$1"
+git latexdiff \
+    -t CTRADITIONAL \
+    --config="PICTUREENV=(?:picture|DIFnomarkup|align|cite|tabularx)[\w\d*@]*" \
+    --exclude-safecmd=cite \
+    --whole-tree \
+    "$1"

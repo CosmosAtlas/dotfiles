@@ -50,7 +50,6 @@ fcitx5 &
 
 pkill -x aria2c
 aria2c -D &
-aria2c --conf-path ~/.config/aria2/win-aria2.conf -D &
 
 # mpd &
 # /home/cosmos/.scripts/pomolaunch.sh &

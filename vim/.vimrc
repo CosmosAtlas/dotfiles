@@ -76,12 +76,12 @@ Plug 'reedes/vim-pencil'
   let g:pencil#wrapModeDefault = 'hard'
   " Allow escaping auto formatting option for the plugin
   let g:pencil#map#suspend_af = 'K'
-augroup pencil
-    autocmd!
-    autocmd FileType markdown,vimwiki,asciidoc,mail,text call pencil#init()
-    autocmd FileType markdown setlocal comments=fb:>,fb:*,fb:+,fb:-,fb:#
-    autocmd FileType tex            call pencil#init({'wrap': 'soft'})
-augroup END
+  let g:pencil#autoformat = 1  " Disable auto format
+  augroup pencil
+      autocmd!
+      autocmd FileType markdown,vimwiki,asciidoc,mail,text call pencil#init()
+      autocmd FileType tex            call pencil#init({'wrap': 'soft'})
+  augroup END
 
 
 " Show git diff marks
@@ -118,8 +118,14 @@ Plug 'junegunn/vim-easy-align'
 
 " more text objects
 Plug 'wellle/targets.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-user' " Required by the following plugins to easily create text objects
+Plug 'kana/vim-textobj-line'  " For selecting lines
+Plug 'preservim/vim-textobj-sentence'  " For selecting sentences
+
+  augroup textobj_sentence
+    autocmd! FileType markdown,tex,mail,textile,text call textobj#sentence#init()
+  augroup END
+
 
 " asynchronous lint engine
 Plug 'dense-analysis/ale'
@@ -453,5 +459,13 @@ function! SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" }}}
+
+" =============================================================================
+" Experiments {{{
+" =============================================================================
+
+abbrev <expr> cdts strftime("%c")
 
 " }}}
