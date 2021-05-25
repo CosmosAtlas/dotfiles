@@ -109,6 +109,16 @@ Plug 'tyru/open-browser.vim'
 
 " Change enclosings
 Plug 'machakann/vim-sandwich'
+let g:textobj_sandwich_no_default_key_mappings = 1
+xmap ib <Plug>(textobj-sandwich-auto-i)
+omap ib <Plug>(textobj-sandwich-auto-i)
+xmap ab <Plug>(textobj-sandwich-auto-a)
+omap ab <Plug>(textobj-sandwich-auto-a)
+
+xmap iq <Plug>(textobj-sandwich-query-i)
+omap iq <Plug>(textobj-sandwich-query-i)
+xmap aq <Plug>(textobj-sandwich-query-a)
+omap aq <Plug>(textobj-sandwich-query-a)
 
 Plug 'junegunn/vim-easy-align'
   " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -117,7 +127,6 @@ Plug 'junegunn/vim-easy-align'
   nmap ga <Plug>(EasyAlign)
 
 " more text objects
-Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user' " Required by the following plugins to easily create text objects
 Plug 'kana/vim-textobj-line'  " For selecting lines
 Plug 'preservim/vim-textobj-sentence'  " For selecting sentences
