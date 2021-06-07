@@ -109,16 +109,16 @@ Plug 'tyru/open-browser.vim'
 
 " Change enclosings
 Plug 'machakann/vim-sandwich'
-let g:textobj_sandwich_no_default_key_mappings = 1
-xmap ib <Plug>(textobj-sandwich-auto-i)
-omap ib <Plug>(textobj-sandwich-auto-i)
-xmap ab <Plug>(textobj-sandwich-auto-a)
-omap ab <Plug>(textobj-sandwich-auto-a)
+" let g:textobj_sandwich_no_default_key_mappings = 1
+" xmap ib <Plug>(textobj-sandwich-auto-i)
+" omap ib <Plug>(textobj-sandwich-auto-i)
+" xmap ab <Plug>(textobj-sandwich-auto-a)
+" omap ab <Plug>(textobj-sandwich-auto-a)
 
-xmap iq <Plug>(textobj-sandwich-query-i)
-omap iq <Plug>(textobj-sandwich-query-i)
-xmap aq <Plug>(textobj-sandwich-query-a)
-omap aq <Plug>(textobj-sandwich-query-a)
+" xmap iq <Plug>(textobj-sandwich-query-i)
+" omap iq <Plug>(textobj-sandwich-query-i)
+" xmap aq <Plug>(textobj-sandwich-query-a)
+" omap aq <Plug>(textobj-sandwich-query-a)
 
 Plug 'junegunn/vim-easy-align'
   " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -311,6 +311,8 @@ call plug#end()
 " Plug-in settings that needs to be called after plug#end
 call deoplete#custom#option('smart_case', v:true)
 call which_key#register('<Space>', 'g:which_key_map')
+
+runtime macros/sandwich/keymap/surround.vim
 
 " }}}
 " =============================================================================
