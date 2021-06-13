@@ -101,24 +101,19 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 
+
+Plug 'Raimondi/delimitMate' " Automatic closing of quotes, brackets, etc
+
+
 " better handle of open in browser
 Plug 'tyru/open-browser.vim'
   let g:netrw_nogx = 1 " Disable netrw's gx mapping
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
 
+
 " Change enclosings
 Plug 'machakann/vim-sandwich'
-" let g:textobj_sandwich_no_default_key_mappings = 1
-" xmap ib <Plug>(textobj-sandwich-auto-i)
-" omap ib <Plug>(textobj-sandwich-auto-i)
-" xmap ab <Plug>(textobj-sandwich-auto-a)
-" omap ab <Plug>(textobj-sandwich-auto-a)
-
-" xmap iq <Plug>(textobj-sandwich-query-i)
-" omap iq <Plug>(textobj-sandwich-query-i)
-" xmap aq <Plug>(textobj-sandwich-query-a)
-" omap aq <Plug>(textobj-sandwich-query-a)
 
 Plug 'junegunn/vim-easy-align'
   " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -159,6 +154,8 @@ Plug 'liuchengxu/vim-which-key'
   let g:which_key_map = {}
   " Key mapping see [Key Mappings] part
 
+
+" [TODO] maybe switch to wiki.vim
 Plug 'vimwiki/vimwiki'
   let g:vimwiki_list = [{
       \ 'auto_export': 1,
@@ -312,6 +309,7 @@ call plug#end()
 call deoplete#custom#option('smart_case', v:true)
 call which_key#register('<Space>', 'g:which_key_map')
 
+" Use surround keybindings for vim-sandwich
 runtime macros/sandwich/keymap/surround.vim
 
 " }}}

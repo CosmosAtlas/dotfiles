@@ -22,9 +22,6 @@ setsid /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 /home/cosmos/Scripts/restart-picom.sh &
 
-pkill -x xfce4-power-manager
-xfce4-power-manager &
-
 pkill -x udiskie
 udiskie --tray &
 
