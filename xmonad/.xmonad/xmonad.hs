@@ -51,7 +51,7 @@ myConfig = def
                         <+> serverModeEventHook' myCommands
                         <+> serverModeEventHookF "XMONAD_PRINT" (io . putStrLn)
                         <+> serverModeEventHookF "EXEC" spawn
-    , terminal        = "alacritty"
+    , terminal        = "termite"
     , manageHook = manageDocks <+> manageHook def
     , layoutHook = avoidStruts $ layoutHook def
     , keys            = myKeys

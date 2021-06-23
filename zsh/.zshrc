@@ -45,11 +45,10 @@ zinit light romkatv/powerlevel10k
 # Set ENV variables ============================================================
 # Expanding path
 export PATH=~/Scripts:~/.local/bin:$PATH:~/bin:~/.scripts
+export PATH=~/.xmonad:$PATH
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export PATH=$PATH:~/.node_modules/bin
-export PATH=$PATH:~/.cargo/bin
-
-# Default programs
+# export PATH=$PATH:~/.cargo/bin
 export BROWSER=qutebrowser
 export TERMINAL=st
 export EDITOR=vim
@@ -97,9 +96,9 @@ alias db='devour biliplay.sh'
 # By setting the global variables might be convenient but, using pc with each program that requires
 # the proxy should be the better solution for fine grained control.
 proxyon() {
-    export http_proxy=http://127.0.0.1:8888
-    export https_proxy=http://127.0.0.1:8888
-    export ALL_PROXY=socks5://127.0.0.1:8889
+    export http_proxy=192.168.31.202:8888
+    export https_proxy=192.168.31.202:8888
+    export ALL_PROXY=192.168.31.202:8889
 }
 
 proxyoff() {
@@ -117,7 +116,7 @@ colorlist() {
 eval "$(fasd --init auto)"
 
 # Set up rust env
-source $HOME/.cargo/env
+# source $HOME/.cargo/env
 
 # set proxy
 proxyon
@@ -128,4 +127,6 @@ proxyon
 # Display welcome text =========================================================
 type pfetch > /dev/null && pfetch
 type $HOME/Repos/Color-Scripts/color-scripts/panes > /dev/null && $HOME/Repos/Color-Scripts/color-scripts/panes
-fortune tang300 | ~/.node_modules/bin/cowsay -f sachiko
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
