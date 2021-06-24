@@ -48,7 +48,12 @@ fcitx5 &
 pkill -x aria2c
 aria2c -D &
 
-# mpd &
+pkill -x transmission-gtk
+transmission-gtk &
+
+$HOME/Scripts/restart-mpd.sh
+
+
 # /home/cosmos/.scripts/pomolaunch.sh &
 # syncthing-gtk &
 echo "Startup applications launched"

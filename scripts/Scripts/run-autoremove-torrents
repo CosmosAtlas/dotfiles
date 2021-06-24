@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$HOME/.local/bin/autoremove-torrents --conf=$HOME/.config/autoremove-torrents/config.yml --log=$HOME/.config/autoremove-torrents/logs $@
