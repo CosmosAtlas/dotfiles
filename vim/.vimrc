@@ -39,7 +39,6 @@ set laststatus=2
 let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
-let g:airline_section_x = '%{PencilMode()}'
 
 
 " better highlighting for searches
@@ -70,18 +69,6 @@ let g:indentLine_concealcursor = ''
 let g:indentLine_setConceal = 0
 let g:indentLine_fileTypeExclude = ['help', 'startify']
 let g:indentLine_leadingSpaceChar = '·'
-
-
-Plug 'reedes/vim-pencil'
-let g:pencil#wrapModeDefault = 'hard'
-" Allow escaping auto formatting option for the plugin
-let g:pencil#map#suspend_af = 'K'
-let g:pencil#autoformat = 1  " Disable auto format
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,vimwiki,asciidoc,mail,text call pencil#init()
-  autocmd FileType tex            call pencil#init({'wrap': 'soft'})
-augroup END
 
 
 " Show git diff marks
@@ -142,7 +129,7 @@ let g:ale_linters = {
       \ 'cpp': ['clangd'],
       \}
 let g:ale_cpp_clang_options = '-std=c++14 -isystem /usr/include/c++/11.1.0 -I/usr/include/c++/11.1.0 -I/usr/include/ -I/usr/include/qt/'
-let g:ale_markdown_mdl_options = '-i -r \~MD002'
+let g:ale_markdown_mdl_options = '-i -r \~MD002 -r \~MD026'
 let g:ale_r_lintr_options = 'lintr::with_defaults(line_length_linter = NULL, object_name_linter = NULL, object_usage_linter = NULL, object_length_linter = NULL, commented_code_linter = NULL)'
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -172,6 +159,8 @@ let g:vimwiki_list = [{
       \ 'template_ext': '.tpl'}]
 " Disable overwriting filetype markdown
 let g:vimwiki_global_ext = 0
+let g:vimwiki_option_syntax = 'markdown'
+let g:vimwiki_markdown_link_ext = 1
 
 augroup vimwikiUpdate
   autocmd!
@@ -250,6 +239,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -275,6 +265,10 @@ let g:tex_flavor = 'latex'
 let g:vim_quickfix_open_on_warning = 0
 let g:vimtex_view_method = 'zathura'
 
+let g:vimtex_compiler_latexmk = {
+      \ 'build_dir': 'build',
+      \}
+
 
 " deoplete python extension via jedi
 Plug 'deoplete-plugins/deoplete-jedi'
@@ -291,14 +285,7 @@ let R_in_buffer = 0
 let R_source = '/home/cosmos/Scripts/tmux_split.vim'
 let r_indent_align_args = 0
 
-
-Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
-" vim-markdown
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_toml_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 2
-let g:vim_markdown_folding_disabled = 1
-
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'dhruvasagar/vim-table-mode'
 let g:table_mode_corner='|' " Defaults to markdown table style
 
