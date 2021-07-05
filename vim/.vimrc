@@ -158,7 +158,8 @@ let g:vimwiki_list = [{
       \ 'custom_wiki2html': 'vimwiki_markdown',
       \ 'template_ext': '.tpl'}]
 " Disable overwriting filetype markdown
-let g:vimwiki_global_ext = 0
+" let g:vimwiki_global_ext = 1
+" The above default allows `gq` formatting long list lines to work properly
 let g:vimwiki_option_syntax = 'markdown'
 let g:vimwiki_markdown_link_ext = 1
 
@@ -268,6 +269,18 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_latexmk = {
       \ 'build_dir': 'build',
       \}
+
+
+" Better pandoc
+Plug 'vim-pandoc/vim-pandoc'
+" Way better syntax for markdown documents, like lightyears ahead of the ugly
+" and problematic default...
+Plug 'vim-pandoc/vim-pandoc-syntax'
+  augroup pandoc_syntax
+    autocmd!
+    autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+    autocmd FileType vimwiki set syntax=markdown.pandoc
+  augroup END
 
 
 " deoplete python extension via jedi
