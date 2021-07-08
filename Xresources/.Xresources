@@ -10,7 +10,7 @@ URxvt.letterSpace: 0
 URxvt*.scrollBar: false
 
 ! Config to be used by st with Xresources patch
-st.font: PragmataPro Liga:size=12
+st.font: PragmataPro Mono:size=12
 /* st.fontalt0: WenQuanYi WenQuanYi Bitmap Song:pixelsize=13 */
 /* st.fontalt0: Sarasa Term Slab SC:size=13:antialias=true:autohint=true */
 st.fontalt0: 975Maru SC:size=12
