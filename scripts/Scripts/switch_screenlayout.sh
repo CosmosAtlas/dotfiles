@@ -48,7 +48,7 @@ if [ -f "$CONFIG_FILE" ]; then
     cp "$CONFIG_FILE" ${HOME}/.screenlayout/current.sh
     source ~/.screenlayout/current.sh
     echo "Switched screenlayout to ${ACTION}"
-    nitrogen --restore &
+    nitrogen --restore
     notify-send "[XRANDR] Switched to ${ACTION} layout"
     betterlockscreen -u ~/Pictures/9pmevg9wa4b41.jpg
     notify-send "[LOCKER] updated lockscreen image"

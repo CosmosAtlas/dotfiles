@@ -83,13 +83,13 @@ Plug 'lifepillar/vim-gruvbox8'
 Plug 'mbbill/undotree'
 nnoremap <leader>ut :UndotreeToggle<CR>
 
-Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 
 
 Plug 'Raimondi/delimitMate' " Automatic closing of quotes, brackets, etc
+let delimitMate_expand_cr = 2
 
 
 " better handle of open in browser
@@ -100,7 +100,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 
 " Change enclosings
-Plug 'machakann/vim-sandwich'
+Plug 'tpope/vim-surround'
 
 Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -144,8 +144,6 @@ set timeoutlen=500
 let g:which_key_map = {}
 " Key mapping see [Key Mappings] part
 
-
-" [TODO] maybe switch to wiki.vim
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{
       \ 'auto_export': 1,
@@ -157,9 +155,6 @@ let g:vimwiki_list = [{
       \ 'path_html': '~/vimwiki/site_html/',
       \ 'custom_wiki2html': 'vimwiki_markdown',
       \ 'template_ext': '.tpl'}]
-" Disable overwriting filetype markdown
-" let g:vimwiki_global_ext = 1
-" The above default allows `gq` formatting long list lines to work properly
 let g:vimwiki_option_syntax = 'markdown'
 let g:vimwiki_markdown_link_ext = 1
 
@@ -226,6 +221,8 @@ endif
 Plug 'zchee/deoplete-clang'
 " Snippets
 Plug 'Shougo/neosnippet.vim'
+  let g:neosnippet#scope_aliases = {}
+  let g:neosnippet#scope_aliases['vimwiki'] = 'markdown'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 
@@ -268,6 +265,13 @@ let g:vimtex_view_method = 'zathura'
 
 let g:vimtex_compiler_latexmk = {
       \ 'build_dir': 'build',
+      \ 'options' : [
+        \ '-pdf',
+        \ '-shell-escape',
+        \ '-synctex=1',
+        \ '-verbose',
+        \ '-file-line-error',
+        \ ],
       \}
 
 
@@ -313,9 +317,6 @@ call plug#end()
 call deoplete#custom#option('smart_case', v:true)
 call which_key#register('<Space>', 'g:which_key_map')
 
-" Use surround keybindings for vim-sandwich
-runtime macros/sandwich/keymap/surround.vim
-
 " }}}
 " =============================================================================
 " Basic Settings {{{
@@ -339,15 +340,13 @@ set cursorline        " Highlight current line
 set encoding=utf-8    " Use unicode as default encoding
 scriptencoding utf-8
 
-set textwidth=79      " Auto change to next line at column 80
+set textwidth=80      " Auto change to next line at column 80
 set colorcolumn=+1    " Highlight column 81 to warn about line width
 set formatoptions=croqn2mMj
 
 set foldmethod=marker
 
 set conceallevel=2
-
-set completeopt+=popup
 
 " Do not aggresive redraw when pasting large text
 if has('arabic')
@@ -401,8 +400,6 @@ augroup END
 " Key Bindings {{{
 " =============================================================================
 map <leader>hf :call FillLine('=')<CR>
-map <leader>gs :call OpenSOById()<CR>
-map <leader>vw :silent exec "!setsid $BROWSER ~/vimwiki/site_html/index.html"<CR>
 
 " == File
 let g:which_key_map['f'] = {
@@ -415,8 +412,6 @@ let g:which_key_map['f'] = {
 " == Modes
 let g:which_key_map['m'] = {
       \ 'name' : '+modes' ,
-      \ 'g' : ['Goyo', 'Toggle goyo'],
-      \ 'c' : ['ColorToggle', 'Toggle hex coloring'],
       \ 'm' : ['MarkdownPreview', 'Toggle markdown preview']
       \}
 
@@ -461,16 +456,6 @@ function! FillLine(str)
   endif
 endfunction
 
-" Open Stack Overflow question/answer link based on selected id
-function! OpenSOById()
-  let s:urlTemplate = 'https://stackoverflow.com/q/%'
-  let s:browser = 'xdg-open'
-  let s:idUnderCursor = expand('<cword>')
-  let s:url = substitute(s:urlTemplate, '%', s:idUnderCursor, 'g')
-  let s:cmd = 'silent! !' . s:browser . ' ' . s:url
-  execute s:cmd
-endfunction
-
 " Get Syntax highlight groups
 " Source: https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
 function! SynStack()
@@ -486,6 +471,5 @@ endfunc
 " Experiments {{{
 " =============================================================================
 
-abbrev <expr> cdts strftime("%c")
 
 " }}}
