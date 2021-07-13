@@ -1,3 +1,5 @@
+# vim: set ft=sxhkdrc:
+
 super + Escape
     pkill -USR1 -x sxhkd; \
     notify-send "sxhkd restarted"
@@ -30,6 +32,10 @@ super + c ; i
 
 super + c ; l
     $HOME/Scripts/switch_screenlayout.sh
+
+# Clear all dunst notifications
+super + c ; n
+    dunstctl close-all
 
 super + r ; p
     $HOME/Scripts/restart-picom.sh

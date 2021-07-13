@@ -88,8 +88,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 
 
-Plug 'Raimondi/delimitMate' " Automatic closing of quotes, brackets, etc
-let delimitMate_expand_cr = 2
+Plug 'Raimondi/delimitMate'
+let delimitMate_expand_cr = 1
+let delimitMate_nesting_quotes = ['"', '`']
 
 
 " better handle of open in browser
@@ -302,7 +303,7 @@ let R_in_buffer = 0
 let R_source = '/home/cosmos/Scripts/tmux_split.vim'
 let r_indent_align_args = 0
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug', 'vimwiki']}
 Plug 'dhruvasagar/vim-table-mode'
 let g:table_mode_corner='|' " Defaults to markdown table style
 
@@ -310,6 +311,7 @@ let g:table_mode_corner='|' " Defaults to markdown table style
 Plug 'mattn/emmet-vim', {'for': ['html']}
 
 Plug 'chrisbra/csv.vim', {'for': ['csv']}
+Plug 'baskerville/vim-sxhkdrc'
 
 call plug#end()
 
