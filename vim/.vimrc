@@ -184,11 +184,10 @@ let g:tagbar_type_r = {
         \ ]
         \ }
 
-Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'} |
-      \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-      \ Plug 'ryanoasis/vim-devicons'
-map <C-t> :NERDTreeToggle<CR>
-let NERDTreeShowHidden = 1
+
+" Better file browsing
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
 
 " Fast file search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -342,7 +341,7 @@ set cursorline        " Highlight current line
 set encoding=utf-8    " Use unicode as default encoding
 scriptencoding utf-8
 
-set textwidth=80      " Auto change to next line at column 80
+set textwidth=79      " Auto change to next line at column 80
 set colorcolumn=+1    " Highlight column 81 to warn about line width
 set formatoptions=croqn2mMj
 

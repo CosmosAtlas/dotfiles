@@ -1,3 +1,4 @@
+# vim: set ft=sxhkdrc:
 
 # terminal emulator
 super + Return

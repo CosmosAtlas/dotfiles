@@ -48,6 +48,7 @@ $endif$
 \setbeamercolor{caption name}{fg=normal text.fg}
 % === Cosmos added =============================================================
 \setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{footline}[frame number]
 % === End Cosmos added =========================================================
 \beamertemplatenavigationsymbols$if(navigation)$$navigation$$else$empty$endif$
 $for(beameroption)$
