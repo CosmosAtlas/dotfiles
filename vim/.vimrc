@@ -88,6 +88,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 
 
+" visualize subsitute
+Plug 'markonm/traces.vim'
+
+
 Plug 'Raimondi/delimitMate'
 let delimitMate_expand_cr = 1
 let delimitMate_nesting_quotes = ['"', '`']
@@ -173,6 +177,17 @@ augroup END
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 
+Plug 'ludovicchabant/vim-gutentags'
+  let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+  let g:gutentags_generate_on_new = 1
+  let g:gutentags_generate_on_missing = 1
+  let g:gutentags_generate_on_write = 1
+  let g:gutentags_generate_on_empty_buffer = 0
+  let g:gutentags_ctags_extra_args = [
+        \ '--tag-relative=yes',
+        \ '--fields=+ailmnS',
+        \ ]
+
 Plug 'preservim/tagbar'
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_r = {
@@ -211,12 +226,12 @@ let g:slime_python_ipython = 1
 "
 " Load these two anyway to avoid being removed during neovim plugin maintenance
 " via :PlugClean
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'zchee/deoplete-clang'
 " Snippets
@@ -302,7 +317,9 @@ let R_in_buffer = 0
 let R_source = '/home/cosmos/Scripts/tmux_split.vim'
 let r_indent_align_args = 0
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug', 'vimwiki']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug', 'vimwiki', 'markdown.pandoc']}
+  let g:mkdp_filetypes = ['markdown', 'vimwiki', 'markdown.pandoc']
+
 Plug 'dhruvasagar/vim-table-mode'
 let g:table_mode_corner='|' " Defaults to markdown table style
 
@@ -413,7 +430,7 @@ let g:which_key_map['f'] = {
 " == Modes
 let g:which_key_map['m'] = {
       \ 'name' : '+modes' ,
-      \ 'm' : ['MarkdownPreview', 'Toggle markdown preview']
+      \ 'm' : [':MarkdownPreview', 'Toggle markdown preview']
       \}
 
 " == Buffer manipulation
