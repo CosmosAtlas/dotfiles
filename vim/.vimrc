@@ -76,6 +76,8 @@ Plug 'mhinz/vim-signify'
 
 " vim colorschemes
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'sjl/badwolf'
+Plug 'tomasr/molokai'
 
 "
 " Functionality
@@ -376,7 +378,7 @@ endif
 "
 set t_Co=256
 set background=dark
-color gruvbox8
+colorscheme molokai
 
 " My highlight preferences (to overwrite the colorscheme)
 " Transparency
