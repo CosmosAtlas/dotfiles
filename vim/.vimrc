@@ -378,13 +378,14 @@ endif
 "
 set t_Co=256
 set background=dark
-colorscheme molokai
+colorscheme badwolf
 
 " My highlight preferences (to overwrite the colorscheme)
 " Transparency
-" hi Normal guibg=NONE ctermbg=NONE
-" " No underline for current line number
-" hi CursorLineNr cterm=bold gui=bold
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE
+" No underline for current line number
+hi CursorLineNr cterm=bold gui=bold
 " Italic comments
 hi Comment cterm=italic gui=italic
 " Custom spell error with underline

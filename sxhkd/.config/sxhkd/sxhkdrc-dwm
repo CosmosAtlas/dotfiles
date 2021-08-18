@@ -40,12 +40,12 @@ super + c ; n
 super + r ; p
     $HOME/Scripts/restart-picom.sh
 
-super + F1
-    $HOME/Scripts/toggle_auto_click.sh
+# super + F1
+#     $HOME/Scripts/toggle_auto_click.sh
 
 # TEMP
-super + {a,z}
-    sleep 0.2 && xdotool type "{TRUE,FALSE}"
+# super + {a,z}
+#     sleep 0.2 && xdotool type "{TRUE,FALSE}"
 
 # dwm
 super + shift + Return

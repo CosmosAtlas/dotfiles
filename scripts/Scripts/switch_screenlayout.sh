@@ -50,7 +50,7 @@ if [ -f "$CONFIG_FILE" ]; then
     echo "Switched screenlayout to ${ACTION}"
     nitrogen --restore
     notify-send "[XRANDR] Switched to ${ACTION} layout"
-    betterlockscreen -u ~/Pictures/9pmevg9wa4b41.jpg
+    betterlockscreen --span -u ~/Pictures/9pmevg9wa4b41.jpg
     notify-send "[LOCKER] updated lockscreen image"
     exit 0
 fi
