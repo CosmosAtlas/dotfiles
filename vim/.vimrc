@@ -151,26 +151,23 @@ set timeoutlen=500
 let g:which_key_map = {}
 " Key mapping see [Key Mappings] part
 
-Plug 'vimwiki/vimwiki'
-let g:vimwiki_list = [{
-      \ 'auto_export': 1,
-      \ 'path': '~/vimwiki/content/',
-      \ 'template_path': '~/vimwiki/templates/',
-      \ 'template_default': 'default',
-      \ 'syntax': 'markdown',
-      \ 'ext': '.md',
-      \ 'path_html': '~/vimwiki/site_html/',
-      \ 'custom_wiki2html': 'vimwiki_markdown',
-      \ 'template_ext': '.tpl'}]
-let g:vimwiki_option_syntax = 'markdown'
-let g:vimwiki_markdown_link_ext = 1
+" Alternative wiki provider
+Plug 'lervag/wiki.vim'
+let g:wiki_filetypes = ['wiki']
+let g:wiki_link_target_type = 'md'
+let g:wiki_root = '~/vimwiki/content/'
+
+augroup wikiAsMarkdown
+  autocmd!
+  autocmd BufEnter *.wiki :setlocal filetype=markdown.pandoc
+augroup END
 
 augroup vimwikiUpdate
   autocmd!
   " Make sure this window's working dir is the wiki repo dir
-  autocmd BufRead ~/vimwiki/content/index.md Gcd
+  autocmd BufRead ~/vimwiki/content/index.wiki Gcd
   " Also do a git pull whenever index.md is opened
-  autocmd BufRead ~/vimwiki/content/index.md :Dispatch git pull
+  autocmd BufRead ~/vimwiki/content/index.wiki :Dispatch git pull
   " After writing to any file in the wiki dir, add all files in the repo, commit and push
   autocmd BufWritePost ~/vimwiki/* :Dispatch git add .;git commit -m "auto-commit-and-push";git push
 augroup END
@@ -273,6 +270,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " Aggregator of syntax files
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['markdown']
 " Vim latex support
 Plug 'lervag/vimtex', {'for': ['latex', 'tex']}
 Plug 'rbonvall/vim-textobj-latex'
@@ -294,6 +292,11 @@ let g:vimtex_compiler_latexmk = {
 
 " Better pandoc
 Plug 'vim-pandoc/vim-pandoc'
+let g:pandoc#filetypes#pandoc_markdown = 0
+let g:pandoc#folding#fdc = 0
+let g:pandoc#formatting#textwidth = 79
+let g:pandoc#formatting#mode = 'h'
+let g:pandoc#syntax#codeblocks#embeds#langs = ['make', 'python', 'bash=sh']
 " Way better syntax for markdown documents, like lightyears ahead of the ugly
 " and problematic default...
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -319,8 +322,8 @@ let R_in_buffer = 0
 let R_source = '/home/cosmos/Scripts/tmux_split.vim'
 let r_indent_align_args = 0
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug', 'vimwiki', 'markdown.pandoc']}
-  let g:mkdp_filetypes = ['markdown', 'vimwiki', 'markdown.pandoc']
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug', 'markdown.pandoc']}
+let g:mkdp_filetypes = ['markdown', 'wiki', 'markdown.pandoc']
 
 Plug 'dhruvasagar/vim-table-mode'
 let g:table_mode_corner='|' " Defaults to markdown table style
@@ -362,7 +365,8 @@ scriptencoding utf-8
 
 set textwidth=79      " Auto change to next line at column 80
 set colorcolumn=+1    " Highlight column 81 to warn about line width
-set formatoptions=croqn2mMj
+set formatoptions+=l  " Don't auto break line when I'm already on a long line
+set formatoptions+=M  " Better format for CJK characters
 
 set foldmethod=marker
 
@@ -402,11 +406,14 @@ set listchars=tab:▶\ ,eol:¬,trail:·,nbsp:␣
 set history=200
 
 " Spell check for latex and markdown
-augroup spellCheck
+augroup textSpecial
   autocmd!
-  autocmd FileType markdown,tex,vimwiki,asciidoc,mail setlocal spell
+  autocmd FileType markdown.pandoc setlocal foldlevel=99 " Technically disabling folding
+  autocmd FileType markdown.pandoc,markdown,tex,asciidoc,mail setlocal spell
+  autocmd FileType markdown.pandoc,markdown,tex,asciidoc,mail setlocal formatoptions+=at
   autocmd BufRead,BufNewFile *.md,*.tex setlocal spell
 augroup END
+
 " Exclude CJK characters from spell checks
 set spelllang+=cjk
 
