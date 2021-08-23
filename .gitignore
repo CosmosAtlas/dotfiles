@@ -1,5 +1,6 @@
 vifminfo.json
 vifminfo
+packer_compiled.lua
 
 # XMonad
 .hpc/
@@ -10,3 +11,6 @@ vifminfo
 *.tix
 xmonad.errors
 xmonad-x86_64-linux
+
+# Temp Swap files
+tags
