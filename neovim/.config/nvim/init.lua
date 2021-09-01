@@ -96,6 +96,13 @@ vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_char_highlight = 'LineNr'
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 
+-- Gutentags
+vim.g.gutentags_cache_dir = "~/.cache/vim/ctags/"
+vim.g.gutentags_generate_on_new = 1
+vim.g.gutentags_generate_on_missing = 1
+vim.g.gutentags_generate_on_write = 1
+vim.g.gutentags_generate_on_empty_buffer = 0
+
 -- Gitsigns
 require('gitsigns').setup {
   signs = {

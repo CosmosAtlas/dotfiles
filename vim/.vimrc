@@ -410,7 +410,8 @@ augroup textSpecial
   autocmd!
   autocmd FileType markdown.pandoc setlocal foldlevel=99 " Technically disabling folding
   autocmd FileType markdown.pandoc,markdown,tex,asciidoc,mail setlocal spell
-  autocmd FileType markdown.pandoc,markdown,tex,asciidoc,mail setlocal formatoptions+=at
+  autocmd FileType markdown.pandoc,markdown,asciidoc,mail setlocal formatoptions+=t
+  autocmd FileType tex setlocal formatoptions-=t
   autocmd BufRead,BufNewFile *.md,*.tex setlocal spell
 augroup END
 

@@ -4,8 +4,8 @@
 
 
 git latexdiff \
-    -t CTRADITIONAL \
-    --config="PICTUREENV=(?:picture|DIFnomarkup|align|cite|tabularx)[\w\d*@]*" \
-    --exclude-safecmd=cite \
+    --type=CFONT \
     --whole-tree \
+    --allow-spaces \
+    --enable-citation-markup \
     "$1"
