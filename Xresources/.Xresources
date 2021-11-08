@@ -1,21 +1,15 @@
 URxvt.font: xft:envypn:pixelsize=15,xft:Iosevka Nerd Font Mono:pixelsize=15,xft:Zpix:style=Regular:pixelsize=12
-/* URxvt.font: xft:GohuFont Nerd Font Mono:style=uni-14:pixelsize=14,xft:JoyPixels:pixelsize=14,xft: WenQuanYi WenQuanYi Bitmap Song:pixelsize=14 */
-/* URxvt*boldFont: xft:Misc Tamsyn:style=Bold:pixelsize=20,xft:Iosevka Nerd Font:style=Bold:pixelsize=20,xft:Zpix:style=Regular:pixelsize=12 */
-
-/* URxvt*boldFont: */ 
-/* URxvt*italicFont: */ 
-! URxvt.letterSpace: -1
 
 URxvt.letterSpace: 0
 URxvt*.scrollBar: false
 
 ! Config to be used by st with Xresources patch
-st.font: PragmataPro Mono:size=12
+st.font: PragmataPro Mono:size=14
 /* st.fontalt0: WenQuanYi WenQuanYi Bitmap Song:pixelsize=13 */
 /* st.fontalt0: Sarasa Term Slab SC:size=13:antialias=true:autohint=true */
-st.fontalt0: 975Maru SC:size=12
+st.fontalt0: 975Maru SC:size=14
 /* st.fontalt0: LXGW WenKai:size=12 */
-st.fontalt1: JoyPixels:size=12:style=Medium
+st.fontalt1: JoyPixels:size=14:style=Medium
 st.alpha: 0.90
 st.disablebold: 0
 
@@ -27,8 +21,16 @@ XTerm*faceSize: 13
 XTerm*utf8: 2
 XTerm*locale: true
 
+! X related settings
 ! X cursor size
 Xcursor.size: 32
+Xft.dpi: 120
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 
 ! Overrule for rofi
 rofi.font: PragmataPro 13

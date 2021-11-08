@@ -17,6 +17,10 @@ xsetroot -cursor_name left_ptr &
 # Start up applications
 /home/cosmos/Scripts/xcape.sh &
 
+# Network manager
+pkill -x nm-applet
+setsid nm-applet &
+
 # Launch polkit
 setsid /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
@@ -31,8 +35,8 @@ dunst &
 pkill -x pasystray
 pasystray &
 
-pm2 kill
-pm2 start clash
+# pm2 kill
+# pm2 start clash
 
 pkill -x xidlehook
 xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l blur" '' &

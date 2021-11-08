@@ -83,7 +83,7 @@ super + 0
 
 # Focus/move to monitor
 super + {_,shift +} {comma,period}
-    dwmc {focusmon,tagmon} {-,+}1
+    dwmc {focusmon,tagmon} {+,-}1
 
 # Increase the number of windows in master area
 super + {d,i}

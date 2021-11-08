@@ -9,4 +9,4 @@ echo "Converting danmaku to ass file"
 danmaku2ass-c.sh $XML_DIR$DANMAKU_COMMENT_ID.xml $XML_DIR$DANMAKU_COMMENT_ID.ass
 
 echo "Playing video with danmaku"
-ykdl -p "mpv --sub-files=$XML_DIR$DANMAKU_COMMENT_ID.ass" $1
+mpv --sub-files=$XML_DIR$DANMAKU_COMMENT_ID.ass $1
