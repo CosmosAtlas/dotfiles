@@ -4,8 +4,12 @@
 
 
 git latexdiff \
+    --latexmk \
+    --latexdiff-flatten \
     --type=CFONT \
     --whole-tree \
     --allow-spaces \
+    --biber \
     --enable-citation-markup \
+    --latexopt -shell-escape \
     "$1"

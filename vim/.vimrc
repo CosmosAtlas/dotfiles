@@ -202,7 +202,6 @@ let g:tagbar_type_r = {
 
 " Better file browsing
 Plug 'justinmk/vim-dirvish'
-Plug 'kristijanhusak/vim-dirvish-git'
 
 " Fast file search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -273,7 +272,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['markdown']
 " Vim latex support
-Plug 'lervag/vimtex', {'for': ['latex', 'tex']}
+Plug 'lervag/vimtex'
 Plug 'rbonvall/vim-textobj-latex'
 let g:tex_flavor = 'latex'
 let g:vim_quickfix_open_on_warning = 0
@@ -339,6 +338,9 @@ call plug#end()
 
 " Plug-in settings that needs to be called after plug#end
 call deoplete#custom#option('smart_case', v:true)
+call deoplete#custom#var('omni', 'input_patterns', {
+      \ 'tex': g:vimtex#re#deoplete
+      \})
 call which_key#register('<Space>', 'g:which_key_map')
 
 " }}}

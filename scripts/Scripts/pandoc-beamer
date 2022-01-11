@@ -29,9 +29,8 @@ pandoc $1 \
     --template templates/cosmos.latex \
     --slide-level 2 \
     --highlight-style kate \
-    --shift-heading-level=0 \
+    --shift-heading-level-by=0 \
     --dpi 300 \
-    -M date="$DATE_COVER" \
     -V 'fontsize=12pt' \
     -V 'classoption:aspectratio=169' \
     -o "${1%%.*}.pdf"
