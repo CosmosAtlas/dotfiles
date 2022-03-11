@@ -31,12 +31,11 @@ let g:uname = trim(system('uname'))
 
 call plug#begin('~/.vim/plugged')
 
-
 " More useful status line at bottom
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
-let g:airline_theme='minimalist'
+let g:airline_theme='onehalfdark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
@@ -79,6 +78,7 @@ Plug 'mhinz/vim-signify'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 "
 " Functionality
@@ -161,16 +161,6 @@ let g:wiki_root = '~/vimwiki/content/'
 augroup wikiAsMarkdown
   autocmd!
   autocmd BufEnter *.wiki :setlocal filetype=markdown.pandoc
-augroup END
-
-augroup vimwikiUpdate
-  autocmd!
-  " Make sure this window's working dir is the wiki repo dir
-  autocmd BufRead ~/vimwiki/content/index.wiki Gcd
-  " Also do a git pull whenever index.md is opened
-  autocmd BufRead ~/vimwiki/content/index.wiki :Dispatch git pull
-  " After writing to any file in the wiki dir, add all files in the repo, commit and push
-  autocmd BufWritePost ~/vimwiki/* :Dispatch git add .;git commit -m "auto-commit-and-push";git push
 augroup END
 
 " Git integration
@@ -383,9 +373,17 @@ endif
 "
 " Colors
 "
+
+" Vim colors to match terminal exactly
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 set t_Co=256
 set background=dark
-colorscheme badwolf
+colorscheme onehalfdark
 
 " My highlight preferences (to overwrite the colorscheme)
 " Transparency
