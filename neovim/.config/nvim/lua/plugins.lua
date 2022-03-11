@@ -6,7 +6,6 @@ vim.cmd([[
   augroup end
 ]])
 
-
 -- Bootstrap packer.nvim on new installs
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -19,21 +18,90 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
 
   use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
-
-  use({"catppuccin/nvim", as = "catppuccin"})
+  use 'williamboman/nvim-lsp-installer'
 
   -- Auto complete
-  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/nvim-cmp'
+  -- Completion sources
+  use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-
   use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/cmp-omni'
 
-  use 'lervag/vimtex'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/vim-vsnip'
+  use 'rafamadriz/friendly-snippets'
+
+  -- Functionality enhancements
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require'nvim-tree'.setup{}
+    end,
+  }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use 'dstein64/vim-startuptime'
+  use 'junegunn/vim-easy-align'
+  use 'tversteeg/registers.nvim'
+  use {
+    'lewis6991/impatient.nvim',
+    config = function()
+      require'impatient'
+    end,
+  }
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require'nvim-autopairs'.setup{}
+    end,
+  }
+  use 'romainl/vim-cool'
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-dispatch'
+  use 'tpope/vim-unimpaired'
+  use 'lervag/vimtex' 
+
+  -- UI enhancements
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin"
+  }
+  use 'monsonjeremy/onedark.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+  }
+  use {
+    'nvim-lualine/lualine.nvim', 
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true} 
+  }
+  use 'arkav/lualine-lsp-progress'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+  use "lukas-reineke/indent-blankline.nvim"
+  use 'karb94/neoscroll.nvim'
+  use {
+    'crispgm/nvim-tabline',
+    config = function()
+      require'tabline'.setup{}
+    end,
+  }
+  use {
+    'goolord/alpha-nvim',
+    requires = {'kyazdani42/nvim-web-devicons'},
+    config = function()
+      require'alpha'.setup(require'alpha.themes.startify'.config)
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Needs to be placed after all plugins
@@ -43,9 +111,37 @@ require('packer').startup(function(use)
 end)
 
 -- Post Plugin setups
-require'lspconfig'.pyright.setup{}
 
-require'catppuccin'.setup({transparent_background = true})
+require'catppuccin'.setup({
+  transparent_background = true,
+})
+-- require'onedark'.setup()
+
+require'gitsigns'.setup()
+
+require'telescope'.setup{}
+
+require'neoscroll'.setup()
+
+require'lualine'.setup{
+  options = {
+    component_separators = '|',
+    section_separators = { left = '', right = '' },
+  },
+  sections = {
+    lualine_c = {
+      'lsp_progress'
+    }
+  }
+}
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+
 
 local cmp = require'cmp'
 
@@ -72,20 +168,18 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'omni' },
     { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
   })
 })
 
+
+
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it. 
-  }, {
     { name = 'buffer' },
   })
 })
@@ -108,25 +202,42 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
 require('lspconfig').pyright.setup {
+  on_attach = on_attach,
   capabilities = capabilities
 }
 
-require('cmp').setup.buffer {
-  formatting = {
-    format = function(entry, vim_item)
-        vim_item.menu = ({
-          omni = (vim.inspect(vim_item.menu):gsub('%"', "")),
-          buffer = "[Buffer]",
-          -- formatting for other sources
-          })[entry.source.name]
-        return vim_item
-      end,
-  },
-  sources = {
-    { name = 'omni' },
-    { name = 'buffer' },
-    -- other sources
-  },
+require('lspconfig').texlab.setup {
+  capabilities = capabilities
 }

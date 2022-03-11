@@ -5,8 +5,28 @@ syntax enable
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
 
+set completeopt=menu,menuone,noselect
+
 " Load plugins
 lua require('plugins')
+
+" Additional plugin setups
+
+" vim-vsnip additional setup
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
 
 " Basic vim settings
 
@@ -57,9 +77,23 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set list
 set listchars=tab:▶\ ,eol:¬,trail:·,nbsp:␣
 
-
 " Keymappings
 
+" Fast edit/reload for nvim config
 nnoremap <silent> <Leader>ev :e $MYVIMRC<cr>
 nnoremap <silent> <Leader>ep :e $HOME/.config/nvim/lua/plugins.lua<cr>
 nnoremap <silent> <Leader>rv :source $MYVIMRC<cr>
+
+" Easy Align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+" File browser
+nnoremap <C-t> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+
+" Telescope 
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>bb <cmd>Telescope buffers<cr>
