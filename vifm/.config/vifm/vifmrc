@@ -192,7 +192,7 @@ let &syncregs = $USER
 
 
 " quick dragging
-command! dragon dragon-drag-and-drop -a -x %f
+command! dragon dragon-drop -a -x %f
 nmap <C-d> :dragon<CR>
 
 " ------------------------------------------------------------------------------

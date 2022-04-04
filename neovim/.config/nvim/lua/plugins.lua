@@ -67,6 +67,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-dispatch'
   use 'tpope/vim-unimpaired'
   use 'lervag/vimtex' 
+  use 'jpalardy/vim-slime'
 
   -- UI enhancements
   use {
