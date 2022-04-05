@@ -68,6 +68,17 @@ require('packer').startup(function(use)
   use 'tpope/vim-unimpaired'
   use 'lervag/vimtex' 
   use 'jpalardy/vim-slime'
+  use {
+      "nvim-neorg/neorg",
+      config = function()
+          require('neorg').setup {
+            load = {
+              ["core.defaults"] = {}
+            }
+          }
+      end,
+      requires = "nvim-lua/plenary.nvim"
+  }
 
   -- UI enhancements
   use {
