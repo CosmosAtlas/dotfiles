@@ -12,10 +12,13 @@ require('cmp').setup.buffer {
       end,
   },
   sources = {
-    { name = 'omni', keyword_length = 0 },
+    { name = 'omni' },
     -- { name = 'buffer' },
     { name = 'vsnip' },
-    -- { name = 'nvim_lsp'},
+    { name = 'nvim_lsp'},
     -- other sources
   },
 }
+
+vim.o.textwidth=0
+vim.o.spell = true
