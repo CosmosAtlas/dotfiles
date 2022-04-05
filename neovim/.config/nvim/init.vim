@@ -27,14 +27,11 @@ smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
-
 " slime config
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
 let g:slime_python_ipython = 1
-
-
 
 " Basic vim settings
 
@@ -85,6 +82,9 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set list
 set listchars=tab:▶\ ,eol:¬,trail:·,nbsp:␣
 
+set splitright
+set splitbelow
+
 " Keymappings
 
 " Fast edit/reload for nvim config
@@ -97,9 +97,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " File browser
-nnoremap <C-t> :NvimTreeToggle<CR>
+nnoremap <C-t> :NvimTreeFindFileToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
 
 " Telescope 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
