@@ -69,16 +69,18 @@ require('packer').startup(function(use)
   use 'lervag/vimtex' 
   use 'jpalardy/vim-slime'
   use {
-      "nvim-neorg/neorg",
-      config = function()
-          require('neorg').setup {
-            load = {
-              ["core.defaults"] = {}
-            }
+    "nvim-neorg/neorg",
+    config = function()
+        require('neorg').setup {
+          load = {
+            ["core.defaults"] = {}
           }
-      end,
-      requires = "nvim-lua/plenary.nvim"
+        }
+    end,
+    requires = "nvim-lua/plenary.nvim"
   }
+
+  use "nvim-orgmode/orgmode"
 
   -- UI enhancements
   use {
@@ -147,11 +149,15 @@ require'lualine'.setup{
   }
 }
 
+require'orgmode'.setup_ts_grammar()
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
+    disable = {'org'},
+    additional_vim_regex_highlighting = {'org'},
   },
+  ensure_installed = {'org'},
 }
 
 
@@ -184,10 +190,11 @@ cmp.setup({
     { name = 'vsnip' }, -- For vsnip users.
   }, {
     { name = 'buffer' },
-  })
+  }),
+  completion = {
+    keyword_length = 2
+  }
 })
-
-
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
