@@ -2,7 +2,7 @@
 
 # terminal emulator
 super + Return
-    st -e tmux
+    alacritty
     # urxvt -e tmux
 
 # program launcher
@@ -26,6 +26,14 @@ super + Escape
 # change keyboard layout
 super + shift + space
     /home/cosmos/Scripts/switch_keyboard_layout.sh
+
+XF86AudioRaiseVolume
+    /home/cosmos/Scripts/volcontrol up
+XF86AudioLowerVolume
+    /home/cosmos/Scripts/volcontrol down
+XF86AudioMute
+    /home/cosmos/Scripts/volcontrol mute
+
 
 #
 # bspwm hotkeys
