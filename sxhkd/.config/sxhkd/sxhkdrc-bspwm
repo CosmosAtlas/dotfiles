@@ -13,7 +13,7 @@ super + d
     dmenu_run
 
 super + e
-    rofimoji -p
+    rofimoji
 
 # launch screen lock
 super + shift + l
@@ -23,8 +23,16 @@ super + shift + l
 super + Escape
     pkill -USR1 -x sxhkd; notify-send "sxhkd reloaded"
 
+# Screenshots
+{_, ctrl +} Print
+    name="$(date +%s).png"; \
+    file="$HOME/Pictures/screenshots/$name"; \
+    maim {_,-s} "$file"; \
+    xclip -selection clipboard -t image/png < $file; \
+    notify-send "Screenshot Taken" "Screenshot $name saved to clipboard"
+
 # change keyboard layout
-super + shift + space
+super c; d
     /home/cosmos/Scripts/switch_keyboard_layout.sh
 
 XF86AudioRaiseVolume
