@@ -1,7 +1,8 @@
 #!/bin/sh
 
 setxkbmap -layout us -option 'caps:ctrl_modifier'
-sxhkd -c /home/cosmos/.config/sxhkd/sxhkdrc-bspwm &
+sleep 1
+setsid sxhkd -c /home/cosmos/.config/sxhkd/sxhkdrc-bspwm &
 setxkbmap -layout us -variant dvp -option 'caps:ctrl_modifier'
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
@@ -17,20 +18,14 @@ bspc rule -a mpv state=floating
 bspc rule -a eletron state=floating
 bspc rule -a feh state=floating
 
-
 # Start up applications
-/home/cosmos/Scripts/xcape.sh &
-/home/cosmos/Scripts/polylaunch.sh &
-# /home/cosmos/.config/polybar/launch.sh &
+setsid /home/cosmos/Scripts/xcape.sh &
+setsid /home/cosmos/Scripts/polylaunch.sh &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-nitrogen --restore; sleep 1; compton -b
-xfce4-power-manager
+setsid nitrogen --restore; sleep 1; picom -b &
+setsid xfce4-power-manager &
 # xautolock -time 10 -locker blurlock -corners -00- &
-udiskie --tray &
-dunst &
-# mpd &
-# pasystray &
-# /home/cosmos/.scripts/pomolaunch.sh &
-# syncthing-gtk &
-# nm-applet &
-# syncthing &
+setsid udiskie --tray &
+setsid dunst &
+setsid mpd &
+setsid xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l blur" '' &

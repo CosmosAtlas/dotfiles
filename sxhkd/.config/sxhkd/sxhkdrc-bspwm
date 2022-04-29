@@ -16,7 +16,7 @@ super + e
     rofimoji -p
 
 # launch screen lock
-super + shift + p
+super + shift + l
     lockscreen.sh
 
 # make sxhkd reload its configuration files:

@@ -7,8 +7,8 @@ pkill -x xcape
 while pgrep -u $UID -x xcape >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
-xcape -e "Control_L=Escape"
+setsid xcape -e "Control_L=Escape"
 
-xcape -e "Caps_Lock=Escape"
+setsid xcape -e "Caps_Lock=Escape"
 
 echo "Xcape launched..."

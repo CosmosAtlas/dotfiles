@@ -178,17 +178,6 @@ Plug 'ludovicchabant/vim-gutentags'
         \ '--fields=+ailmnS',
         \ ]
 
-Plug 'preservim/tagbar'
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_r = {
-      \ 'ctagstype' : 'r',
-      \ 'kinds'     : [
-        \ 'f:Functions',
-        \ 'g:GlobalVariables',
-        \ 'v:FunctionVariables',
-        \ ]
-        \ }
-
 
 " Better file browsing
 Plug 'justinmk/vim-dirvish'
