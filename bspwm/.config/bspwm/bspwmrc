@@ -1,10 +1,5 @@
 #!/bin/sh
 
-setxkbmap -layout us -option
-sleep 1
-setsid sxhkd -c /home/cosmos/.config/sxhkd/sxhkdrc-bspwm &
-setxkbmap -layout us -variant dvp
-
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
 bspc config border_width    2
@@ -27,4 +22,9 @@ setsid xfce4-power-manager &
 setsid udiskie --tray &
 setsid dunst &
 setsid mpd &
+
+# Auto locking
 setsid xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l blur" '' &
+
+# Input method
+setsid fcitx5 &

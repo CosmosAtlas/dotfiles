@@ -6,7 +6,7 @@ super + Return
     # urxvt -e tmux
 
 # program launcher
-super + space
+alt + space
     rofi -show drun
 
 super + d
@@ -16,7 +16,7 @@ super + e
     rofimoji
 
 # launch screen lock
-super + shift + l
+super + shift + p
     lockscreen.sh
 
 # make sxhkd reload its configuration files:
@@ -32,7 +32,7 @@ super + Escape
     notify-send "Screenshot Taken" "Screenshot $name saved to clipboard"
 
 # change keyboard layout
-super c; d
+super + c; d
     /home/cosmos/Scripts/switch_keyboard_layout.sh
 
 XF86AudioRaiseVolume
@@ -92,7 +92,7 @@ super + {p,b,comma,period}
     bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }c
+super + {_,shift + }n
     bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
