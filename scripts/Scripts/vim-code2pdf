@@ -1,0 +1,3 @@
+#!/bin/sh
+
+vim -E -s -c 'hardcopy > %.ps | !ps2pdf %.ps && rm %.ps' -cwqa "$1"
