@@ -82,6 +82,10 @@ require('packer').startup(function(use)
 
   use "nvim-orgmode/orgmode"
 
+  -- Language specific
+
+  use "jeetsukumaran/vim-pythonsense"
+
   -- UI enhancements
   use {
     "catppuccin/nvim",

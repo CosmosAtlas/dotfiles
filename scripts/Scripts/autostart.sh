@@ -49,8 +49,8 @@ dwmblocks &
 pkill -x fcitx5
 fcitx5 &
 
-pkill -x aria2c
-aria2c -D &
+# pkill -x aria2c
+# aria2c -D &
 
 pkill -x transmission-gtk
 transmission-gtk &

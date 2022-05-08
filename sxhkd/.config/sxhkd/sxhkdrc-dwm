@@ -11,7 +11,7 @@ super + Escape
     xclip -selection clipboard -t image/png < $file; \
     notify-send "Screenshot Taken" "Screenshot $name saved to clipboard"
 
-super + space
+alt + space
     rofi -show drun
 
 super + Return
