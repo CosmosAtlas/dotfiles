@@ -85,6 +85,33 @@ set listchars=tab:▶\ ,eol:¬,trail:·,nbsp:␣
 set splitright
 set splitbelow
 
+" Manage backups
+if !exists('$VIMHOME')
+  if has('win32') || has('win64')
+    let $VIMHOME=$HOME.'/vimfiles'
+  else
+    let $VIMHOME=$HOME.'/.vim'
+  endif
+endif
+
+set backupdir=$VIMHOME/tmp/backup//
+set directory=$VIMHOME/tmp/swap//
+set undodir=$VIMHOME/tmp/undo//
+
+set backup swapfile undofile
+
+" Create backup dirs if not exist
+for s:dir in [ &backupdir, &directory, &undodir ]
+  if !isdirectory(s:dir)
+    call mkdir(s:dir, 'p')
+  endif
+endfor
+
+" Tip from: https://gist.github.com/nepsilon/003dd7cfefc20ce1e894db9c94749755
+augroup BackupOnSave
+  autocmd BufWritePre * let &bex = '@' . strftime("%F.%H-%M")
+augroup END
+
 " Keymappings
 
 " Fast edit/reload for nvim config
