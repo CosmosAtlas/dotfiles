@@ -89,7 +89,7 @@ set splitbelow
 
 " Fast edit/reload for nvim config
 nnoremap <silent> <Leader>ed :e $MYVIMRC<cr>
-nnoremap <silent> <Leader>ep :e $HOME/.config/nvim/lua/plugins.lua<cr>
+nnoremap <silent> <Leader>ep :e `=stdpath('config')..'/lua/plugins.lua'`<cr>
 nnoremap <silent> <Leader>rv :source $MYVIMRC<cr>
 
 " Easy Align
