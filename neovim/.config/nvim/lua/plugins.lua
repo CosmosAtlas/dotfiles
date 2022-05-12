@@ -81,6 +81,7 @@ require('packer').startup(function(use)
   }
 
   use "nvim-orgmode/orgmode"
+  use "ggandor/lightspeed.nvim"
 
   -- Language specific
 
