@@ -155,6 +155,10 @@ require'lualine'.setup{
 }
 
 require'orgmode'.setup_ts_grammar()
+require'orgmode'.setup({
+  org_agenda_file = {'~/org/gtd.org', '~/org/inbox.org'},
+  org_default_notes_file = '~/org/inbox.org',
+})
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
