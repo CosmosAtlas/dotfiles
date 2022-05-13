@@ -12,4 +12,4 @@ git latexdiff \
     --biber \
     --enable-citation-markup \
     --latexopt -shell-escape \
-    "$1"
+    "$@"
