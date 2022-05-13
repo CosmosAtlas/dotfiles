@@ -248,5 +248,5 @@ eval "$(fasd --init auto)"
 # Display welcome text =========================================================
 type pfetch > /dev/null && pfetch
 type $HOME/Repos/Color-Scripts/color-scripts/panes > /dev/null && $HOME/Repos/Color-Scripts/color-scripts/panes
-fortune tang300 | ~/.node_modules/bin/cowsay
+fortune tang300 | ~/.node_modules/bin/cowsay -f yasuna_16
 
