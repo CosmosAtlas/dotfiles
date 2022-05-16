@@ -18,7 +18,7 @@ super + Return
     st -e tmux
 
 super + shift + l
-    lockscreen.sh
+    $HOME/Scripts/lockscreen.sh
 
 # Command mode
 super + c ; d
