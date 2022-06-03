@@ -86,6 +86,7 @@ require('packer').startup(function(use)
   -- Language specific
 
   use "jeetsukumaran/vim-pythonsense"
+  use "Vimjas/vim-python-pep8-indent"
 
   -- UI enhancements
   use {
@@ -261,11 +262,14 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-require('lspconfig').pyright.setup {
+require("nvim-lsp-installer").setup {}
+local lspconfig = require("lspconfig")
+
+lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
-require('lspconfig').texlab.setup {
+lspconfig.texlab.setup {
   capabilities = capabilities
 }
