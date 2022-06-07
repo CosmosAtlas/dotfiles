@@ -27,33 +27,33 @@ setsid /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /home/cosmos/Scripts/restart-picom.sh &
 
 pkill -x udiskie
-udiskie --tray &
+setsid udiskie --tray &
 
 pkill -x dunst
-dunst &
+setsid dunst &
 
 pkill -x pasystray
-pasystray &
+setsid pasystray &
 
 # pm2 kill
 # pm2 start clash
 
 pkill -x xidlehook
-xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l blur" '' &
+setsid xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l blur" '' &
 
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) &
 
 pkill -x dwmblocks
-dwmblocks &
+setsid dwmblocks &
 
 pkill -x fcitx5
-fcitx5 &
+setsid fcitx5 &
 
 # pkill -x aria2c
 # aria2c -D &
 
 pkill -x transmission-gtk
-transmission-gtk &
+setsid transmission-gtk &
 
 $HOME/Scripts/restart-mpd.sh
 
