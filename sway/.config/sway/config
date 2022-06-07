@@ -228,3 +228,6 @@ input * {
     # xkb_options "caps:ctrl_modifier"
 }
 
+
+### Startup applications
+exec --no-startup-id fcitx5 -d
