@@ -137,11 +137,10 @@ export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/go/bin
 
 # Default programs
-export BROWSER=qutebrowser
-export TERMINAL=st
-export EDITOR=vim
-export FZF_DEFAULT_COMMAND='find .'
-export HOWDOI_DISABLE_CACHE=1
+export BROWSER=brave
+export TERMINAL=alacritty
+export EDITOR=nvim
+export FZF_DEFAULT_COMMAND='fd -H .'
 
 export LC_ALL=en_US.UTF-8
 export COLORTERM=truecolor
@@ -168,14 +167,12 @@ setopt INC_APPEND_HISTORY_TIME
 
 # My aliases ===================================================================
 alias yv='googler -w youtube.com --url-handler umpv $argv'
-alias tx='tmuxinator'
 alias pc='proxychains -q'
 # alias mosh-narf='mosh --server=/home/local/SAIL/cosmos/.linuxbrew/bin/mosh-server narf'
 # alias neomutt='pc neomutt'
 # alias hangups='pc hangups'
 alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
-alias vw="setsid $BROWSER ~/vimwiki/_site/index.html"
 alias vim=nvim
 alias vifm=vifmrun
 alias sz="setsid zathura"
@@ -248,5 +245,5 @@ eval "$(fasd --init auto)"
 # Display welcome text =========================================================
 type pfetch > /dev/null && pfetch
 type $HOME/Repos/Color-Scripts/color-scripts/panes > /dev/null && $HOME/Repos/Color-Scripts/color-scripts/panes
-fortune tang300 | ~/.node_modules/bin/cowsay -f yasuna_16
+type fortune > /dev/null && type ~/.node_modules/bin/cowsay > /dev/null && fortune tang300 | ~/.node_modules/bin/cowsay -f yasuna_16
 
