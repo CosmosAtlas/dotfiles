@@ -177,6 +177,7 @@ alias vim=nvim
 alias vifm=vifmrun
 alias sz="setsid zathura"
 alias evim="vim -u ~/.dotfiles/essential-vim/.vimrc"
+alias xmx="xrdb merge ~/.Xresources"
 
 ## Window swallowing aliases
 alias dm='devour mpv'
