@@ -28,9 +28,13 @@ imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
 " slime config
-let g:slime_target = "tmux"
-let g:slime_paste_file = "$HOME/.slime_paste"
-let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+if has('win32')
+  let g:slime_target = "neovim"
+else
+  let g:slime_target = "tmux"
+  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+endif
+" let g:slime_paste_file = "$HOME/.slime_paste"
 let g:slime_python_ipython = 1
 
 " Basic vim settings
