@@ -218,7 +218,10 @@ bindsym XF86AudioMute exec volcontrol mute
 # Status Bar:
 #
 
-bar swaybar_command waybar
+# bar swaybar_command waybar
+# bar {
+#     swaybar_command $HOME/Scripts/launch-waybar.sh
+# }
 
 include /etc/sway/config.d/*
 
@@ -230,4 +233,6 @@ input * {
 
 
 ### Startup applications
-exec --no-startup-id fcitx5 -d
+exec --no-startup-id fcitx5 -d &
+exec --no-startup-id /home/cosmos/Scripts/launch-waybar.sh &
+exec --no-startup-id dunst &

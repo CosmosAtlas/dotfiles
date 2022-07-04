@@ -24,16 +24,12 @@ function send_notification {
 
 case $1 in
   up)
-    if is_mute; then
-      pamixer -t
-    fi
+    pamixer -u  # unmute
     pamixer -i 2 > /dev/null
     send_notification
     ;;
   down)
-    if is_mute; then
-      pamixer -t
-    fi
+    pamixer -u  # unmute
     pamixer -d 2 > /dev/null
     send_notification
     ;;
