@@ -55,7 +55,7 @@ setsid fcitx5 &
 pkill -x transmission-gtk
 setsid transmission-gtk &
 
-$HOME/Scripts/restart-mpd.sh
+# $HOME/Scripts/restart-mpd.sh
 
 
 # /home/cosmos/.scripts/pomolaunch.sh &

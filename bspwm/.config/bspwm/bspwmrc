@@ -24,7 +24,7 @@ setsid dunst &
 setsid mpd &
 
 # Auto locking
-setsid xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l blur" '' &
+setsid xidlehook --not-when-audio --not-when-fullscreen --timer 600 "betterlockscreen -l blur" '' --timer 30 "xset dpms force off" '' &
 
 # Input method
 setsid fcitx5 &
