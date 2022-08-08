@@ -85,6 +85,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 
+Plug 'junegunn/vim-peekaboo'
 
 " visualize subsitute
 Plug 'markonm/traces.vim'

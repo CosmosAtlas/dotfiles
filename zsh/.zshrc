@@ -19,7 +19,7 @@ setopt HIST_IGNORE_ALL_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
+bindkey -e
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
@@ -128,10 +128,11 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
 
+
 # Set ENV variables ============================================================
 # Expanding path
 export PATH=~/Scripts:~/.local/bin:$PATH:~/bin:~/.scripts
-export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+type ruby > /dev/null && export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export PATH=$PATH:~/.node_modules/bin
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/go/bin
@@ -173,10 +174,10 @@ alias pc='proxychains -q'
 # alias hangups='pc hangups'
 alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
+alias evim="/usr/bin/vim -u ~/.dotfiles/essential-vim/.vimrc"
 alias vim=nvim
 alias vifm=vifmrun
 alias sz="setsid zathura"
-alias evim="vim -u ~/.dotfiles/essential-vim/.vimrc"
 alias xmx="xrdb merge ~/.Xresources"
 
 ## Window swallowing aliases
@@ -238,7 +239,7 @@ vicd() {
 }
 
 # Intializing functionalities ==================================================
-eval "$(fasd --init auto)"
+type fasd > /dev/null && eval "$(fasd --init auto)"
 
 # Set up rust env
 [[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
@@ -248,3 +249,4 @@ type pfetch > /dev/null && pfetch
 type $HOME/Repos/Color-Scripts/color-scripts/panes > /dev/null && $HOME/Repos/Color-Scripts/color-scripts/panes
 type fortune > /dev/null && type ~/.node_modules/bin/cowsay > /dev/null && fortune tang300 | ~/.node_modules/bin/cowsay -f yasuna_16
 
+set_status() { return 0; }
