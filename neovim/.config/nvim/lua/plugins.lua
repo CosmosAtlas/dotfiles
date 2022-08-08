@@ -96,6 +96,7 @@ require('packer').startup(function(use)
     "catppuccin/nvim",
     as = "catppuccin"
   }
+  use 'rafi/awesome-vim-colorschemes'
   use 'monsonjeremy/onedark.nvim'
 
   -- UI enhancements
@@ -301,9 +302,11 @@ lspconfig.pyright.setup {
 }
 
 lspconfig.texlab.setup {
+  on_attach = on_attach,
   capabilities = capabilities
 }
 
 lspconfig.rust_analyzer.setup {
+  on_attach = on_attach,
   capabilities = capabilities
 }
