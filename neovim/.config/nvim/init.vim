@@ -120,8 +120,8 @@ augroup END
 
 " Fast edit/reload for nvim config
 nnoremap <silent> <Leader>ed :e $MYVIMRC<cr>
-nnoremap <silent> <Leader>ep :e `=stdpath('config')..'/lua/plugins.lua'`<cr>
-nnoremap <silent> <Leader>rv :source $MYVIMRC<cr>
+nnoremap <silent> <Leader>ep :e `=stdpath('config')..'/lua/plugins.lua'`<CR>
+nnoremap <silent> <Leader>rv :source $MYVIMRC<CR>:echo "Reloaded MYVIMRC"<CR>
 
 " Easy Align
 xmap ga <Plug>(EasyAlign)
@@ -132,6 +132,9 @@ nnoremap <C-t> :NvimTreeFindFileToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 
 " Telescope 
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>bb <cmd>Telescope buffers<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>bb <cmd>Telescope buffers<CR>
+
+" UndoTree
+nnoremap <leader>ut :UndotreeToggle<CR>

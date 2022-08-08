@@ -62,11 +62,15 @@ require('packer').startup(function(use)
   }
   use 'romainl/vim-cool'
   use 'tpope/vim-commentary'
+  use 'tpope/vim-repeat'
+  use 'tpope/vim-unimpaired'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-surround'
   use 'tpope/vim-dispatch'
-  use 'tpope/vim-unimpaired'
-  use 'lervag/vimtex' 
+  use {
+    'lervag/vimtex',
+    config = 'vim.g.vimtex_compiler_latexmk = {build_dir = "build"}'
+  } 
   use 'jpalardy/vim-slime'
   use {
     "nvim-neorg/neorg",
@@ -84,16 +88,17 @@ require('packer').startup(function(use)
   use "ggandor/lightspeed.nvim"
 
   -- Language specific
-
-  use "jeetsukumaran/vim-pythonsense"
+  use "jeetsukumaran/vim-pythonsense"  -- textobjects for python, e.g., func
   use "Vimjas/vim-python-pep8-indent"
 
-  -- UI enhancements
+  -- Colorschemes
   use {
     "catppuccin/nvim",
     as = "catppuccin"
   }
   use 'monsonjeremy/onedark.nvim'
+
+  -- UI enhancements
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -107,7 +112,7 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
-  use "lukas-reineke/indent-blankline.nvim"
+  use 'lukas-reineke/indent-blankline.nvim'
   use 'karb94/neoscroll.nvim'
   use {
     'crispgm/nvim-tabline',
@@ -122,6 +127,7 @@ require('packer').startup(function(use)
       require'alpha'.setup(require'alpha.themes.startify'.config)
     end,
   }
+  use 'mbbill/undotree'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Needs to be placed after all plugins
@@ -169,7 +175,6 @@ require'nvim-treesitter.configs'.setup {
   },
   ensure_installed = {'org'},
 }
-
 
 local cmp = require'cmp'
 

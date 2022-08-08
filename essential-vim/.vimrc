@@ -182,6 +182,9 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set list
 set listchars=tab:▶\ ,eol:¬,trail:·,nbsp:␣
 
+set splitright
+set splitbelow
+
 set history=200
 
 " Exclude CJK characters from spell checks
@@ -200,11 +203,43 @@ set t_Co=256
 set background=dark
 colorscheme gruvbox8_hard
 
+"
+" Temp file management
+"
+
+" Manage backups
+if !exists('$VIMHOME')
+  if has('win32') || has('win64')
+    let $VIMHOME=$HOME.'/vimfiles'
+  else
+    let $VIMHOME=$HOME.'/.vim'
+  endif
+endif
+
+set backupdir=$VIMHOME/tmpv/backup//
+set directory=$VIMHOME/tmpv/swap//
+set undodir=$VIMHOME/tmpv/undo//
+
+set backup swapfile undofile
+
+" Create backup dirs if not exist
+for s:dir in [ &backupdir, &directory, &undodir ]
+  if !isdirectory(s:dir)
+    call mkdir(s:dir, 'p')
+  endif
+endfor
+
+" Tip from: https://gist.github.com/nepsilon/003dd7cfefc20ce1e894db9c94749755
+augroup BackupOnSave
+  autocmd BufWritePre * let &bex = '@' . strftime("%F.%H-%M")
+augroup END
+
 " }}}
 " =============================================================================
 " Key Bindings {{{
 " =============================================================================
 map <leader>hf :call FillLine('=')<CR>
+nnoremap <silent> <Leader>rv :source $HOME/.vimrc<CR>:echo "Reloaded MYVIMRC"<CR>
 
 " == File
 let g:which_key_map['e'] = {
