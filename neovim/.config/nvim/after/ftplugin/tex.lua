@@ -22,3 +22,6 @@ require('cmp').setup.buffer {
 
 vim.o.textwidth = 0
 vim.o.spell = true
+
+-- Have to overwrite with vimtex's version
+vim.o.omnifunc = 'vimtex#complete#omnifunc'
