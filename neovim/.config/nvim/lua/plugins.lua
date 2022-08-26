@@ -42,6 +42,13 @@ require('packer').startup(function(use)
     end,
   }
   use {
+    'folke/trouble.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require'trouble'.setup{}
+    end,
+  }
+  use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
@@ -133,7 +140,7 @@ require('packer').startup(function(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Needs to be placed after all plugins
   if packer_bootstrap then
-    require('packer').sync()
+    require'packer'.sync()
   end
 end)
 
