@@ -6,6 +6,9 @@ font:
 
   size: 13
 
+window:
+  opacity: 0.95
+
 env:
   TERM: xterm-256color
 

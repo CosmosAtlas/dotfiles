@@ -240,6 +240,7 @@ vicd() {
 
 # Intializing functionalities ==================================================
 type fasd > /dev/null && eval "$(fasd --init auto)"
+type direnv > /dev/null && eval "$(direnv hook zsh)"
 
 # Set up rust env
 [[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
