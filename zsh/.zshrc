@@ -238,6 +238,13 @@ vicd() {
   cd "$dst"
 }
 
+dotupdate() {
+  echo "Pulling ~/.emacs.d"
+  git -C ~/.emacs.d/ pull
+  echo "Pulling ~/.dotfiles"
+  git -C ~/.dotfiles/ pull
+}
+
 # Intializing functionalities ==================================================
 type fasd > /dev/null && eval "$(fasd --init auto)"
 type direnv > /dev/null && eval "$(direnv hook zsh)"
