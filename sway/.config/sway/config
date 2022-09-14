@@ -224,6 +224,7 @@ bindsym XF86AudioMute exec volcontrol mute
 # }
 
 include /etc/sway/config.d/*
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 input * {
     xkb_layout "us"
