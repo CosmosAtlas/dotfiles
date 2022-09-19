@@ -178,7 +178,7 @@ require'orgmode'.setup({
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    disable = {'org'},
+    disable = {'org', "latex"},
     additional_vim_regex_highlighting = {'org'},
   },
   ensure_installed = {'org'},
@@ -215,11 +215,12 @@ cmp.setup({
     end
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
+    -- { name = 'nvim_lsp' },
     { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
+    { name = 'omni' },
   }, {
     { name = 'buffer' },
   })
@@ -281,7 +282,7 @@ vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<C
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -309,7 +310,7 @@ lspconfig.pyright.setup {
 }
 
 lspconfig.texlab.setup {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities
 }
 
