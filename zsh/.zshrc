@@ -245,6 +245,22 @@ dotupdate() {
   git -C ~/.dotfiles/ pull
 }
 
+# auto execute pipenv
+function auto_pipenv_shell {
+    if [ ! -n "${PIPENV_ACTIVE+1}" ]; then
+        if [ -f "Pipfile" ] ; then
+            pipenv shell
+        fi
+    fi
+}
+
+function cd {
+    builtin cd "$@"
+    auto_pipenv_shell
+}
+
+auto_pipenv_shell
+
 # Intializing functionalities ==================================================
 type fasd > /dev/null && eval "$(fasd --init auto)"
 type direnv > /dev/null && eval "$(direnv hook zsh)"

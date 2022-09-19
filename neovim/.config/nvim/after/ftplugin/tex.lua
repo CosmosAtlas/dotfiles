@@ -12,7 +12,9 @@ require('cmp').setup.buffer {
       end,
   },
   sources = {
-    { name = 'omni' },
+    { name = 'omni',
+      keyword_length = 0,
+    },
     -- { name = 'buffer' },
     { name = 'vsnip' },
     { name = 'nvim_lsp'},
@@ -24,4 +26,4 @@ vim.o.textwidth = 0
 vim.o.spell = true
 
 -- Have to overwrite with vimtex's version
-vim.o.omnifunc = 'vimtex#complete#omnifunc'
+-- vim.o.omnifunc = 'vimtex#complete#omnifunc'
