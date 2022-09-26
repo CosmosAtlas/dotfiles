@@ -15,7 +15,7 @@ alt + space
     rofi -show drun
 
 super + Return
-    st -e tmux
+    alacritty -e tmux
 
 super + shift + l
     $HOME/Scripts/lockscreen.sh
