@@ -79,17 +79,6 @@ require('packer').startup(function(use)
     config = 'vim.g.vimtex_compiler_latexmk = {build_dir = "build"}'
   } 
   use 'jpalardy/vim-slime'
-  use {
-    "nvim-neorg/neorg",
-    config = function()
-        require('neorg').setup {
-          load = {
-            ["core.defaults"] = {}
-          }
-        }
-    end,
-    requires = "nvim-lua/plenary.nvim"
-  }
 
   use "nvim-orgmode/orgmode"
   use "ggandor/lightspeed.nvim"
