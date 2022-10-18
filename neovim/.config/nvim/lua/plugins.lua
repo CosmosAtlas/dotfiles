@@ -113,10 +113,8 @@ require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim'
   use 'karb94/neoscroll.nvim'
   use {
-    'crispgm/nvim-tabline',
-    config = function()
-      require'tabline'.setup{}
-    end,
+    'romgrk/barbar.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' } 
   }
   use {
     'goolord/alpha-nvim',
