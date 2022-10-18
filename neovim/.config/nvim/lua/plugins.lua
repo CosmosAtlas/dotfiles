@@ -83,6 +83,7 @@ require('packer').startup(function(use)
   use "nvim-orgmode/orgmode"
   use "ggandor/lightspeed.nvim"
   use "AndrewRadev/splitjoin.vim"
+  use 'andymass/vim-matchup'
 
   -- Language specific
   use "jeetsukumaran/vim-pythonsense"  -- textobjects for python, e.g., func
