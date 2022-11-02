@@ -190,7 +190,6 @@ alias lg='lazygit'
 alias hugo='PATH=$PWD:$PATH hugo'
 alias evim="/usr/bin/vim -u ~/.dotfiles/essential-vim/.vimrc"
 alias vim=nvim
-alias vifm=vifmrun
 alias sz="setsid zathura"
 alias xmx="xrdb merge ~/.Xresources"
 
@@ -241,15 +240,6 @@ truecolortest() {
         }
         printf "\n";
     }'
-}
-
-vicd() {
-  local dst="$(command vifm --choose-dir - "$@")"
-  if [ -z "$dst" ]; then
-    echo 'Directory picking cancelled/failed'
-    return 1
-  fi
-  cd "$dst"
 }
 
 dotupdate() {
