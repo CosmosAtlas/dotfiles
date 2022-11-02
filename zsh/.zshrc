@@ -153,6 +153,8 @@ export PATH=$PATH:~/go/bin
 export BROWSER=brave
 export TERMINAL=alacritty
 export EDITOR=nvim
+export PAGER="bat --paging=always"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_COMMAND='fd -H .'
 
 export LC_ALL=en_US.UTF-8
