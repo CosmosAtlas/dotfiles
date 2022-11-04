@@ -80,7 +80,6 @@ require('packer').startup(function(use)
   } 
   use 'jpalardy/vim-slime'
 
-  use "nvim-orgmode/orgmode"
   use "ggandor/lightspeed.nvim"
   use "AndrewRadev/splitjoin.vim"
   use 'andymass/vim-matchup'
@@ -158,19 +157,11 @@ require'lualine'.setup{
   }
 }
 
-require'orgmode'.setup_ts_grammar()
-require'orgmode'.setup({
-  org_agenda_file = {'~/org/gtd.org', '~/org/inbox.org'},
-  org_default_notes_file = '~/org/inbox.org',
-})
-
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    disable = {'org', "latex"},
-    additional_vim_regex_highlighting = {'org'},
+    disable = {"latex"},
   },
-  ensure_installed = {'org'},
 }
 
 local cmp = require'cmp'
