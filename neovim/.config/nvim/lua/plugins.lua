@@ -54,7 +54,6 @@ require('packer').startup(function(use)
   }
   use 'dstein64/vim-startuptime'
   use 'junegunn/vim-easy-align'
-  use 'tversteeg/registers.nvim'
   use {
     'lewis6991/impatient.nvim',
     config = function()
@@ -80,7 +79,6 @@ require('packer').startup(function(use)
   } 
   use 'jpalardy/vim-slime'
 
-  use "nvim-orgmode/orgmode"
   use "ggandor/lightspeed.nvim"
   use "AndrewRadev/splitjoin.vim"
   use 'andymass/vim-matchup'
@@ -124,7 +122,21 @@ require('packer').startup(function(use)
       require'alpha'.setup(require'alpha.themes.startify'.config)
     end,
   }
+  use {
+    'rcarriga/nvim-notify',
+    config = function()
+      require('notify').setup({
+        background_colour = '#000000'
+      })
+    end
+  }
   use 'mbbill/undotree'
+  use {
+    'folke/which-key.nvim',
+    config = function()
+      require('which-key').setup{}
+    end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Needs to be placed after all plugins
@@ -158,19 +170,11 @@ require'lualine'.setup{
   }
 }
 
-require'orgmode'.setup_ts_grammar()
-require'orgmode'.setup({
-  org_agenda_file = {'~/org/gtd.org', '~/org/inbox.org'},
-  org_default_notes_file = '~/org/inbox.org',
-})
-
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    disable = {'org', "latex"},
-    additional_vim_regex_highlighting = {'org'},
+    disable = {"latex"},
   },
-  ensure_installed = {'org'},
 }
 
 local cmp = require'cmp'

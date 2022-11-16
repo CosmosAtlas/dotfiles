@@ -119,9 +119,9 @@ augroup END
 " Keymappings
 
 " Fast edit/reload for nvim config
-nnoremap <silent> <Leader>ed :e $MYVIMRC<cr>
-nnoremap <silent> <Leader>ep :e `=stdpath('config')..'/lua/plugins.lua'`<CR>
-nnoremap <silent> <Leader>rv :source $MYVIMRC<CR>:echo "Reloaded MYVIMRC"<CR>
+nnoremap <silent> <Leader>ed :e $MYVIMRC<CR> :lua require("notify")("Loaded $MYVIMRC")<CR>
+nnoremap <silent> <Leader>ep :e `=stdpath('config')..'/lua/plugins.lua'`<CR> :lua require("notify")("Loaded plugins.lua")<CR>
+nnoremap <silent> <Leader>rv :source $MYVIMRC<CR> :lua require("notify")("VIMRC reloaded")<CR>
 
 " Easy Align
 xmap ga <Plug>(EasyAlign)
@@ -148,4 +148,4 @@ nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap <leader>xr <cmd>TroubleToggle lsp_references<cr>
 
 " barbar.nvim
-nnoremap <silent> <leader>bd <cmd>BufferClose<CR>
+nnoremap <silent> <leader>bd <cmd>BufferClose<CR> :lua require("notify")("Buffer closed")<CR>
