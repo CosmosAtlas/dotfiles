@@ -6,6 +6,8 @@ set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
 
+set icons
+
 # open with
 cmd open-with %"$@" "$fx"
 map O push :open-with<space>
