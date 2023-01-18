@@ -34,6 +34,7 @@ else
   let g:slime_target = "tmux"
   let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
 endif
+let g:slime_target = "neovim"
 " let g:slime_paste_file = "$HOME/.slime_paste"
 let g:slime_python_ipython = 1
 
@@ -131,11 +132,6 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <C-t> :NvimTreeFindFileToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 
-" Telescope 
-nnoremap <leader>ff <cmd>Telescope find_files<CR>
-nnoremap <leader>fg <cmd>Telescope live_grep<CR>
-nnoremap <leader>bb <cmd>Telescope buffers<CR>
-
 " UndoTree
 nnoremap <leader>ut :UndotreeToggle<CR>
 
@@ -146,6 +142,3 @@ nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap <leader>xr <cmd>TroubleToggle lsp_references<cr>
-
-" barbar.nvim
-nnoremap <silent> <leader>bd <cmd>BufferClose<CR> :lua require("notify")("Buffer closed")<CR>
