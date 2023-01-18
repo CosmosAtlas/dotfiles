@@ -32,7 +32,7 @@ if has('win32')
   let g:slime_target = "neovim"
 else
   let g:slime_target = "tmux"
-  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+  " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
 endif
 let g:slime_target = "neovim"
 " let g:slime_paste_file = "$HOME/.slime_paste"
@@ -134,3 +134,13 @@ nnoremap <leader>r :NvimTreeRefresh<CR>
 
 " UndoTree
 nnoremap <leader>ut :UndotreeToggle<CR>
+
+" Move between splits with alt+mov key
+for i in ['h', 'j', 'k', 'l', 'H', 'J', 'K', 'L']
+    execute('noremap <A-' . i . '> <C-w>' . i)
+    execute('inoremap <A-' . i . '> <Esc><C-w>' . i)
+    execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i)
+endfor
+
+" Double tap ESC when pannicing
+tnoremap <Esc><Esc> <C-\><C-N>

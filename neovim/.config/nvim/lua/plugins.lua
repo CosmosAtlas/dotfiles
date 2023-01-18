@@ -143,6 +143,7 @@ require('packer').startup(function(use)
       require("toggleterm").setup()
     end
   }
+  use "numToStr/FTerm.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Needs to be placed after all plugins
@@ -182,6 +183,20 @@ require'nvim-treesitter.configs'.setup {
     disable = {"latex"},
   },
 }
+
+require'FTerm'.setup({
+  border = 'double',
+  dimensions = {
+    height = 0.9,
+    width = 0.9,
+  },
+})
+
+vim.keymap.set('n', '<A-f>', '<cmd>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<A-f>', '<cmd>lua require("FTerm").toggle()<CR>')
+
+vim.keymap.set('n', '<A-t>', '<cmd>ToggleTerm<CR>')
+vim.keymap.set('t', '<A-t>', '<cmd>ToggleTerm<CR>')
 
 
 -- Setting up which-key.nvim
