@@ -7,6 +7,22 @@ let g:maplocalleader = ','
 
 set completeopt=menu,menuone,noselect
 
+" use a variable to hold the system type
+if has('unix')
+  let s:uname = system("echo -n \"$(uname)\"")
+  if !v:shell_error && s:uname ==? 'Linux'
+    let g:sysop='linux'
+  elseif (system('uname') ==? "Darwin\n")
+    let g:sysop='mac'
+  else
+    let g:sysop='unix'
+  endif
+elseif has('win32') || has('win64')
+  let g:sysop='win'
+else
+  let g:sysop='undefined'
+endif
+
 " Load plugins
 lua require('plugins')
 

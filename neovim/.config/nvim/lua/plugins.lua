@@ -190,7 +190,9 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require'FTerm'.setup({
-  border = 'double',
+  ft = 'FTerm',
+  cmd = vim.g.sysop == "win" and "pwsh" or "zsh", -- Use powershell on windows and zsh on other
+  border = 'single',
   dimensions = {
     height = 0.9,
     width = 0.9,
