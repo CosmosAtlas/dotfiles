@@ -214,6 +214,9 @@ bindsym XF86AudioRaiseVolume exec volcontrol up
 bindsym XF86AudioLowerVolume exec volcontrol down
 bindsym XF86AudioMute exec volcontrol mute
 
+bindsym Ctrl+print exec --no-startup-id slurp | grim -g - ~/Pictures/screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+
+bindsym print exec --no-startup-id grim ~/Pictures/screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 #
 # Status Bar:
 #
