@@ -243,10 +243,18 @@ truecolortest() {
 }
 
 dotupdate() {
-  echo "Pulling ~/.emacs.d"
-  git -C ~/.emacs.d/ pull
-  echo "Pulling ~/.dotfiles"
-  git -C ~/.dotfiles/ pull
+  if [ -d ~/.emacs.d ]; then
+    echo "Pulling ~/.emacs.d"
+    git -C ~/.emacs.d/ pull
+  else
+    echo "~/.emacs.d doesn't exist, skipping..."
+  fi
+  if [ -d ~/.dotfiles ]; then
+    echo "Pulling ~/.dotfiles"
+    git -C ~/.dotfiles/ pull
+  else
+    echo "~/.dotfiles doesn't exist, skipping..."
+  fi
 }
 
 # auto execute pipenv
