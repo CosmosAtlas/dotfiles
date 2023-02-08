@@ -30,6 +30,20 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Right", function()
       win:setFrame(f)
 end)
 
+-- new browser window
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "b", function()
+      if hs.application.find("Brave Browser") then
+	 hs.applescript.applescript([[
+	    tell application "Brave Browser"
+                make new window
+                activate
+	    end tell
+	 ]])
+      else
+	 hs.application.open("Brave Browser")
+      end
+end)
+
 -- new iterm2 window
 hs.hotkey.bind({"cmd"}, "return", function()
       if hs.application.find("iTerm") then

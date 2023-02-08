@@ -1,6 +1,7 @@
 vifminfo.json
 vifminfo
 packer_compiled.lua
+.DS_Store
 
 # XMonad
 .hpc/
