@@ -129,6 +129,13 @@ nnoremap <silent> <Leader>ed :e $MYVIMRC<CR> :lua require("notify")("Loaded $MYV
 nnoremap <silent> <Leader>ep :e `=stdpath('config')..'/lua/plugins.lua'`<CR> :lua require("notify")("Loaded plugins.lua")<CR>
 nnoremap <silent> <Leader>rv :source $MYVIMRC<CR> :lua require("notify")("VIMRC reloaded")<CR>
 
+" LaTeX editing
+
+if g:sysop ==# "unix"
+  let g:latex_view_general_viewer = "zathura"
+  let g:vimtex_view_method = "zathura"
+endif
+
 " Easy Align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
