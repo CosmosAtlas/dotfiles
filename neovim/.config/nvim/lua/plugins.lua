@@ -80,7 +80,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-dispatch'
   use {
     'lervag/vimtex',
-    config = 'vim.g.vimtex_compiler_latexmk = {build_dir = "build"}'
+    -- config = 'vim.g.vimtex_compiler_latexmk = {build_dir = "build"}'
   } 
   use 'jpalardy/vim-slime'
 
