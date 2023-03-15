@@ -17,10 +17,9 @@ require('packer').startup(function(use)
   -- Plugin list
   use 'wbthomason/packer.nvim' -- Package manager
 
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
-  use 'williamboman/nvim-lsp-installer'
-
+  --
   -- Auto complete
+  --
   use 'hrsh7th/nvim-cmp'
   -- Completion sources
   use 'hrsh7th/cmp-cmdline'
@@ -33,9 +32,11 @@ require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip'
   use 'rafamadriz/friendly-snippets'
 
+  --
   -- Functionality enhancements
+  --
   use {
-    'kyazdani42/nvim-tree.lua',
+    'kyazdani42/nvim-tree.lua', -- File browser tree style
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require'nvim-tree'.setup{
@@ -47,51 +48,72 @@ require('packer').startup(function(use)
     end,
   }
   use {
-    'folke/trouble.nvim',
+    'folke/trouble.nvim', -- Better management of LSP status
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require'trouble'.setup{}
     end,
   }
   use {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim', -- Quick search shortcuts
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use 'dstein64/vim-startuptime'
-  use 'junegunn/vim-easy-align'
+  use 'dstein64/vim-startuptime' -- Profiling vim performance
+  use 'junegunn/vim-easy-align' -- Aligning text by char
   use {
-    'lewis6991/impatient.nvim',
+    'lewis6991/impatient.nvim', -- Caching plugin for fast startup
     config = function()
       require'impatient'
     end,
   }
   use {
-    'windwp/nvim-autopairs',
+    'windwp/nvim-autopairs', -- Closing parenthesis
     config = function()
       require'nvim-autopairs'.setup{}
     end,
   }
-  use 'romainl/vim-cool'
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-unimpaired'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-dispatch'
+  use 'romainl/vim-cool' -- Auto remove highlights
+  use 'tpope/vim-commentary'  -- Commenting
+  use 'tpope/vim-repeat' -- Better . repeat, adds support for plugins
+  use 'tpope/vim-unimpaired' -- Quick toggles and forward/back
+  use 'tpope/vim-fugitive' -- Git inside vim
+  use 'tpope/vim-surround' -- Quickly adding surroundings to text
+  use 'tpope/vim-dispatch' -- Async job running
+  use 'jpalardy/vim-slime' -- Sending code to terminal
+
+  use "ggandor/lightspeed.nvim" -- Fast search
   use {
-    'lervag/vimtex',
-    -- config = 'vim.g.vimtex_compiler_latexmk = {build_dir = "build"}'
-  } 
-  use 'jpalardy/vim-slime'
+    'andymass/vim-matchup', -- Better % operators
+    setup = function()
+      -- may set any options here
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end
+  }
 
-  use "ggandor/lightspeed.nvim"
-  use 'andymass/vim-matchup'
+  use {
+    "akinsho/toggleterm.nvim", -- Quick terminal toggle, by splitting window
+    tag = '*',
+    config = function()
+      require("toggleterm").setup()
+    end
+  }
+  use "numToStr/FTerm.nvim" -- Quick terminal toggle, floating style
 
+  --
   -- Language specific
-  use "jeetsukumaran/vim-pythonsense"  -- textobjects for python, e.g., func
-  use "Vimjas/vim-python-pep8-indent"
+  --
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
+  use 'williamboman/nvim-lsp-installer' -- Installs LSP via vim directly
 
+  use "jeetsukumaran/vim-pythonsense"  -- textobjects for python, e.g., func
+  use "Vimjas/vim-python-pep8-indent" -- Python pep8 style indentation
+  use {
+    'lervag/vimtex', -- Suite for writing tex documents
+  } 
+
+  --
   -- Colorschemes
+  --
   use {
     "catppuccin/nvim",
     as = "catppuccin"
@@ -99,56 +121,50 @@ require('packer').startup(function(use)
   use 'rafi/awesome-vim-colorschemes'
   use 'monsonjeremy/onedark.nvim'
 
+  --
   -- UI enhancements
+  --
   use {
-    'lewis6991/gitsigns.nvim',
+    'lewis6991/gitsigns.nvim', -- Indicate changed lines by git
     requires = { 'nvim-lua/plenary.nvim' },
   }
   use {
-    'nvim-lualine/lualine.nvim', 
+    'nvim-lualine/lualine.nvim', -- Status bar, FIXME consider swap
     requires = { 'kyazdani42/nvim-web-devicons', opt = true} 
   }
-  use 'arkav/lualine-lsp-progress'
+  use 'arkav/lualine-lsp-progress'  -- Lualine with LSP information
   use {
-    'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter', -- Better syntax highlighting
     run = ':TSUpdate'
   }
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'karb94/neoscroll.nvim'
+  use 'lukas-reineke/indent-blankline.nvim' -- Indent guides
+  use 'karb94/neoscroll.nvim' -- Scroll with animation
   use {
-    'romgrk/barbar.nvim',
+    'romgrk/barbar.nvim', -- Better buffer/window bar
     requires = { 'kyazdani42/nvim-web-devicons' } 
   }
   use {
-    'goolord/alpha-nvim',
+    'goolord/alpha-nvim', -- Start page
     requires = {'kyazdani42/nvim-web-devicons'},
     config = function()
       require'alpha'.setup(require'alpha.themes.startify'.config)
     end,
   }
   use {
-    'rcarriga/nvim-notify',
+    'rcarriga/nvim-notify', -- Notifications in Vim!
     config = function()
       require('notify').setup({
         background_colour = '#000000'
       })
     end
   }
-  use 'mbbill/undotree'
+  use 'mbbill/undotree' -- Visualize the undo history
   use {
     'folke/which-key.nvim',
     config = function()
       require('which-key').setup{}
     end
   }
-  use {
-    "akinsho/toggleterm.nvim",
-    tag = '*',
-    config = function()
-      require("toggleterm").setup()
-    end
-  }
-  use "numToStr/FTerm.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Needs to be placed after all plugins
@@ -351,3 +367,11 @@ lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   pattern = "*",
+--   callback = function(args)
+--     print("Entered buffer " .. args.buf .. "!")
+--   end,
+--   desc = "Tell me when I enter a buffer",
+-- })
