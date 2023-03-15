@@ -84,8 +84,10 @@ set termguicolors
 set belloff=all
 
 set t_Co=256
-set background=dark
-colorscheme catppuccin
+" set background=dark
+" colorscheme catppuccin
+set background=light
+colorscheme yui
 
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 

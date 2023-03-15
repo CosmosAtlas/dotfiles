@@ -6,14 +6,14 @@ vim.cmd([[
   augroup end
 ]])
 
--- Bootstrap packer.nvim on new installs
+-- Bootstrap packer.nvim on new installs {{{
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
+end -- }}}
 
-require('packer').startup(function(use)
+require('packer').startup(function(use) -- {{{ Plugin List
   -- Plugin list
   use 'wbthomason/packer.nvim' -- Package manager
 
@@ -81,6 +81,13 @@ require('packer').startup(function(use)
   use 'tpope/vim-dispatch' -- Async job running
   use 'jpalardy/vim-slime' -- Sending code to terminal
 
+  use {
+    'ntpeters/vim-better-whitespace', -- Better display of unwanted whitespace
+    setup = function()
+      vim.g.better_whitespace_enabled = 1
+    end
+  }
+
   use "ggandor/lightspeed.nvim" -- Fast search
   use {
     'andymass/vim-matchup', -- Better % operators
@@ -109,7 +116,7 @@ require('packer').startup(function(use)
   use "Vimjas/vim-python-pep8-indent" -- Python pep8 style indentation
   use {
     'lervag/vimtex', -- Suite for writing tex documents
-  } 
+  }
 
   --
   -- Colorschemes
@@ -120,6 +127,7 @@ require('packer').startup(function(use)
   }
   use 'rafi/awesome-vim-colorschemes'
   use 'monsonjeremy/onedark.nvim'
+  use 'cideM/yui'
 
   --
   -- UI enhancements
@@ -130,7 +138,7 @@ require('packer').startup(function(use)
   }
   use {
     'nvim-lualine/lualine.nvim', -- Status bar, FIXME consider swap
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true} 
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true}
   }
   use 'arkav/lualine-lsp-progress'  -- Lualine with LSP information
   use {
@@ -141,7 +149,7 @@ require('packer').startup(function(use)
   use 'karb94/neoscroll.nvim' -- Scroll with animation
   use {
     'romgrk/barbar.nvim', -- Better buffer/window bar
-    requires = { 'kyazdani42/nvim-web-devicons' } 
+    requires = { 'kyazdani42/nvim-web-devicons' }
   }
   use {
     'goolord/alpha-nvim', -- Start page
@@ -171,7 +179,7 @@ require('packer').startup(function(use)
   if packer_bootstrap then
     require'packer'.sync()
   end
-end)
+end) -- }}}
 
 -- Post Plugin setups
 
@@ -190,6 +198,7 @@ require'lualine'.setup{
   options = {
     component_separators = '|',
     section_separators = { left = '', right = '' },
+    theme = 'ayu_light',
   },
   sections = {
     lualine_c = {
