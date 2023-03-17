@@ -56,7 +56,24 @@ require('packer').startup(function(use) -- {{{ Plugin List
   }
   use {
     'nvim-telescope/telescope.nvim', -- Quick search shortcuts
-    requires = { {'nvim-lua/plenary.nvim'} }
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'debugloop/telescope-undo.nvim',
+    },
+    config = function()
+      require('telescope').setup({
+        extensions = {
+          undo = {
+            side_by_side = true,
+            layout_strategy = 'vertical',
+            layout_config = {
+              preview_height = 0.8,
+            },
+          },
+        },
+      })
+      require('telescope').load_extension('undo')
+    end,
   }
   use 'dstein64/vim-startuptime' -- Profiling vim performance
   use 'junegunn/vim-easy-align' -- Aligning text by char
@@ -190,15 +207,13 @@ require'catppuccin'.setup({
 
 require'gitsigns'.setup()
 
-require'telescope'.setup{}
-
 require'neoscroll'.setup()
 
 require'lualine'.setup{
   options = {
     component_separators = '|',
     section_separators = { left = '', right = '' },
-    theme = 'ayu_light',
+    theme = 'ayu',
   },
   sections = {
     lualine_c = {
@@ -238,12 +253,13 @@ wk.register({
   b = {
     name = "buffer",
     b = { "<cmd>Telescope buffers<CR>", "Switch buffer" },
-    d = { '<cmd>BufferClose<CR> :lua require("notify")("Buffer closed")<CR>', "Close buffer"}
+    d = { '<cmd>BufferClose<CR> :lua require("notify")("Buffer closed")<CR>', "Close buffer"},
   },
   f = {
     name = "files",
     f = { "<cmd>Telescope find_files<CR>", "Find files" },
-    g = { "<cmd>Telescope live_grep<CR>", "Grep in files" }
+    g = { "<cmd>Telescope live_grep<CR>", "Grep in files" },
+    h = { "<cmd>Telescope undo<CR>", "Grep in undo history" },
   },
   x = {
     name = "Trouble",
@@ -252,7 +268,7 @@ wk.register({
     d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Toggle Trouble document" },
     q = { "<cmd>TroubleToggle quickfix<CR>", "Toggle Trouble quickfix" },
     l = { "<cmd>TroubleToggle loclist<CR>", "Toggle Trouble loclist" },
-    r = { "<cmd>TroubleToggle lsp_references<CR>", "Toggle Trouble references" }
+    r = { "<cmd>TroubleToggle lsp_references<CR>", "Toggle Trouble references" },
   }
 }, { prefix = "<leader>" })
 
