@@ -1,0 +1,3 @@
+#!/bin/sh
+
+setsid emacs --daemon &>> ~/.cache/emacs-daemon &
