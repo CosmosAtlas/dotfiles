@@ -124,7 +124,19 @@ augroup BackupOnSave
   autocmd BufWritePre * let &bex = '@' . strftime("%F.%H-%M")
 augroup END
 
+
+"
+" Plugin Specific
+"
+let g:vimtex_quickfix_ignore_filters = [
+      \ 'Underfull',
+      \ 'Overfull',
+      \]
+
+
+"
 " Keymappings
+"
 
 " Fast edit/reload for nvim config
 nnoremap <silent> <Leader>ed :e $MYVIMRC<CR> :lua require("notify")("Loaded $MYVIMRC")<CR>
