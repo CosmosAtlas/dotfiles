@@ -56,7 +56,7 @@ require('packer').startup(function(use) -- {{{ Plugin List
   }
   use {
     'nvim-telescope/telescope.nvim', -- Quick search shortcuts
-    dependencies = {
+    requires = {
       'nvim-lua/plenary.nvim',
       'debugloop/telescope-undo.nvim',
     },
