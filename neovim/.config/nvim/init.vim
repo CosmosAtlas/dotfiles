@@ -168,5 +168,9 @@ for i in ['h', 'j', 'k', 'l', 'H', 'J', 'K', 'L']
     execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i)
 endfor
 
-" Double tap ESC when pannicing
+" Double tap ESC when panicking
+"
 tnoremap <Esc><Esc> <C-\><C-N>
+
+" Remove trailing white space
+nnoremap <leader>ds :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
