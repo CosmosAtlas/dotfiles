@@ -26,6 +26,7 @@ IfExist, %I_Icon%
 
 ;; state vars
 toogle_esc_tap := true
+esc_tap_control_start_time := 0
 
 ;; All initialization should be done before defining any variable.
 ;; Keep all initialization before this line
@@ -62,7 +63,7 @@ toogle_esc_tap := true
 Right::
     KeyWait, Right, T0.3
     if ErrorLevel {
-        Send, cccccccccccccccccccc
+        Send, cccccccccccccccccccccccccccccccccccccccc
         ToolTip, >>>
         KeyWait, Right
         Send, z
@@ -178,17 +179,41 @@ n::b
 
 ;; any #If related clears all previous things, so need to double define here
 #If toogle_esc_tap and Not WinActive("ahk_group NoDVP")
-*LCtrl::
-	Send {Blind}{Ctrl Down}
-	cDown := A_TickCount
-	Return
 
-*LCtrl up::
-	If (((A_TickCount - cDown) < 125) && (A_PriorKey = "LControl"))
-		Send {Blind}{Ctrl Up}{Esc}
-	Else
-		Send {Blind}{Ctrl Up}
-	Return
+;; Heavily inspired by: https://github.com/kshenoy/CapsUnlocked/blob/master/CapsUnlocked.ahk
+*LControl::
+	Send {LControl Down}
+	State := (GetKeyState("Alt", "P") || GetKeyState("Shift", "P") || GetKeyState("LWin", "P") || GetKeyState("RWin", "P"))
+	if ( !State && (esc_tap_control_start_time = 0)) {
+		esc_tap_control_start_time = A_TickCount
+	}
+
+	KeyWait, LControl
+	Send {LControl Up}
+	if (State) {
+		return
+	}
+
+	elapsed_time := A_TickCount - esc_tap_control_start_time
+	if ((A_PriorKey = "LControl") && (elapsed_time < 125)) {
+		Send {Esc}
+	}
+	esc_tap_control_start_time := 0
+	return
+
+;; Old implementation, for saving purposes
+/* *LCtrl::
+ * 	Send {Ctrl Down}
+ * 	cDown := A_TickCount
+ * 	Return
+ *
+ * *LCtrl up::
+ * 	If (((A_TickCount - cDown) < 125) && (A_PriorKey = "LControl"))
+ * 		Send {Blind}{Ctrl Up}{Esc}
+ * 	Else
+ * 		Send {Blind}{Ctrl Up}
+ * 	Return
+ */
 
 ;; This techincally clears both, since last #If already overwrites first #IfWin
 #If
@@ -215,6 +240,7 @@ SetDefaultKeyboard(LocaleID) {
 #+i::SetDefaultKeyboard(0x0804) ; Chinese (PRC)
 
 
+;; A goto statement destination to deactivate a tooltip through a timer
 tooltipOff:
 ToolTip
 return
