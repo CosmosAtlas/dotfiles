@@ -57,11 +57,32 @@ hs.hotkey.bind({"cmd"}, "return", function()
       end
 end)
 
+-- Deterministic input method switcher
+
+hs.hotkey.bind({"cmd", "shift"}, "t", function()
+  hs.keycodes.setLayout('Programmer Dvorak')
+  hs.alert.show(hs.keycodes.currentLayout())
+end)
+
+hs.hotkey.bind({"cmd", "shift"}, "c", function()
+  hs.keycodes.currentSourceID("im.rime.inputmethod.Squirrel.Hans")
+  -- hs.alert.show(hs.keycodes.currentSourceID())
+  hs.alert.show('Squirrel - Rime')
+end)
+
+hs.hotkey.bind({"cmd", "shift"}, "d", function()
+  hs.keycodes.setLayout('U.S.')
+  hs.alert.show(hs.keycodes.currentLayout())
+end)
+
+
 -- Setup automatic installation of spoons
 -- Technically, this should be the only one that requires manual installation
 hs.loadSpoon("SpoonInstall")
 
 spoon.SpoonInstall:andUse("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
+
+hs.loadSpoon('ControlEscape'):start() -- Load Hammerspoon bits from https://github.com/jasonrudolph/ControlEscape.spoon
 
 hs.alert.show("Config loaded")
