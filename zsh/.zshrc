@@ -271,6 +271,11 @@ function cd {
     auto_pipenv_shell
 }
 
+function setup {
+  xcape.sh
+  setxkbmap -layout us -variant dvp -option caps:ctrl_modifier
+}
+
 auto_pipenv_shell
 
 # Intializing functionalities ==================================================
@@ -279,6 +284,11 @@ type direnv > /dev/null && eval "$(direnv hook zsh)"
 
 # Set up rust env
 [[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
+
+# Setup python environment
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # Display welcome text =========================================================
 type pfetch > /dev/null && pfetch

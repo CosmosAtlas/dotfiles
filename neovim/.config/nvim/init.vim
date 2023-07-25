@@ -84,8 +84,10 @@ set termguicolors
 set belloff=all
 
 set t_Co=256
-set background=dark
-colorscheme catppuccin
+" set background=dark
+" colorscheme catppuccin
+set background=light
+colorscheme ayu
 
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 
@@ -122,7 +124,19 @@ augroup BackupOnSave
   autocmd BufWritePre * let &bex = '@' . strftime("%F.%H-%M")
 augroup END
 
+
+"
+" Plugin Specific
+"
+let g:vimtex_quickfix_ignore_filters = [
+      \ 'Underfull',
+      \ 'Overfull',
+      \]
+
+
+"
 " Keymappings
+"
 
 " Fast edit/reload for nvim config
 nnoremap <silent> <Leader>ed :e $MYVIMRC<CR> :lua require("notify")("Loaded $MYVIMRC")<CR>
@@ -154,5 +168,9 @@ for i in ['h', 'j', 'k', 'l', 'H', 'J', 'K', 'L']
     execute('tnoremap <A-' . i . '> <C-\><C-n><C-w>' . i)
 endfor
 
-" Double tap ESC when pannicing
+" Double tap ESC when panicking
+"
 tnoremap <Esc><Esc> <C-\><C-N>
+
+" Remove trailing white space
+nnoremap <leader>ds :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
