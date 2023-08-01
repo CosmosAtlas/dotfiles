@@ -2,6 +2,8 @@
 #InstallKeybdHook
 #UseHook
 
+;; Variables probably need to be declared at top
+
 ;; Setup applications to ignore programmer dvorak layout
 nodvp_list := ["RainbowSix_Vulkan.exe"
 	, "RainbowSix.exe"
@@ -12,6 +14,7 @@ nodvp_list := ["RainbowSix_Vulkan.exe"
 	, "Goose Goose Duck.exe"
 	, "Risk of Rain 2.exe"
 	, "valheim.exe"]
+
 
 For index, exe_name in nodvp_list
 	GroupAdd, NoDVP, ahk_exe %exe_name%
@@ -177,6 +180,8 @@ n::b
 	SetTimer, TooltipOff, -1500
     return
 
+#c::GDLookup()
+
 ;; any #If related clears all previous things, so need to double define here
 #If toogle_esc_tap and Not WinActive("ahk_group NoDVP")
 
@@ -238,6 +243,35 @@ SetDefaultKeyboard(LocaleID) {
 #+k::SetDefaultKeyboard(0x0409) ; English (USA)
 #+j::SetDefaultKeyboard(0x0411) ; Japanese
 #+i::SetDefaultKeyboard(0x0804) ; Chinese (PRC)
+
+
+;; GoldenDict quick lookup setup
+GDLookup() {
+	curClip := Clipboard
+	Clipboard := ""
+	Sleep 100
+	SendInput {Ctrl Down}{c Down}
+	Sleep 50
+	SendInput {c Up}{Ctrl Up}
+	ClipWait, 1
+	selected := Clipboard
+	if StrLen(selected) > 0 and StrLen(selected) < 20 {
+		WinGetActiveTitle, Title
+		run "C:\Program Files (x86)\GoldenDict\GoldenDict.exe" %selected%
+		Sleep, 800
+		IfWinExist, %Title%
+			WinActivate
+	}
+	Clipboard =
+	if StrLen(curClip) > 0 {
+		Clipboard = %curClip%
+	}
+	VarSetCapacity(curClip, 0)
+	VarSetCapacity(selected, 0)
+}
+
+
+
 
 
 ;; A goto statement destination to deactivate a tooltip through a timer
