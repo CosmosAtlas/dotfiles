@@ -21,6 +21,7 @@ For index, exe_name in nodvp_list
 
 ;; I hate capslock
 SetCapsLockState AlwaysOff
+DetectHiddenWindows On
 
 ;; Use Icon
 I_Icon = F:\Archive\dvp-icon.png
@@ -226,17 +227,10 @@ n::b
 ;; Setup input method switching
 
 SetDefaultKeyboard(LocaleID) {
-	Static SPI_SETDEFAULTINPUTLANG := 0x005A, SPIF_SENDWININICHANGE := 2
-
 	Lan := DllCall("LoadKeyboardLayout", "Str", Format("{:08x}", LocaleID), "Int", 0)
-	VarSetCapacity(binaryLocaleID, 4, 0)
-	NumPut(LocaleID, binaryLocaleID)
-	DllCall("SystemParametersInfo", "UInt", SPI_SETDEFAULTINPUTLANG, "UInt", 0, "UPtr", &binaryLocaleID, "UInt", SPIF_SENDWININICHANGE)
-
-	WinGet, windows, List
-	Loop % windows {
-		PostMessage 0x50, 0, % Lan, , % "ahk_id " windows%A_Index%
-	}
+	WinExist("A")
+	ControlGetFocus, CtrlFocus
+	PostMessage 0x50, 0, % Lan, %CtrlFocus%
 }
 
 ;; Mapping here relates to the physical keyboard. So the previous dvp mapping aren't active.
