@@ -9,6 +9,23 @@ return { -- a list of misc and small extensions to make life easier
   { 'tommcdo/vim-lion' }, -- alignment with gl commands
   { 'andymass/vim-matchup' }, -- better % matching
   {
+    'jpalardy/vim-slime',
+    config = function()
+      if vim.fn.has('win32') then
+        vim.g.slime_target = "neovim"
+      else
+        vim.g.slime_target = 'tmux'
+        vim.cmd[[
+          let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+        ]]
+      end
+    end
+  },
+  {
+    'hanschen/vim-ipython-cell',
+    dependencies = { 'jpalardy/vim-slime' }
+  },
+  {
     'windwp/nvim-autopairs',
     config = function()
       require'nvim-autopairs'.setup{}
