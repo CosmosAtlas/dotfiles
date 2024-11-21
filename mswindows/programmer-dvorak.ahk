@@ -1,6 +1,7 @@
 ; Need this for tap esc, hold control to work
 #InstallKeybdHook
 #UseHook
+#MenuMaskKey vkFF
 
 ;; Variables probably need to be declared at top
 
@@ -13,6 +14,8 @@ nodvp_list := ["RainbowSix_Vulkan.exe"
 	, "Legion TD 2.exe"
 	, "Goose Goose Duck.exe"
 	, "Risk of Rain 2.exe"
+	, "helldivers2.exe"
+	, "crs-handler.exe"
 	, "valheim.exe"]
 
 
@@ -67,7 +70,7 @@ esc_tap_control_start_time := 0
 Right::
     KeyWait, Right, T0.3
     if ErrorLevel {
-        Send, cccccccccccccccccccccccccccccccccccccccc
+        Send, cccccccccccccccccc
         ToolTip, >>>
         KeyWait, Right
         Send, z
@@ -87,6 +90,25 @@ Right::
 
 ;; Suspend
 #Escape:: Suspend
+
+#m:: ; Play video in mpv
+#IfWinActive ahk_exe brave.exe
+Send ^l ; select url
+send ^c ; copy url
+if (InStr(clipboard, "youtube.com")) {
+	Tooltip % "Trying to play: " clipboard
+	SetTimer, TooltipOff, -500
+	run "mpv" %clipboard%
+}
+return
+#If
+
+#a:: ; interact with Anki
+ControlFocus,, User 1 - Anki
+ControlSend,,{Enter}, User 1 - Anki
+Sleep 250
+ControlSend,,{Enter}, User 1 - Anki
+return
 
 
 #IfWinNotActive ahk_group NoDVP
