@@ -135,7 +135,7 @@ Plug 'tpope/vim-dispatch'
 
 " Simple autocompletion
 
-Plug 'ackyshake/VimCompletesMe'
+Plug 'https://git.sr.ht/~ackyshake/VimCompletesMe.vim'
 
 call plug#end()
 
@@ -202,7 +202,7 @@ augroup END
 "
 set t_Co=256
 set background=dark
-colorscheme gruvbox8_hard
+colorscheme badwolf
 
 "
 " Temp file management
