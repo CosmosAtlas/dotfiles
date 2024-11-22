@@ -232,6 +232,7 @@ endfor
 
 " Tip from: https://gist.github.com/nepsilon/003dd7cfefc20ce1e894db9c94749755
 augroup BackupOnSave
+  autocmd!
   autocmd BufWritePre * let &bex = '@' . strftime("%F.%H-%M")
 augroup END
 
