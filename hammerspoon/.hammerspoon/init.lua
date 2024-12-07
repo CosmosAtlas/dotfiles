@@ -71,7 +71,7 @@ hs.hotkey.bind({"cmd", "shift"}, "c", function()
 end)
 
 hs.hotkey.bind({"cmd", "shift"}, "d", function()
-  hs.keycodes.setLayout('U.S.')
+  hs.keycodes.setLayout('Canadian')
   hs.alert.show(hs.keycodes.currentLayout())
 end)
 
