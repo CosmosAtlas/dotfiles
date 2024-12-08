@@ -125,6 +125,24 @@ augroup textobj_sentence
   autocmd! FileType markdown,tex,mail,textile,text call textobj#sentence#init()
 augroup END
 
+" Vim latex support
+Plug 'lervag/vimtex'
+Plug 'rbonvall/vim-textobj-latex'
+let g:tex_flavor = 'latex'
+let g:vim_quickfix_open_on_warning = 0
+" let g:vimtex_view_method = 'zathura'
+
+let g:vimtex_compiler_latexmk = {
+      \ 'build_dir': 'build',
+      \ 'options' : [
+        \ '-pdf',
+        \ '-shell-escape',
+        \ '-synctex=1',
+        \ '-verbose',
+        \ '-file-line-error',
+        \ ],
+      \}
+
 
 " Provide hints to shortcuts
 Plug 'liuchengxu/vim-which-key'
@@ -150,6 +168,7 @@ Plug 'Shougo/ddc-source-around'
 
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-ui-pum'
+Plug 'Shougo/ddc-source-omni'
 
 
 call plug#end()
@@ -158,7 +177,7 @@ call plug#end()
 
 call ddc#custom#patch_global('ui', 'pum')
 
-call ddc#custom#patch_global('sources', ['around', 'vim-lsp'])
+call ddc#custom#patch_global('sources', ['around', 'vim-lsp', 'omni'])
 
 call ddc#custom#patch_global('sourceOptions', #{
       \  _: #{
@@ -180,6 +199,21 @@ call ddc#custom#patch_global('sourceOptions', #{
     \     mark: 'lsp',
     \   },
     \ })
+
+call ddc#custom#patch_global('sourceOptions', #{
+      \   omni: #{ mark: 'O' },
+      \ })
+
+" Use vimtex
+call vimtex#init()
+call ddc#custom#patch_filetype(['tex'], 'sourceOptions', #{
+      \   omni: #{
+      \     forceCompletionPattern: g:vimtex#re#deoplete,
+      \   },
+      \ })
+call ddc#custom#patch_filetype(['tex'], 'sourceParams', #{
+      \   omni: #{ omnifunc: 'vimtex#complete#omnifunc' },
+      \ })
 
 call ddc#enable()
 
