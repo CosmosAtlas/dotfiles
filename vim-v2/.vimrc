@@ -155,12 +155,23 @@ let g:which_key_map = {}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 
+" Diagnostics
+" Plug 'dense-analysis/ale'
+
+" let g:ale_linters = {'python': ['flake8']}
+
 " Autocompletion
 Plug 'vim-denops/denops.vim'
 Plug 'Shougo/ddc.vim'
 Plug 'Shougo/ddc-filter-matcher_head'
 
 Plug 'prabirshrestha/vim-lsp'
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 1
+let g:lsp_diagnostics_virtual_text_align = "right"
+let g:lsp_diagnostics_virtual_text_wrap = "truncate"
+let g:lsp_diagnostics_virtual_text_delay = 100
+
 Plug 'mattn/vim-lsp-settings'
 
 Plug 'shun/ddc-vim-lsp'
@@ -360,6 +371,7 @@ let g:which_key_map['t'] = {
       \ 'name' : '+toggles' ,
       \ 'c' : [':Colors' , 'toggle-colorschemes'] ,
       \ 'u' : [':UndotreeToggle' , 'toggle-undo-history'] ,
+      \ 'd' : [':LspDocumentDiagnostics' , 'toggle-diagnostics-list'] ,
       \ }
 
 
