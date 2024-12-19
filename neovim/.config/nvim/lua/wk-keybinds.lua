@@ -1,35 +1,20 @@
 local wk = require('which-key')
 
-wk.register({
-  b = {
-    name = 'buffer',
-    b = { '<cmd>Telescope buffers<CR>', 'Switch buffer' },
-    d = { '<cmd>bdelete<CR>', 'Close buffer'},
-  },
-  e = {
-    name = 'edit',
-    nf = { function() require('telescope.builtin').find_files( { cwd = vim.fn.stdpath('config') } ) end, 'nvim configs' },
-    nb = { '<cmd>Telescope file_browser path=' .. vim.fn.stdpath('config') .. '<CR>', 'nvim configs browse' },
-  },
-  f = {
-    name = 'files',
-    f = { '<cmd>Telescope find_files<CR>', 'Find files' },
-    g = { '<cmd>Telescope live_grep<CR>', 'Grep in files' },
-    h = { '<cmd>Telescope undo<CR>', 'Grep in undo history' },
-    b = { '<cmd>Telescope file_browser<CR>', 'File Browser' },
-  },
-  t = {
-    name = 'toggle',
-    u = { '<cmd>UndotreeToggle<CR>', 'Undo tree'  },
-    c = { '<cmd>Telescope colorscheme<CR>', 'Change color' },
-  },
- x = {
-   name = 'Trouble',
-   x = { '<cmd>TroubleToggle<CR>', 'Toggle Trouble' },
-   w = { '<cmd>TroubleToggle workspace_diagnostics<CR>', 'Toggle Trouble workspace' },
-   d = { '<cmd>TroubleToggle document_diagnostics<CR>', 'Toggle Trouble document' },
-   q = { '<cmd>TroubleToggle quickfix<CR>', 'Toggle Trouble quickfix' },
-   l = { '<cmd>TroubleToggle loclist<CR>', 'Toggle Trouble loclist' },
-   r = { '<cmd>TroubleToggle lsp_references<CR>', 'Toggle Trouble references' },
- }
-}, { prefix = '<leader>' })
+wk.add({
+  -- files
+  { "<leader>f", group = "file" }, -- group
+  { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files", mode = "n" },
+  { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep in files", mode = "n" },
+  { "<leader>fb", "<cmd>Telescope file_browser<CR>", desc = "File browser", mode = "n" },
+  -- buffers
+  { "<leader>b", group = "buffer" }, -- group
+  { "<leader>bb", "<cmd>Telescope buffers<CR>", desc = "Switch buffer", mode = "n" },
+  { "<leader>bd", "<cmd>bdelete<CR>", desc = "Close buffer", mode = "n" },
+  -- init files
+  { "<leader>e", group = "edit" }, -- group
+  { "<leader>enf", function() require('telescope.builtin').find_files( { cwd = vim.fn.stdpath('config') } ) end, desc = "nvim configs", mode = "n" },
+  -- toggles
+  { "<leader>t", group = "edit" }, -- group
+  { "<leader>tu", "<cmd>UndotreeToggle<CR>", desc = "Undo tree", mode = "n" },
+  { "<leader>tc", "<cmd>Telescope colorscheme<CR>", desc = "Change color", mode = "n" },
+})
