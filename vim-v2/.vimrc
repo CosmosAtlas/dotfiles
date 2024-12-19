@@ -1,10 +1,7 @@
 " vim: set foldmethod=marker foldlevel=1 nomodeline:
 " =============================================================================
-" Essential .vimrc of Wenhan Zhu (Cosmos) {{{
+" vimrc of Wenhan Zhu (Cosmos) {{{
 " =============================================================================
-" The goal of this essential version is to not rely on external resources such
-" as Python. Normally, it is not an issue, however, completion engines are the
-" worst in this situation... (sadly).
 
 set nocompatible
 
@@ -19,13 +16,15 @@ let g:maplocalleader = ','
 " VIM-PLUG Block {{{
 " =============================================================================
 
-" Auto install
+" Auto install vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source '~/.vimrc'
 endif
 
+
+" Configuration of plugins
 call plug#begin('~/.vim/plugged')
 
 " More useful status line at bottom
@@ -34,7 +33,7 @@ Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
 let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 
 
 " better highlighting for searches
@@ -116,10 +115,10 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " more text objects
-Plug 'kana/vim-textobj-user' " Required by the following plugins to easily create text objects
-Plug 'kana/vim-textobj-line'  " For selecting lines
-Plug 'preservim/vim-textobj-sentence'  " For selecting sentences
-Plug 'sgur/vim-textobj-parameter'  " For selecting function arguments
+Plug 'kana/vim-textobj-user'          " Required by the following plugins to easily create text objects
+Plug 'kana/vim-textobj-line'          " For selecting lines
+Plug 'preservim/vim-textobj-sentence' " For selecting sentences
+Plug 'sgur/vim-textobj-parameter'     " For selecting function arguments
 
 augroup textobj_sentence
   autocmd! FileType markdown,tex,mail,textile,text call textobj#sentence#init()
