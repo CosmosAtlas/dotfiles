@@ -4,8 +4,15 @@ return -- colorschemes!
     'rafi/awesome-vim-colorschemes',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme('OceanicNext')
+      -- vim.cmd.colorscheme('OceanicNext')
     end
+  },
+  {
+    'nyoom-engineering/oxocarbon.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme('oxocarbon')
+    end,
   },
   {
     'ntk148v/komau.vim',

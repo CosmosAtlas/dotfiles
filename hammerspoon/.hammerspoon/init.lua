@@ -84,6 +84,4 @@ hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall:andUse("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
-hs.loadSpoon('ControlEscape'):start() -- Load Hammerspoon bits from https://github.com/jasonrudolph/ControlEscape.spoon
-
 hs.alert.show("Config loaded")
