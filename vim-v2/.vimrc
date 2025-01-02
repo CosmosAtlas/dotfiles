@@ -126,6 +126,9 @@ augroup END
 
 " Vim latex support
 Plug 'lervag/vimtex'
+
+let g:vimtex_compiler_silent = 1  " silence warning about latexmk not found
+
 Plug 'rbonvall/vim-textobj-latex'
 let g:tex_flavor = 'latex'
 let g:vim_quickfix_open_on_warning = 0
