@@ -14,7 +14,7 @@ export PATH=$PATH:~/.cargo/bin
 
 # Default programs
 export EDITOR=vim
-export FZF_DEFAULT_COMMAND='fd -H .'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export COLORTERM=truecolor
 
 #
@@ -96,6 +96,9 @@ eval "$(pyenv init -)"
 eval "$(starship init zsh)"
 
 auto_pipenv_shell
+
+# Load local config file
+[[ ! -f $HOME/.zsh_local ]] || source $HOME/.zsh_local
 
 # Display welcome text
 type pfetch > /dev/null && pfetch
