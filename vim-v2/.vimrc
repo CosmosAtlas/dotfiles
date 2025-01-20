@@ -184,6 +184,29 @@ Plug 'Shougo/ddc-ui-pum'
 Plug 'Shougo/ddc-source-omni'
 
 
+" sending code
+Plug 'jpalardy/vim-slime', { 'for': 'python' }
+Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+
+" tags
+Plug 'ludovicchabant/vim-gutentags'
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['package.json', '.git']
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ ]
+
+
+Plug 'preservim/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+
 call plug#end()
 
 " Auto completion setup
@@ -356,6 +379,7 @@ let g:which_key_map['b'] = {
 let g:which_key_map['f'] = {
       \ 'name' : '+files' ,
       \ 'f' : [':Files' , 'find-files'] ,
+      \ 't' : [':GitFiles' , 'find-vcs-files'] ,
       \ 'g' : [':Rg' , 'grep-files'] ,
       \ }
 
