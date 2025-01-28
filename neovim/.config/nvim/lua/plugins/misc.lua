@@ -10,14 +10,10 @@ return { -- a list of misc and small extensions to make life easier
   {
     'jpalardy/vim-slime',
     config = function()
-      if vim.fn.has('win32') then
-        vim.g.slime_target = "neovim"
-      else
-        vim.g.slime_target = 'tmux'
-        vim.cmd[[
-          let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-        ]]
-      end
+      vim.g.slime_target = 'tmux'
+      vim.cmd[[
+        let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+      ]]
     end
   },
   {

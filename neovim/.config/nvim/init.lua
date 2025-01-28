@@ -53,6 +53,9 @@ vim.opt.formatoptions:append {
   'l',
   'M' -- better CJK support
 }
+vim.opt.formatoptions:remove {
+  't',  -- disable auto changeline
+}
 
 vim.o.foldmethod = 'marker'
 vim.o.clipboard  = 'unnamedplus'
