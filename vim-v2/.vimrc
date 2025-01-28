@@ -35,6 +35,7 @@ let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts=1
 
+Plug 'ryanoasis/vim-devicons'
 
 " better highlighting for searches
 Plug 'romainl/vim-cool'
@@ -73,6 +74,7 @@ Plug 'mhinz/vim-signify'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'sjl/badwolf'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'vim/colorschemes'
 
 "
 " Functionality
@@ -158,31 +160,21 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 
 " Diagnostics
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
-" let g:ale_linters = {'python': ['flake8']}
+let g:ale_linters_explicit = 1
+let g:ale_fixers = {'python': ['black', 'isort']}
+let g:ale_fix_on_save = 1
+let g:ale_floating_preview = 0
+let g:ale_cursor_detail = 0
 
 " Autocompletion
-Plug 'vim-denops/denops.vim'
-Plug 'Shougo/ddc.vim'
-Plug 'Shougo/ddc-filter-matcher_head'
+Plug 'girishji/vimcomplete'
+let g:vimcomplete_tab_enable = 1
 
-Plug 'prabirshrestha/vim-lsp'
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_virtual_text_enabled = 1
-let g:lsp_diagnostics_virtual_text_align = "right"
-let g:lsp_diagnostics_virtual_text_wrap = "truncate"
-let g:lsp_diagnostics_virtual_text_delay = 100
+Plug 'yegappan/lsp'
 
-Plug 'mattn/vim-lsp-settings'
-
-Plug 'shun/ddc-vim-lsp'
-Plug 'Shougo/ddc-source-around'
-
-Plug 'Shougo/pum.vim'
-Plug 'Shougo/ddc-ui-pum'
-Plug 'Shougo/ddc-source-omni'
-
+Plug 'Vimjas/vim-python-pep8-indent'
 
 " sending code
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
@@ -209,61 +201,65 @@ nmap <F8> :TagbarToggle<CR>
 
 call plug#end()
 
-" Auto completion setup
+let lspOpts = #{autoHighlightDiags: v:true}
+autocmd User LspSetup call LspOptionsSet(lspOpts)
 
-call ddc#custom#patch_global('ui', 'pum')
+let lspServers = [#{
+  \   name: 'pylsp',
+  \   filetype: ['python'],
+  \   path: 'pylsp',
+  \   args: []
+  \ }]
+autocmd User LspSetup call LspAddServer(lspServers)
 
-call ddc#custom#patch_global('sources', ['around', 'vim-lsp', 'omni'])
+let lspOptions = #{
+  \   aleSupport: v:false,
+  \   autoComplete: v:true,
+  \   autoHighlight: v:false,
+  \   autoHighlightDiags: v:true,
+  \   autoPopulateDiags: v:false,
+  \   completionMatcher: 'case',
+  \   completionMatcherValue: 1,
+  \   diagSignErrorText: 'E>',
+  \   diagSignHintText: 'H>',
+  \   diagSignInfoText: 'I>',
+  \   diagSignWarningText: 'W>',
+  \   echoSignature: v:false,
+  \   hideDisabledCodeActions: v:false,
+  \   highlightDiagInline: v:true,
+  \   hoverInPreview: v:false,
+  \   ignoreMissingServer: v:false,
+  \   keepFocusInDiags: v:true,
+  \   keepFocusInReferences: v:true,
+  \   completionTextEdit: v:true,
+  \   diagVirtualTextAlign: 'above',
+  \   diagVirtualTextWrap: 'default',
+  \   noNewlineInCompletion: v:false,
+  \   omniComplete: v:null,
+  \   outlineOnRight: v:false,
+  \   outlineWinSize: 20,
+  \   semanticHighlight: v:true,
+  \   showDiagInBalloon: v:true,
+  \   showDiagInPopup: v:true,
+  \   showDiagOnStatusLine: v:true,
+  \   showDiagWithSign: v:true,
+  \   showDiagWithVirtualText: v:false,
+  \   showInlayHints: v:false,
+  \   showSignature: v:true,
+  \   snippetSupport: v:false,
+  \   ultisnipsSupport: v:false,
+  \   useBufferCompletion: v:false,
+  \   usePopupInCodeAction: v:false,
+  \   useQuickfixForLocations: v:false,
+  \   vsnipSupport: v:false,
+  \   bufferCompletionTimeout: 100,
+  \   customCompletionKinds: v:false,
+  \   completionKinds: {},
+  \   filterCompletionDuplicates: v:false,
+  \ }
 
-call ddc#custom#patch_global('sourceOptions', #{
-      \  _: #{
-      \    matchers: ['matcher_head'],
-      \  }
-      \})
+autocmd User LspSetup call LspOptionsSet(lspOptions)
 
-call ddc#custom#patch_global('sourceOptions', #{
-      \   around: #{ mark: 'A' },
-      \ })
-call ddc#custom#patch_global('sourceParams', #{
-      \   around: #{ maxSize: 500 },
-      \ })
-
-call ddc#custom#patch_global('sources', ['vim-lsp'])
-call ddc#custom#patch_global('sourceOptions', #{
-    \   vim-lsp: #{
-    \     matchers: ['matcher_head'],
-    \     mark: 'lsp',
-    \   },
-    \ })
-
-call ddc#custom#patch_global('sourceOptions', #{
-      \   omni: #{ mark: 'O' },
-      \ })
-
-" Use vimtex
-call vimtex#init()
-call ddc#custom#patch_filetype(['tex'], 'sourceOptions', #{
-      \   omni: #{
-      \     forceCompletionPattern: g:vimtex#re#deoplete,
-      \   },
-      \ })
-call ddc#custom#patch_filetype(['tex'], 'sourceParams', #{
-      \   omni: #{ omnifunc: 'vimtex#complete#omnifunc' },
-      \ })
-
-call ddc#enable()
-
-imap <silent><expr> <TAB> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<TAB>'
-imap <silent><expr> <S-TAB> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<S-TAB>'
-imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
-imap <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<Esc>'
-
-inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
-inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-inoremap <PageDown> <Cmd>call pum#map#insert_relative_page(+1)<CR>
-inoremap <PageUp>   <Cmd>call pum#map#insert_relative_page(-1)<CR>
 
 " Plug-in settings that needs to be called after plug#end
 call which_key#register('<Space>', 'g:which_key_map')
@@ -295,6 +291,7 @@ set textwidth=79     " Auto change to next line at column 80
 set colorcolumn=+1   " Highlight column 81 to warn about line width
 set formatoptions+=l " Don't auto break line when I'm already on a long line
 set formatoptions+=M " Better format for CJK characters
+set formatoptions-=t " Disable auto change lines
 
 set foldmethod=marker
 set conceallevel=2
@@ -397,7 +394,13 @@ let g:which_key_map['t'] = {
       \ 'name' : '+toggles' ,
       \ 'c' : [':Colors' , 'toggle-colorschemes'] ,
       \ 'u' : [':UndotreeToggle' , 'toggle-undo-history'] ,
-      \ 'd' : [':LspDocumentDiagnostics' , 'toggle-diagnostics-list'] ,
+      \ 'd' : [':LspDiag show' , 'toggle-lsp-diagnostics-list'] ,
+      \ }
+
+" == Code Actions
+let g:which_key_map['g'] = {
+      \ 'name' : '+toggles' ,
+      \ 'd' : [':LspGotoDefinition' , 'lsp-goto-definition'] ,
       \ }
 
 
