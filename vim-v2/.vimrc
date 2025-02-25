@@ -163,7 +163,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'dense-analysis/ale'
 
 let g:ale_linters_explicit = 1
-let g:ale_fixers = {'python': ['black', 'isort']}
+let g:ale_linters = {'python': ['ruff']}
+let g:ale_fixers = {'python': ['ruff', 'ruff_format']}
 let g:ale_fix_on_save = 1
 let g:ale_floating_preview = 0
 let g:ale_cursor_detail = 0
@@ -201,19 +202,26 @@ nmap <F8> :TagbarToggle<CR>
 
 call plug#end()
 
-let lspOpts = #{autoHighlightDiags: v:true}
-autocmd User LspSetup call LspOptionsSet(lspOpts)
-
 let lspServers = [#{
   \   name: 'pylsp',
   \   filetype: ['python'],
   \   path: 'pylsp',
-  \   args: []
+  \   args: [],
+  \   features: #{
+  \       diagnostics: v:false
+  \   }
+  \ }, #{
+  \   name: 'rustlang',
+  \   filetype: ['rust'],
+  \   path: 'rust-analyzer',
+  \   args: [],
+  \   syncInit: v:true
   \ }]
+
 autocmd User LspSetup call LspAddServer(lspServers)
 
 let lspOptions = #{
-  \   aleSupport: v:false,
+  \   aleSupport: v:true,
   \   autoComplete: v:true,
   \   autoHighlight: v:false,
   \   autoHighlightDiags: v:true,
