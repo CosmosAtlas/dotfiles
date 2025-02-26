@@ -6,6 +6,7 @@ getantidote/use-omz        # handle OMZ dependencies
 ohmyzsh/ohmyzsh path:lib   # load OMZ's library
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages  # load OMZ plugins
 ohmyzsh/ohmyzsh path:plugins/magic-enter
+ohmyzsh/ohmyzsh path:plugins/docker
 
 belak/zsh-utils path:editor
 belak/zsh-utils path:history
