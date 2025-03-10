@@ -181,6 +181,9 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
+" difftooling
+Plug 'whiteinge/diffconflicts'
+
 " tags
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_add_default_project_roots = 0
@@ -205,8 +208,8 @@ call plug#end()
 let lspServers = [#{
   \   name: 'pylsp',
   \   filetype: ['python'],
-  \   path: 'pylsp',
-  \   args: [],
+  \   path: 'uv',
+  \   args: ['run', 'pylsp'],
   \   features: #{
   \       diagnostics: v:false
   \   }
@@ -411,6 +414,13 @@ let g:which_key_map['g'] = {
       \ 'd' : [':LspGotoDefinition' , 'lsp-goto-definition'] ,
       \ }
 
+" == Diff Actions
+let g:which_key_map['d'] = {
+      \ 'name' : '+diffs' ,
+      \ 'l' : [':diffget LOCAL', 'Use local version'] ,
+      \ 'b' : [':diffget BASE', 'Use base version'] ,
+      \ 'r' : [':diffget REMOTE', 'Use remote version'] ,
+      \ }
 
 " }}}
 " =============================================================================

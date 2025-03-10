@@ -64,19 +64,18 @@ dotupdate() {
   fi
 }
 
+#
+# uv for python finalizing ====================================================
+#
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
-function auto_pipenv_shell {
-    if [ ! -n "${PIPENV_ACTIVE+1}" ]; then
-        if [ -f "Pipfile" ] ; then
-            pipenv shell
-        fi
-    fi
-}
-
-# Overwrite cd command
-function cd {
-    builtin cd "$@"
-    auto_pipenv_shell
+pyenv() {
+  if [ "$1" = "version-name" ]; then
+    uv run python --version | sed 's/Python //g'
+  else
+    echo "pyenv: command not found"
+  fi
 }
 
 
@@ -84,18 +83,11 @@ function cd {
 # Finish Ups ==================================================================
 #
 
-# Setup pyenv information
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 # Set up rust env
 [[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
 
 # Start prompt
 eval "$(starship init zsh)"
-
-auto_pipenv_shell
 
 # Load local config file
 [[ ! -f $HOME/.zsh_local ]] || source $HOME/.zsh_local
