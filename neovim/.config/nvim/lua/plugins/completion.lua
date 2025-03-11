@@ -1,6 +1,6 @@
 return {
   'VonHeikemen/lsp-zero.nvim',
-  branch = 'v2.x',
+  branch = 'v3.x',
   dependencies = {
     -- LSP Support
     {'neovim/nvim-lspconfig'},             -- Required
@@ -23,16 +23,6 @@ return {
     },     -- Required
   },
   config = function()
-    -- LSP setup
-    local lsp = require'lsp-zero'.preset{}
-
-    lsp.on_attach(function(client, bufnr)
-      lsp.default_keymaps({buffer = bufnr})
-    end)
-
-    lsp.nvim_workspace()
-    lsp.setup()
-
     -- completion setup
     local cmp = require('cmp')
     local cmp_action = require('lsp-zero').cmp_action()
@@ -52,11 +42,82 @@ return {
       },
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
         { name = 'omni' },
         { name = 'buffer' },
+      },
+      snippet = {
+        expand = function(args)
+          require('luasnip').lsp_expand(args.body)
+        end,
+      },
+      formatting = {
+        fields = {'abbr', 'menu', 'kind'},
+        format = function(entry, item)
+          local n = entry.source.name
+          if n == 'nvim_lsp' then
+            item.menu = '[LSP]'
+          else
+            item.menu = string.format('[%s]', n)
+          end
+          return item
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        -- scroll up and down the documentation window
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+      }),
+    })
+
+    -- LSP setup
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+      vim.lsp.handlers.hover,
+      { border = 'rounded' }
+    )
+
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+      vim.lsp.handlers.signature_help,
+      { border = 'rounded' }
+    )
+
+    local lspconfig_defaults = require('lspconfig').util.default_config
+
+    lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+      'force',
+      lspconfig_defaults.capabilities,
+      require('cmp_nvim_lsp').default_capabilities()
+    )
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+      desc = 'LSP actions',
+      callback = function(event)
+        local opts = {buffer = event.buf}
+
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+      end,
+    })
+
+
+    -- mason integration
+    require('mason').setup({})
+    require('mason-lspconfig').setup({
+      ensure_installed = {'lua_ls', 'pylsp', 'rust_analyzer'},
+      handlers = {
+        function(server_name)
+          require('lspconfig')[server_name].setup({})
+        end
       }
     })
+
   end
 }
 
