@@ -332,7 +332,7 @@ set spelllang+=cjk
 " set t_Co=256
 set termguicolors
 set background=dark
-colorscheme ayu
+colorscheme gruvbox8_hard
 
 "
 " Temp file management
