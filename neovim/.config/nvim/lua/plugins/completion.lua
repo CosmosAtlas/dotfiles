@@ -1,18 +1,16 @@
 return {
-  'VonHeikemen/lsp-zero.nvim',
-  branch = 'v3.x',
+  'hrsh7th/nvim-cmp',
   dependencies = {
     -- LSP Support
-    {'neovim/nvim-lspconfig'},             -- Required
-    {                                      -- Optional
+    {'neovim/nvim-lspconfig'},
+    {
       'williamboman/mason.nvim',
       build = ':MasonUpdate'
     },
-    {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    {'williamboman/mason-lspconfig.nvim'},
 
     -- Autocompletion
-    {'hrsh7th/nvim-cmp'},     -- Required
-    {'hrsh7th/cmp-nvim-lsp'}, -- Required
+    {'hrsh7th/cmp-nvim-lsp'},
     {'saadparwaiz1/cmp_luasnip'},
     {
       'L3MON4D3/LuaSnip',
@@ -20,28 +18,48 @@ return {
       config = function()
         require('luasnip.loaders.from_vscode').lazy_load()
       end
-    },     -- Required
+    },
   },
   config = function()
     -- completion setup
     local cmp = require('cmp')
-    local cmp_action = require('lsp-zero').cmp_action()
+    local luasnip = require("luasnip")
 
     cmp.setup({
       mapping = {
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
-        ['<Tab>'] = function(fallback)
+        ['<CR>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item()
+            if luasnip.expandable() then
+              luasnip.expand()
+            else
+              cmp.confirm({select = false})
+            end
           else
             fallback()
           end
-        end,
-        ['<C-l>'] = cmp_action.luasnip_jump_forward(),
-        ['<C-h>'] = cmp_action.luasnip_jump_backward(),
+        end),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
       },
       sources = {
         { name = 'nvim_lsp' },
+        { name = 'luasnip' },
         { name = 'omni' },
         { name = 'buffer' },
       },
@@ -62,11 +80,6 @@ return {
           return item
         end,
       },
-      mapping = cmp.mapping.preset.insert({
-        -- scroll up and down the documentation window
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-      }),
     })
 
     -- LSP setup
@@ -114,7 +127,7 @@ return {
       handlers = {
         function(server_name)
           require('lspconfig')[server_name].setup({})
-        end
+        end,
       }
     })
 
