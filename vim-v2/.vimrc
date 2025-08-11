@@ -371,6 +371,7 @@ augroup END
 " Key Bindings {{{
 " =============================================================================
 map <leader>hf :call FillLine('=')<CR>
+map <leader>hc :call SynStack()<CR>
 nnoremap <silent> <Leader>ed :e $MYVIMRC<CR> :echom "Editing $MYVIMRC"<CR>
 nnoremap <silent> <Leader>rv :source $MYVIMRC<CR> :echom "Reloaded MYVIMRC"<CR>
 
@@ -442,6 +443,19 @@ function! FillLine(str)
     .s/$/\=(' '.repeat(a:str, reps))/
   endif
 endfunction
+
+" show the highlight group
+function! SynStack()
+  let s:cl = &cursorline
+  set nocursorline
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  if s:cl
+    set cursorline
+  endif
+endfunc
 
 " }}}
 " =============================================================================
