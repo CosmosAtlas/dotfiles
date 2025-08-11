@@ -7,6 +7,7 @@ return {                      -- a list of misc and small extensions to make lif
   { 'tpope/vim-dispatch' },   -- run jobs asynchronously
   { 'tommcdo/vim-lion' },     -- alignment with gl commands
   { 'andymass/vim-matchup' }, -- better % matching
+  { 'sindrets/diffview.nvim' },
   {
     'jpalardy/vim-slime',
     config = function()
@@ -31,11 +32,12 @@ return {                      -- a list of misc and small extensions to make lif
     config = function()
       require("conform").setup({
         formatters_by_ft = {
-          python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports', }
+          python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports', },
+          java = {},
         },
         format_on_save = {
           timeout_ms = 500,
-          lsp_format = "fallback",
+          lsp_format = "never",
         },
       })
 
