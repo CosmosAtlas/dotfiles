@@ -9,19 +9,6 @@ return {                      -- a list of misc and small extensions to make lif
   { 'andymass/vim-matchup' }, -- better % matching
   { 'sindrets/diffview.nvim' },
   {
-    'jpalardy/vim-slime',
-    config = function()
-      vim.g.slime_target = 'tmux'
-      vim.cmd [[
-        let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-      ]]
-    end
-  },
-  {
-    'hanschen/vim-ipython-cell',
-    dependencies = { 'jpalardy/vim-slime' }
-  },
-  {
     'windwp/nvim-autopairs',
     config = function()
       require 'nvim-autopairs'.setup {}
@@ -49,4 +36,20 @@ return {                      -- a list of misc and small extensions to make lif
       })
     end
   },
+  {
+    "pappasam/nvim-repl",
+    opts = {
+      filetype_commands = {
+        python = { cmd = "uv run ipython", filetype = "python" }
+      },
+      open_window_default = "vertical split new",
+    },
+    keys = {
+      { "<LocalLeader>rs", ":Repl<CR>", mode = "n", desc = "Start Repl" },
+      { "<LocalLeader>c", "<Plug>(ReplSendCell)", mode = "n", desc = "Send Repl Cell" },
+      { "<LocalLeader>l", "<Plug>(ReplSendLine)", mode = "n", desc = "Send Repl Line" },
+      { "<LocalLeader>h", "<Plug>(ReplSendLine)", mode = "n", desc = "Send Repl Line" },
+      { "<LocalLeader>h", "<Plug>(ReplSendVisual)", mode = "x", desc = "Send Repl Selected" },
+    }
+  }
 }
