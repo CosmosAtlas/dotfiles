@@ -179,6 +179,8 @@ Plug 'Vimjas/vim-python-pep8-indent'
 
 " sending code
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
+
+" breaks syntax highlighting for '## something' due to hardcoded stuff
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
 " difftooling
@@ -448,10 +450,8 @@ endfunction
 function! SynStack()
   let s:cl = &cursorline
   set nocursorline
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  let l:s = synID(line('.'), col('.'), 1)
+  echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
   if s:cl
     set cursorline
   endif
