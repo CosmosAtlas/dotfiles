@@ -1,17 +1,6 @@
 vifminfo.json
 vifminfo
-packer_compiled.lua
 .DS_Store
-
-# XMonad
-.hpc/
-*.hi
-*.o
-*.p_hi
-*.prof
-*.tix
-xmonad.errors
-xmonad-x86_64-linux
 
 # Temp Swap files
 tags
