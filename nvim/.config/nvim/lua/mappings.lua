@@ -24,8 +24,8 @@ wk.add({
   { "<leader>tc", function() Snacks.picker.colorschemes() end, desc = "[C]olorschemes" },
   { "<leader>tg", function() Snacks.lazygit() end, desc = "lazy[g]it" },
   { "<leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "[L]SP Definitions / references / ... (Trouble)"},
-  { "<leader>td", "<cmd>Trouble diagnostics<cr>", desc = "[L]SP [D]iagnostics"},
-  { "<leader>tn", "<cmd>Notifications<cr>", desc = "[L]SP [D]iagnostics"},
+  { "<leader>td", "<cmd>Trouble diagnostics<cr>", desc = "[T]oogle LSP [D]iagnostics"},
+  { "<leader>tn", "<cmd>Notifications<cr>", desc = "[T]oggle [N]otifications"},
 
   -- config related
   { "<leader>ec", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[E]dit [C]onfig" },
