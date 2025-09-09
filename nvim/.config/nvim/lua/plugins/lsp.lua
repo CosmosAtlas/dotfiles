@@ -33,7 +33,7 @@ return {
         -- all lsp configurations
         require("mason-lspconfig").setup {
           ensure_installed = { "pylsp", "lua_ls", "ruff" },
-          automatic_installation = true,
+          automatic_installation = false,
           handlers = {
             -- Default handler applied to all servers
             function(server_name)
@@ -66,6 +66,20 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require("configs.lspconfig").defaults()
+    end
+  },
+  {
+    'rachartier/tiny-inline-diagnostic.nvim',
+    event = "VeryLazy",
+    priority = 1000,
+    config = function()
+      require('tiny-inline-diagnostic').setup({
+        preset = 'simple',
+        signs = {
+          diag = "",
+        }
+      })
+      vim.diagnostic.config({ virtual_text = false })  -- explicit disable again
     end
   },
   {
