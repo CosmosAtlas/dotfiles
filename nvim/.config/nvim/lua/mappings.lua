@@ -14,12 +14,18 @@ wk.add({
   { "<leader>fsl", function() Snacks.picker.lines() end, desc = "[F]ind [S]earch [L]ines" },
   { "<leader>fsg", function() Snacks.picker.grep() end, desc = "[F]ind [S]earch [G]rep" },
   { "<leader>fp", function() Snacks.picker.pickers() end, desc = "[F]ind [P]ickers" },
+
+  { "<leader>hf", function() require("func").fill_line() end, desc = "[H]orizontal [F]ill" },
+  { "<leader>hc", function() require("func").show_syntax_group() end, desc = "[H]ighlight [C]olor Syntax Group" },
+  { "<leader>ds", function() require("func").remove_trailing_whitespace() end, desc = "[D]elete Trailing White[S]pace" },
   -- toggles
   { "<leader>t", group = "toggle" },
   { "<leader>tu", function() Snacks.picker.undo() end, desc = "[U]ndo History" },
   { "<leader>tc", function() Snacks.picker.colorschemes() end, desc = "[C]olorschemes" },
   { "<leader>tg", function() Snacks.lazygit() end, desc = "lazy[g]it" },
   { "<leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "[L]SP Definitions / references / ... (Trouble)"},
+  { "<leader>td", "<cmd>Trouble diagnostics<cr>", desc = "[L]SP [D]iagnostics"},
+  { "<leader>tn", "<cmd>Notifications<cr>", desc = "[L]SP [D]iagnostics"},
 
   -- config related
   { "<leader>ec", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[E]dit [C]onfig" },
