@@ -4,8 +4,6 @@ local wk = require('which-key')
 
 map("n", "<Leader>ed", ':e $MYVIMRC<CR> :echom "Editing $MYVIMRC"<CR>', { silent = true} )
 
-
-
 wk.add({
   -- find stuff
   { "<leader>f", group = "find" },

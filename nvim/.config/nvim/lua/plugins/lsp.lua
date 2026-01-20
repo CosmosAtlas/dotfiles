@@ -32,7 +32,7 @@ return {
 
         -- all lsp configurations
         require("mason-lspconfig").setup {
-          ensure_installed = { "pylsp", "lua_ls", "ruff" },
+          ensure_installed = { "ty", "lua_ls", "ruff" },
           automatic_installation = false,
           handlers = {
             -- Default handler applied to all servers
