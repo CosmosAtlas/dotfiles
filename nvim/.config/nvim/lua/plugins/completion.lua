@@ -14,22 +14,7 @@ return {
   ---@type blink.cmp.Config
   opts = {
     keymap = {
-      preset = 'enter',
-
-      ["<Tab>"] = {
-          function(cmp)
-              return cmp.select_next()
-          end,
-          "snippet_forward",
-          "fallback",
-      },
-      ["<S-Tab>"] = {
-          function(cmp)
-              return cmp.select_prev()
-          end,
-          "snippet_backward",
-          "fallback",
-      },
+      preset = 'super-tab',
       ['<C-l>'] = { function(cmp) cmp.show({ providers = { 'omni' } }) end },
     },
 
@@ -81,7 +66,8 @@ return {
           }
         }
       },
-      documentation = { auto_show = false }
+      documentation = { auto_show = false },
+      ghost_text = { enabled = true },
     },
 
     sources = {
@@ -93,6 +79,19 @@ return {
             score_offset = 100,
           },
         },
+    },
+
+    cmdline = {
+      enabled = true,
+      completion = {
+        list = { selection = {preselect = false } },
+        menu = {
+          auto_show = function (ctx)
+            return vim.fn.getcmdtype() == ":"
+          end,
+        },
+        ghost_text = { enabled = true },
+      },
     },
 
     fuzzy = { implementation = "prefer_rust_with_warning" }

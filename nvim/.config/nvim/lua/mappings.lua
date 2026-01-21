@@ -1,4 +1,3 @@
-
 local map = vim.keymap.set
 local wk = require('which-key')
 
