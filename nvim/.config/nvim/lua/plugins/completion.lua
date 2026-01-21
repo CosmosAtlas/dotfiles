@@ -1,5 +1,5 @@
 return {
-  'saghen/blink.cmp',
+  "saghen/blink.cmp",
   -- optional: provides snippets for the snippet source
   dependencies = {
     "rafamadriz/friendly-snippets",
@@ -8,18 +8,22 @@ return {
     "onsails/lspkind.nvim",
   },
 
-  version = '1.*',
+  version = "1.*",
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     keymap = {
-      preset = 'super-tab',
-      ['<C-l>'] = { function(cmp) cmp.show({ providers = { 'omni' } }) end },
+      preset = "super-tab",
+      ["<C-l>"] = {
+        function(cmp)
+          cmp.show({ providers = { "omni" } })
+        end,
+      },
     },
 
     appearance = {
-      nerd_font_variant = 'normal'
+      nerd_font_variant = "normal",
     },
 
     completion = {
@@ -27,26 +31,24 @@ return {
         auto_show = true,
         draw = {
           columns = {
-            { 'source_name', gap = 1 },
-            { 'kind_icon', gap = 1 },
-            { 'label', 'label_description', gap = 1 },
+            { "source_name", gap = 1 },
+            { "kind_icon", gap = 1 },
+            { "label", "label_description", gap = 1 },
           },
           components = {
             label_description = {
-              width = { max = 110 }
+              width = { max = 110 },
             },
             kind_icon = {
               text = function(ctx)
                 local icon = ctx.kind_icon
                 if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                    local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-                    if dev_icon then
-                        icon = dev_icon
-                    end
+                  local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+                  if dev_icon then
+                    icon = dev_icon
+                  end
                 else
-                    icon = require("lspkind").symbolic(ctx.kind, {
-                        mode = "symbol",
-                    })
+                  icon = require("lspkind").symbol_map[ctx.kind] or ""
                 end
 
                 return icon .. ctx.icon_gap
@@ -62,9 +64,9 @@ return {
                 end
                 return hl
               end,
-            }
-          }
-        }
+            },
+          },
+        },
       },
       documentation = { auto_show = false },
       ghost_text = { enabled = true },
@@ -72,21 +74,21 @@ return {
 
     sources = {
       default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100,
-          },
+      providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
         },
+      },
     },
 
     cmdline = {
       enabled = true,
       completion = {
-        list = { selection = {preselect = false } },
+        list = { selection = { preselect = false } },
         menu = {
-          auto_show = function (ctx)
+          auto_show = function(ctx)
             return vim.fn.getcmdtype() == ":"
           end,
         },
@@ -94,7 +96,7 @@ return {
       },
     },
 
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy = { implementation = "prefer_rust_with_warning" },
   },
-  opts_extend = { "sources.default" }
+  opts_extend = { "sources.default" },
 }

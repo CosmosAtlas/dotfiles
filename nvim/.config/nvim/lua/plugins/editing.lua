@@ -1,27 +1,27 @@
 return {
   {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = true,
   },
-  { 'romainl/vim-cool' },      -- auto clear highlights
-  { 'tpope/vim-commentary' },  -- comment
-  { 'tpope/vim-repeat' },      -- better . repeat
-  { 'tpope/vim-unimpaired' },  -- more quick options via ][
-  { 'tpope/vim-surround' },
-  { 'tpope/vim-dispatch' },
-  { 'andymass/vim-matchup' },
+  { "romainl/vim-cool" }, -- auto clear highlights
+  { "tpope/vim-commentary" }, -- comment
+  { "tpope/vim-repeat" }, -- better . repeat
+  { "tpope/vim-unimpaired" }, -- more quick options via ][
+  { "tpope/vim-surround" },
+  { "tpope/vim-dispatch" },
+  { "andymass/vim-matchup" },
   {
-    'sphamba/smear-cursor.nvim',
+    "sphamba/smear-cursor.nvim",
     opts = {},
   },
   -- TODO need an align plugin
   {
-    'stevearc/conform.nvim',  -- auto formatting
+    "stevearc/conform.nvim", -- auto formatting
     config = function()
       require("conform").setup({
         formatters_by_ft = {
-          python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports', },
+          python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
           java = {},
           -- c = { 'clang-format' },
         },
@@ -37,6 +37,6 @@ return {
           require("conform").format({ bufnr = args.buf })
         end,
       })
-    end
+    end,
   },
 }
