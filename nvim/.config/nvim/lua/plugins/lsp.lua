@@ -66,18 +66,28 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require("configs.lspconfig").defaults()
+      vim.lsp.enable('gopls')
     end
   },
   {
     'rachartier/tiny-inline-diagnostic.nvim',
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     priority = 1000,
     config = function()
       require('tiny-inline-diagnostic').setup({
         preset = 'simple',
         signs = {
           diag = "",
-        }
+        },
+        options = {
+          overwrite_events = { "DiagnosticChanged" },
+          add_messages = {
+            display_count = true,
+          },
+          multilines = {
+            enabled = true,
+          },
+        },
       })
       vim.diagnostic.config({ virtual_text = false })  -- explicit disable again
     end

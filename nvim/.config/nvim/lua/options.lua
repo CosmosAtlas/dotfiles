@@ -15,6 +15,7 @@ o.expandtab = true
 o.shiftwidth = 2
 o.tabstop = 2
 o.softtabstop = 2
+o.showtabline = 2
 
 opt.fillchars = { eob = " " }  -- for cleaner end of file look
 o.ignorecase = true
@@ -64,6 +65,9 @@ o.backup = true
 o.swapfile = true
 o.undofile = true
 o.writebackup = true
+
+-- auto read local file if it has been updated
+o.autoread = true
 
 -- visible chars
 vim.o.list = true

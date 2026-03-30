@@ -20,9 +20,14 @@ wk.add({
   { "<leader>tu", function() Snacks.picker.undo() end, desc = "[U]ndo History" },
   { "<leader>tc", function() Snacks.picker.colorschemes() end, desc = "[C]olorschemes" },
   { "<leader>tg", function() Snacks.lazygit() end, desc = "lazy[g]it" },
+  { "<leader>ts", function() Snacks.scratch() end, desc = "Scratch Buffer" },
+  { "<leader>tS", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
   { "<leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "[L]SP Definitions / references / ... (Trouble)"},
   { "<leader>td", "<cmd>Trouble diagnostics<cr>", desc = "[T]oogle LSP [D]iagnostics"},
-  { "<leader>tn", "<cmd>Notifications<cr>", desc = "[T]oggle [N]otifications"},
+
+  { "<leader>r", group = "one off runs"},
+  { "<leader>rn", "<cmd>Fidget history<cr>", desc = "[R]un show [N]otifications"},
+  { "<leader>rl", function() require("lint").try_lint() end, desc = "[R]un [L]int"},
 
   -- config related
   { "<leader>ec", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[E]dit [C]onfig" },
