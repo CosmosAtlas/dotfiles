@@ -2,7 +2,13 @@ return {
   "saghen/blink.cmp",
   -- optional: provides snippets for the snippet source
   dependencies = {
-    "rafamadriz/friendly-snippets",
+    {
+      "rafamadriz/friendly-snippets",
+      config = function ()
+        local snippet_dir = vim.fn.stdpath("config") .. "/snippets"
+        vim.g.vscode_snippets_path = snippet_dir
+      end
+    },
     "folke/lazydev.nvim",
     "nvim-tree/nvim-web-devicons",
     "onsails/lspkind.nvim",

@@ -1,0 +1,7 @@
+{
+  "DONE with date": {
+    "prefix": ";tdt",
+    "body": " --- DONE:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+    "description": "Insert DONE tag with today's date"
+  }
+}

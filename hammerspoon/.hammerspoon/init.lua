@@ -352,21 +352,14 @@ end)
 
 -- Deterministic input method switcher
 
-hs.hotkey.bind({"cmd", "shift"}, "t", function()
-  hs.keycodes.setLayout('Programmer Dvorak')
+hs.hotkey.bind({"cmd", "shift"}, "d", function()
+  hs.execute [["/opt/homebrew/bin/macism" "com.apple.keyboardlayout.Programmer Dvorak"]]
   hs.alert.show(hs.keycodes.currentLayout())
 end)
 
 hs.hotkey.bind({"cmd", "shift"}, "c", function()
-  hs.keycodes.currentSourceID("im.rime.inputmethod.Squirrel.Hans")
-  hs.execute [["/Library/Input Methods/Squirrel.app/Contents/MacOS/Squirrel" "--reload"]]
-  -- hs.alert.show(hs.keycodes.currentSourceID())
+  hs.execute [["/opt/homebrew/bin/macism" "im.rime.inputmethod.Squirrel.Hans"]]
   hs.alert.show('Squirrel - Rime')
-end)
-
-hs.hotkey.bind({"cmd", "shift"}, "d", function()
-  hs.keycodes.setLayout('ABC')
-  hs.alert.show(hs.keycodes.currentLayout())
 end)
 
 

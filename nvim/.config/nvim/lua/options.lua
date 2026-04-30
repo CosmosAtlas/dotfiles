@@ -66,9 +66,6 @@ o.swapfile = true
 o.undofile = true
 o.writebackup = true
 
--- auto read local file if it has been updated
-o.autoread = true
-
 -- visible chars
 vim.o.list = true
 vim.opt.listchars = {
@@ -112,3 +109,12 @@ g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 
 
+-- autoreload files
+o.autoread = true
+
+local aug = vim.api.nvim_create_augroup("WZCommands", {})  -- personal autogroup
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = "*",
+  group = aug,
+})

@@ -12,7 +12,7 @@ return {
   {
     "EdenEast/nightfox.nvim",
     config = function()
-      vim.cmd.colorscheme('terafox')
+      -- vim.cmd.colorscheme('terafox')
     end
   },
   {
@@ -63,6 +63,9 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
+    config = function()
+      vim.cmd.colorscheme('kanagawa-wave')
+    end
   },
   {
     "folke/tokyonight.nvim",

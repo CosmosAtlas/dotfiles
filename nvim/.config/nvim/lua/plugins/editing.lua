@@ -10,6 +10,7 @@ return {
   { "tpope/vim-unimpaired" }, -- more quick options via ][
   { "tpope/vim-surround" },
   { "tpope/vim-dispatch" },
+  { "tpope/vim-endwise" },
   { "andymass/vim-matchup" },
   {
     "sphamba/smear-cursor.nvim",
@@ -47,5 +48,5 @@ return {
         gitcommit = {'commitlint'}
       }
     end
-  }
+  },
 }
