@@ -166,7 +166,7 @@ r::p
 t::y
 y::f
 u::g
-i::c
+i::c ; Physical I; use the same scan code as the language hotkey below.
 o::r
 p::l
 [::/
@@ -177,7 +177,7 @@ s::o
 d::e
 f::u
 g::i
-h::d
+h::d ; Physical H; use the same scan code as the language hotkey below.
 ;;  ^j::Send, ^h
 j::h
 k::t
@@ -255,10 +255,9 @@ SetDefaultKeyboard(LocaleID) {
 	PostMessage 0x50, 0, % Lan, %CtrlFocus%
 }
 
-;; Mapping here relates to the physical keyboard. So the previous dvp mapping aren't active.
-#+k::SetDefaultKeyboard(0x0409) ; English (USA)
-#+j::SetDefaultKeyboard(0x0411) ; Japanese
-#+i::SetDefaultKeyboard(0x0804) ; Chinese (PRC)
+;; Scan codes bind to physical QWERTY key positions, independent of the active layout.
+#+h::SetDefaultKeyboard(0x0409) ; Win+Shift+physical H: English (USA)
+#+i::SetDefaultKeyboard(0x0804) ; Win+Shift+physical I: Chinese (PRC)
 
 
 ;; GoldenDict quick lookup setup
