@@ -44,7 +44,8 @@ return {
     name = "rose-pine"
   },
   {
-    "nyoom-engineering/oxocarbon.nvim"
+    "nyoom-engineering/oxocarbon.nvim",
+    build = false,
   },
   {
     "scottmckendry/cyberdream.nvim",

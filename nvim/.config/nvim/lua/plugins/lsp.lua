@@ -32,7 +32,7 @@ return {
 
         -- all lsp configurations
         require("mason-lspconfig").setup {
-          ensure_installed = { "ty", "ruff", "lua_ls"},
+          ensure_installed = {"ruff", "lua_ls"},
           automatic_installation = false,
           handlers = {
             -- Default handler applied to all servers
@@ -100,7 +100,11 @@ return {
     config = function()
       require('nvim-navic').setup({
         lsp = {
-          auto_attach = true
+          auto_attach = true,
+          preference = {
+            "pyrefly",
+            "ty"
+          }
         }
       })
     end

@@ -89,7 +89,7 @@ o.directory = vim.env.VIMHOME .. '/tmp/swap//'
 o.undodir = vim.env.VIMHOME .. '/tmp/undo//'
 
 for _, dir in pairs({o.backupdir, o.directory, o.undodir}) do
-  if vim.fn.isdirectory(dir) ~= 0 then
+  if vim.fn.isdirectory(dir) == 0 then  -- if directory doesn't exist
     vim.fn.mkdir(dir, 'p')
   end
 end

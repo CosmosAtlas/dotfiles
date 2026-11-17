@@ -6,6 +6,7 @@
 
 -- General settings
 hs.window.animationDuration = 0.1 -- Animation speed for moving windows
+hs.grid.setGrid('2x2')
 
 local logger = hs.logger.new("CZ Scripts", "debug")
 
@@ -45,59 +46,23 @@ end)
 
 local function splitLeft()
   local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
+  hs.grid.set(win, {0, 0, 1, 2})
 end
 
 local function splitRight()
   local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
+  hs.grid.set(win, {1, 0, 1, 2})
 end
 
 local function splitUp()
   local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
+  hs.grid.set(win, {0, 0, 2, 1})
 end
 
 
 local function splitDown()
   local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y + (max.h / 2)
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
+  hs.grid.set(win, {0, 1, 2, 1})
 end
 
 hs.hotkey.bind(prefix, "Left", splitLeft)
@@ -257,17 +222,7 @@ local function moveMonitor(direction)
     if targetIndex then
       local targetScreen = screens[targetIndex]
       win:moveToScreen(targetScreen)
-
-      local f = win:frame()
-
-      local screen = win:screen()
-      local max = screen:frame()
-
-      f.x = max.x
-      f.y = max.y
-      f.w = max.w
-      f.h = max.h
-      win:setFrame(f)
+      hs.grid.maximizeWindow(win)
     end
   end
 end

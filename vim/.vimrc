@@ -223,8 +223,6 @@ let lspServers = [#{
   \   syncInit: v:true
   \ }]
 
-autocmd User LspSetup call LspAddServer(lspServers)
-
 let lspOptions = #{
   \   aleSupport: v:true,
   \   autoComplete: v:true,
@@ -271,7 +269,18 @@ let lspOptions = #{
   \   filterCompletionDuplicates: v:false,
   \ }
 
-autocmd User LspSetup call LspOptionsSet(lspOptions)
+augroup VimrcLspSetup
+  autocmd!
+  autocmd User LspSetup call LspOptionsSet(lspOptions)
+  autocmd User LspSetup call LspAddServer(deepcopy(lspServers))
+augroup END
+
+" Apply settings immediately when sourcing vimrc after the plugin has loaded.
+" Existing server definitions require restarting Vim to change.
+if exists('*LspOptionsSet') && exists('*LspAddServer')
+  call LspOptionsSet(lspOptions)
+  call LspAddServer(deepcopy(lspServers))
+endif
 
 
 " Plug-in settings that needs to be called after plug#end
@@ -314,7 +323,7 @@ if has('arabic')
   set noarabicshape
 endif
 
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set fileencodings=ucs-bom,utf-8,gb18030,latin1
 
 set list
 set listchars=tab:▶\ ,eol:¬,trail:·,nbsp:␣
@@ -334,7 +343,7 @@ set spelllang+=cjk
 " set t_Co=256
 set termguicolors
 set background=dark
-colorscheme gruvbox8_hard
+colorscheme snow
 
 "
 " Temp file management
@@ -432,18 +441,24 @@ let g:which_key_map['d'] = {
 
 " Function to fill a line with char
 function! FillLine(str)
-  " set tw to the desired total length
-  let tw = &textwidth
-  if tw==0 | let tw = 80 | endif
-  " strip trailing spaces first
-  .s/[[:space:]]*$//
-  " calculate total number of 'str's to insert
-  let reps = (tw - col('$')) / len(a:str)
-  " insert them, if there's room, removing trailing spaces (though forcing
-  " there to be one)
-  if reps > 0
-    .s/$/\=(' '.repeat(a:str, reps))/
+  let l:tw = &l:textwidth > 0 ? &l:textwidth : 80
+  let l:text = substitute(getline('.'), '[[:space:]]\+$', '', '')
+  " Measure each candidate so tabs and wide characters use display columns.
+  if strdisplaywidth(a:str) > 0
+    let l:filled = l:text . ' '
+    let l:width = strdisplaywidth(l:filled)
+    while 1
+      let l:next = l:filled . a:str
+      let l:next_width = strdisplaywidth(l:next)
+      if l:next_width > l:tw || l:next_width <= l:width
+        break
+      endif
+      let l:filled = l:next
+      let l:width = l:next_width
+      let l:text = l:filled
+    endwhile
   endif
+  call setline('.', l:text)
 endfunction
 
 " show the highlight group
